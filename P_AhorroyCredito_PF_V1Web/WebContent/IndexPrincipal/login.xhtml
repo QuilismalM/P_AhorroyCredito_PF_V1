@@ -5,11 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<head>
-
-	<title>Inicio Organización Amistad</title>
-
-	<!-- core CSS -->
+<h:head>
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/font-awesome.min.css" rel="stylesheet" />
 	<link href="css/animate.min.css" rel="stylesheet" />
@@ -19,19 +15,8 @@
 	<link href="css/main.css" rel="stylesheet" />
 	<link href="css/responsive.css" rel="stylesheet" />
 
-	<link rel="shortcut icon" href="images/ico/favicon.ico" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144"
-		href="images/ico/apple-touch-icon-144-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114"
-		href="images/ico/apple-touch-icon-114-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72"
-		href="images/ico/apple-touch-icon-72-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed"
-		href="images/ico/apple-touch-icon-57-precomposed.png" />
-
-</head>
-<body class="homepage">
-
+</h:head>
+<body>
 	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">
@@ -53,7 +38,7 @@
 						class="glyphicon glyphicon-home" /> INICIO</a></li>
 				<!--      <li><a href="about-us.html"></a></li> -->
 				<!-- <li><a href="services.html"><span
-						class="glyphicon glyphicon-usd" /> SERVICIOS</a></li> -->
+								class="glyphicon glyphicon-usd" /> SERVICIOS</a></li> -->
 				<li><a href="about-us.xhtml"> <span
 						class="glyphicon glyphicon-eye-open" /> QUIENES SOMOS
 				</a></li>
@@ -66,73 +51,48 @@
                             </ul>
                         </li> -->
 				<li><a href="contacto.xhtml"><span
-						class="glyphicon glyphicon-phone-alt" /> CONTACTO</a></li>
-				<li><a href="login.xhtml"><span
-						class="glyphicon glyphicon-log-in" /> ACCEDER</a></li>
+						class="glyphicon glyphicon-phone-alt" />CONTACTO</a></li>
+				<li><a href=""><span class="glyphicon glyphicon-log-in" />
+						ACCEDER</a></li>
 			</ul>
 		</div>
 	</div>
-	</nav> 
-	</header>
-	<section id="main-slider" class="no-margin">
-	<div class="carousel slide">
-		<ol class="carousel-indicators">
-			<li data-target="#main-slider" data-slide-to="0" class="active"></li>
-			<li data-target="#main-slider" data-slide-to="1"></li>
-			<li data-target="#main-slider" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
+	</nav> </header>
+	<br />
+	<div class="container">
+		<div class="row">
+		    <div class="col-sm-3 col-xs-12">
+		    
+		    </div>
+			<div class="col-sm-6 col-xs-12">
+				<p:panel header="LOGIN">
+					<p:growl autoUpdate="true"></p:growl>
+					<h:form>
+						<p:panelGrid columns="2">
+							<h:outputText value="ID de usuario:" />
+							<p:inputText value="" required="true"
+								requiredMessage="Debe ingresar un ID de usuario." maxlength="10"></p:inputText>
+							<h:outputText value="Contraseña:" />
+							<p:password value="" required="true" maxlength="10" size="10"></p:password>
+							<h:outputText value="Confirmación de clave:" />
+							<p:password value="" required="true" maxlength="10" size="10"></p:password>
+							<h:outputText value="correo:" />
+							<p:inputText value="" required="true"
+								requiredMessage="Debe ingresar un correo."></p:inputText>
+							<p:commandButton value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
+						</p:panelGrid>
+					</h:form>
 
-			<div class="item active"
-				style="background-image: url(images/slider/bg1.jpg)">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="carousel-content">
-								<h1 class="animation animated-item-1">Grupo Amistad</h1>
-								<div class="animation animated-item-2">Tus Ahorros Seguros
-								</div>
-								<a class="btn-slide animation animated-item-3" href="#">Learn
-									More</a> <a class="btn-slide white animation animated-item-3"
-									href="#">Get Started</a>
-							</div>
-						</div>
-
-					</div>
-				</div>
+				</p:panel>
 			</div>
-			<!--/.item-->
-
-			<div class="item"
-				style="background-image: url(images/slider/bg2.jpg)">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="carousel-content">
-								<h1 class="animation animated-item-1">Grupo Amistad</h1>
-								<div class="animation animated-item-2">Tus Ahorros Seguros
-								</div>
-								<a class="btn-slide white animation animated-item-3" href="#">Learn
-									More</a> <a class="btn-slide animation animated-item-3" href="#">Get
-									Started</a>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-			<!--/.item-->
-
 		</div>
-		<!--/.carousel-inner-->
 	</div>
-	<!--/.carousel--> <a class="prev hidden-xs hidden-sm"
-		href="#main-slider" data-slide="prev"> <i
-		class="fa fa-chevron-left"></i>
-	</a> <a class="next hidden-xs hidden-sm" href="#main-slider"
-		data-slide="next"> <i class="fa fa-chevron-right"></i>
-	</a> </section>
+
+ <br />
+<section>
+
+
+</section>
 
 	<div class="top-bar">
 		<div class="container">
@@ -140,7 +100,7 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="top-number">
 						<p>
-							<i class="fa fa-phone-square"></i>  0989805294
+							<i class="fa fa-phone-square"></i> 0989805294
 						</p>
 					</div>
 				</div>
@@ -160,6 +120,7 @@
 		</div>
 		<!--/.container-->
 	</div>
+
 	<footer id="footer" class="midnight-blue">
 	<div class="container">
 		<div class="row">
@@ -170,11 +131,16 @@
 		</div>
 	</div>
 	</footer>
+	<!--/#footer-->
+
+
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.prettyPhoto.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.isotope.min.js"></script>
 	<script src="js/main.js"></script>
+
+
 </body>
 </html>

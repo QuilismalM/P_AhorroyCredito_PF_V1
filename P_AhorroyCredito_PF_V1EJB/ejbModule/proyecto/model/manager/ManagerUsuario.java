@@ -74,6 +74,11 @@ public class ManagerUsuario {
 		user.setCedulaUsuario(usuario.getCedulaUsuario());
 		user.setNombreUsuario(usuario.getNombreUsuario());
 		user.setApellidoUsuario(usuario.getApellidoUsuario());
+		user.setDireccionUsuario(usuario.getDireccionUsuario());
+		user.setCorreoUsario(usuario.getCorreoUsario());
+		user.setTelefonoUsuario(usuario.getTelefonoUsuario());
+		user.setUsername(usuario.getUsername());
+		user.setContrasena(usuario.getContrasena());
 		user.setRol(usuario.getRol());
 		user.setEmpresa(usuario.getEmpresa());
 		em.merge(user);

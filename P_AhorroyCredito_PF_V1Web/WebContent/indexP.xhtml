@@ -1,11 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
-seguiran haciedno compas
-</body> 
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:menu toggleable="true">
+			<p:submenu label="Ajax">
+				<p:menuitem value="Save"
+					icon="pi pi-save" />
+				<p:menuitem value="Update"  icon="pi pi-refresh" />
+			</p:submenu>
+			<p:submenu label="Non-Ajax">
+				<p:menuitem value="Delete"  ajax="false" icon="pi pi-times" />
+			</p:submenu>
+			<p:submenu label="Navigations">
+				<p:menuitem value="External" url="http://www.primefaces.org"
+					icon="pi pi-home" />
+				<p:menuitem value="Internal" icon="pi pi-star" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</body>
 </html>

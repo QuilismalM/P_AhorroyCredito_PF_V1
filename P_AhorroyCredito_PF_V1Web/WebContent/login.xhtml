@@ -6,17 +6,18 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/font-awesome.min.css" rel="stylesheet" />
-	<link href="css/animate.min.css" rel="stylesheet" />
-	<link href="css/prettyPhoto.css" rel="stylesheet" />
-	<link href="css/owl.carousel.min.css" rel="stylesheet" />
-	<link href="css/icomoon.css" rel="stylesheet" />
-	<link href="css/main.css" rel="stylesheet" />
-	<link href="css/responsive.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="./IndexPrincipal/css/responsive.css" rel="stylesheet" />
 
 </h:head>
 <body>
+<!-- <a href="../indexAdministrador/indexAdmin_Personal.xhtml"></a> -->
 	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">
@@ -28,18 +29,18 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="IndexPrincipal.xhtml"><img
-				src="images/logo1.png" width="200" height="75"
+				src="./IndexPrincipal/images/logo1.png" width="200" height="75"
 				style="margin-bottom: 15px" alt="logo1"></img></a>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="IndexPrincipal.xhtml"><span
+				<li class="active"><a href="./IndexPrincipal/IndexPrincipal.xhtml"><span
 						class="glyphicon glyphicon-home" /> INICIO</a></li>
 				<!--      <li><a href="about-us.html"></a></li> -->
 				<!-- <li><a href="services.html"><span
 								class="glyphicon glyphicon-usd" /> SERVICIOS</a></li> -->
-				<li><a href="about-us.xhtml"> <span
+				<li><a href="./IndexPrincipal/about-us.xhtml"> <span
 						class="glyphicon glyphicon-eye-open" /> QUIENES SOMOS
 				</a></li>
 				<!--                         <li class="dropdown">
@@ -50,7 +51,7 @@
                                 <li><a href="404.html">404</a></li>
                             </ul>
                         </li> -->
-				<li><a href="contacto.xhtml"><span
+				<li><a href="./IndexPrincipal/contacto.xhtml"><span
 						class="glyphicon glyphicon-phone-alt" />CONTACTO</a></li>
 				<li><a href=""><span class="glyphicon glyphicon-log-in" />
 						ACCEDER</a></li>
@@ -61,25 +62,24 @@
 	<br />
 	<div class="container">
 		<div class="row">
-		    <div class="col-sm-3 col-xs-12">
-		    
-		    </div>
+			<div class="col-sm-3 col-xs-12"></div>
 			<div class="col-sm-6 col-xs-12">
 				<p:panel header="LOGIN">
 					<p:growl autoUpdate="true"></p:growl>
 					<h:form>
 						<p:panelGrid columns="2">
 							<h:outputText value="ID de usuario:" />
-							<p:inputText value="" required="true"
+							<p:inputText value="#{beanLogin.username}" required="true"
 								requiredMessage="Debe ingresar un ID de usuario." maxlength="10"></p:inputText>
 							<h:outputText value="Contraseña:" />
-							<p:password value="" required="true" maxlength="10" size="10"></p:password>
-							<h:outputText value="Confirmación de clave:" />
-							<p:password value="" required="true" maxlength="10" size="10"></p:password>
-							<h:outputText value="correo:" />
-							<p:inputText value="" required="true"
-								requiredMessage="Debe ingresar un correo."></p:inputText>
-							<p:commandButton value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
+							<p:password value="#{beanLogin.contrasena}" required="true" maxlength="10" size="10"></p:password>
+							<h:outputText value="Tipo Usuario:" />
+							<p:selectOneMenu value="#{beanLogin.id_rol}">
+								<f:selectItem itemLabel="Seleccione" />
+								<f:selectItems value="#{beanLogin.listaRoles}" var="rol"
+									itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
+							</p:selectOneMenu>
+							<p:commandButton action="#{beanLogin.actionLogin()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
 						</p:panelGrid>
 					</h:form>
 
@@ -88,11 +88,8 @@
 		</div>
 	</div>
 
- <br />
-<section>
-
-
-</section>
+	<br />
+	<section> </section>
 
 	<div class="top-bar">
 		<div class="container">
@@ -134,12 +131,7 @@
 	<!--/#footer-->
 
 
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.prettyPhoto.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.isotope.min.js"></script>
-	<script src="js/main.js"></script>
+
 
 
 </body>

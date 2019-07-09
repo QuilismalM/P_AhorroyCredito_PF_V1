@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
@@ -57,7 +58,11 @@ public class BeanLogin implements Serializable{
 		}
 		return "";
 	}
-	
+	public String salirSistema(){
+		System.out.println("salirSistema");
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/login.xhtml?faces-redirect=true";
+	}
 
 
 	

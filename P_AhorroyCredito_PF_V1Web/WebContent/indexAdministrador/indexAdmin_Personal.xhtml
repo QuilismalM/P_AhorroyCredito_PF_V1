@@ -6,17 +6,85 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
 		<title>Datos Personal</title>
 
-				<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-					icon="fa fa-sign-out" />
-
+		
 	</f:facet>
 </h:head>
 <body>
+
+<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="row">
+          <div class="col-sm-2 col-xs-12">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				<a class="navbar-brand"><img
+					src="../IndexPrincipal/images/logo1.png" width="200" height="75"
+					style="margin-bottom: 15px" alt="logo1"></img></a>
+			</div>
+			
+			</div>
+			<center>
+				<h1>BIENVENIDO:Administrador	                                                                      
+				</h1>
+				
+			</center>
+			<div class="col-sm-12 col-xs-12">
+			
+			<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
+					icon="fa fa-sign-out"/>
+						
+			</div>	
+		</div>
+	</div>
+	</nav> </header>
+	<br />
+
+<br />
+<div class="row">
+  <div class="col-xs-2">
+	
+	<h:form>
+		<p:menu toggleable="true">
+			<p:submenu label="Ajax">
+				<p:menuitem value="Save"
+					icon="pi pi-save" />
+				<p:menuitem value="Update"  icon="pi pi-refresh" />
+			</p:submenu>
+			<p:submenu label="Non-Ajax">
+				<p:menuitem value="Delete"  ajax="false" icon="pi pi-times" />
+			</p:submenu>
+			<p:submenu label="Navigations">
+				<p:menuitem value="External" url="http://www.primefaces.org"
+					icon="pi pi-home" />
+				<p:menuitem value="Internal" icon="pi pi-star" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+	</div>
+	
+<div class="col-xs-10">
 	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
@@ -172,5 +240,8 @@
 		<p:commandButton value="No" type="button"
 			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 	</p:confirmDialog>
+	
+	</div>
+</div>
 </body>
 </html>

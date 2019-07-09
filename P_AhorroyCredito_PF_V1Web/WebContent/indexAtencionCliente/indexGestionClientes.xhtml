@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>GESTIÓN DE CLIENTES</title>
+	</f:facet>
+</h:head>
+<body>
+<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+<div align="center">
+		<h1>ORGANIZACIÓN AMISTAD</h1>
+		<h3>CLIENTES</h3>
+	</div>
+	<h:form id="form1">
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+		<p:panel collapsed="#{beanGestionCliente.panelColapso}">
+			<f:facet name="header">
+				<p:commandButton style="background-color:blue;"
+					value="Nuevo Personal" icon="fa fa-plus" update="@form"
+					actionListener="#{beanGestionCliente.actionListenerColapsarPanel()}"></p:commandButton>
+			</f:facet>
+			<p:panelGrid columns="6" >
+				<h:outputText value="CI" />
+				<p:inputText value="#{beanGestionCliente.usuario.cedulaUsuario}" />
+				<h:outputText value="NONMBRE:" />
+				<p:inputText value="#{beanGestionCliente.usuario.nombreUsuario}" />
+				<h:outputText value="APELLIDO:" />
+				<p:inputText value="#{beanGestionCliente.usuario.apellidoUsuario}"/>
+				<h:outputText value="DIRECCION:" />
+				<p:inputText value="#{beanGestionCliente.usuario.direccionUsuario}"/>
+				<h:outputText value="CORREO:" />
+				<p:inputText value="#{beanGestionCliente.usuario.correoUsario}"/>
+				<h:outputText value="TELEFONO:" />
+				<p:inputText value="#{beanGestionCliente.usuario.telefonoUsuario}"/>
+				
+				<h:outputText value="USERNAME:" />
+				<p:inputText value="#{beanGestionCliente.usuario.username}"/>
+				<h:outputText value="CONTRASEÑA:" />
+				<p:inputText value="#{beanGestionCliente.usuario.contrasena}"/>
+				<h:outputText value="NRO CUENTA:" />
+				<p:inputText value="#{beanGestionCliente.cuentaCliente.nroCuentaCl}"/>
+				<h:outputText value="SALDO:" />
+				<p:inputText value="#{beanGestionCliente.cuentaCliente.saldoCuenta}"/>
+				<h:outputText value="INTERES:" />
+				<p:inputText value="#{beanGestionCliente.cuentaCliente.interesCuenta}"/>
+
+	
+				
+				<p:commandButton style="background-color:blue;" value="Insertar" icon="fa fa-save"
+					update="@form,:form2"
+					actionListener="#{beanGestionCliente.actionListenerInsertarCuentaCliente()}"></p:commandButton>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+
+<br />
+	<h:form id="form2">
+	<p:panel header="Datos" />
+			<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}" reflow="true" var="p"
+			paginator="true" rows="5">
+			<p:column headerText="CI">
+				<h:outputText value="#{p.usuario.cedulaUsuario}" />
+			</p:column>
+			<p:column headerText="SALDO">
+				<h:outputText value="#{p.saldoCuenta}" />
+			</p:column>
+			<p:column headerText="NRO CUENTA">
+				<h:outputText value="#{p.nroCuentaCl}" />
+			</p:column>
+			<p:column headerText="DIRECCION">
+				<h:outputText value="#{p.usuario.direccionUsuario}" />
+			</p:column>
+			<p:column headerText="TELEFONO">
+				<h:outputText value="#{p.usuario.telefonoUsuario}" />
+			</p:column>
+			<p:column headerText="USUARIO">
+				<h:outputText value="#{p.usuario.username}" />
+			</p:column>
+		<p:column headerText="OPCIONES" priority="1">
+				<p:commandButton style="background-color:green;" value="Eliminar" icon="fa fa-close"
+					title="Eliminar" update="@form"
+					actionListener="#{beanGestionCliente.actionListenerEliminarCuentaCliente(p.nroCuentaCl)}">
+					<p:confirm header="Confirmación" message="Desea elimnar?"
+						icon="fa fa-exclamation-triangle"></p:confirm>
+				</p:commandButton>
+				<p:commandButton style="background-color:green;" value="Editar" icon="fa fa-edit" title="Editar"
+					actionListener="#{beanGestionCliente.actionListenerSeleccionarCuentaCliente(p)}"
+					update=":formEdicion" oncomplete="PF('dlgEdicion').show();"></p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<p:dialog header="Editar información" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<h:outputText value="NRO DE CUENTA:" />
+			<h:outputText
+				value="#{beanGestionCliente.cuentaClienteSeleccionado.nroCuentaCl}" />
+			<p:panelGrid columns="2">
+				<h:outputText value="NOMBRE CLIENTE:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario}" />
+					<h:outputText value="APELLIDO:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
+					<h:outputText value="CEDULA:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
+					<h:outputText value="DIRECCION:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.direccionUsuario}" />
+					<h:outputText value="CORREO:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.correoUsario}" />
+					<h:outputText value="TELEFONO:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.telefonoUsuario}" />
+					<h:outputText value="USERNAME:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.username}" />
+					<h:outputText value="CONTRASEÑA:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.contrasena}" />
+					<h:outputText value="INTERES:" />
+				<p:inputText value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
+				
+				<h:outputText value="SALDO CUENTA:" />
+				<p:inputText
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.saldoCuenta}" />
+				
+							</p:panelGrid>
+			<p:commandButton value="Actualizar" icon="fa fa-save"
+				update="@form,:form2"
+				actionListener="#{beanGestionCliente.actionListenerActualizarCuentaCliente()}" />
+		</h:form>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="Si" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check"></p:commandButton>
+		<p:commandButton value="No" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times"></p:commandButton>
+	</p:confirmDialog>
+
+	
+</body>
+</html>

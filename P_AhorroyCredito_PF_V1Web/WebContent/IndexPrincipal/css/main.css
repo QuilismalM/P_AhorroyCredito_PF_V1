@@ -19,7 +19,7 @@ h5,
 h6 {
     font-weight: 600;
     font-family: 'Open Sans', sans-serif;
-    color: #4e4e4e;
+    color: #BBC9D5;
 }
 
 h1 {
@@ -270,7 +270,7 @@ input.search-form:hover {
 .navbar {
     border-radius: 0;
     margin-bottom: 0;
-    background: #586B7C;
+    background: #336699;
     padding: 15px 0;
     padding-bottom: 0;
 }

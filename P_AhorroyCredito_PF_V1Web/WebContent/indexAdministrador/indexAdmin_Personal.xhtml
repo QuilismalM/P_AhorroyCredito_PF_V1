@@ -42,7 +42,8 @@
 				style="margin-bottom: 15px;border-radius: 200px" alt="logo1">  </img> 
 				
 			</a>
-			<a class="nav navbar-brand" > <h2>&nbsp;GRUPO AMISTAD</h2></a> 
+			<a class="nav navbar-brand" > <h2>&nbsp;GRUPO AMISTAD</h2></a>
+			<center><a style="color: white;">BIENVENIDO</a></center> 
 			</div>
 		</div>
 
@@ -62,8 +63,9 @@
 		<p:autoUpdate />
 	</p:growl>
 	<div align="center">
-		<h1>Registro del Personal</h1>
+		<h2 style="color: black;">REGISTRO DEL PERSONAL</h2>
 	</div>
+	<div style="margin: 40px">
 	<h:form id="form">
 
 		<p:panel collapsed="#{beanUsuario.panelColapsado}">
@@ -72,7 +74,7 @@
 					value="Nuevo Personal" icon="fa fa-plus" update="@form"
 					actionListener="#{beanUsuario.actionListenerColapsarPanel()}"></p:commandButton>
 			</f:facet>
-			<p:panelGrid columns="6">
+			<p:panelGrid columns="8">
 				<h:outputText value="cedula:" />
 				<p:inputText value="#{beanUsuario.usuario.cedulaUsuario}" />
 				<h:outputText value="Nombre:" />
@@ -214,9 +216,11 @@
 			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 	</p:confirmDialog>
 	
+	</div>
+	
 </div>
 
-	<section> </section>
+	
 
 	<div class="top-bar">
 		<div class="container">

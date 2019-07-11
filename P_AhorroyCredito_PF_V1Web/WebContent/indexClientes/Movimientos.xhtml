@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+     <h:head>
+     <f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>Manejo de datos Moviminetos</title>
+	</f:facet>
+     </h:head> 
+<body> 
+<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+
+	<p:panel
+		header=" MOVIMIENTOS                Usuario:  #{beanLogin.usuario}"  
+		style=" width:100% ">
+		<p:panel>
+		<center>
+			<h1>ORGANIZACIÓN "AMISTAD"   </h1>
+			<h2> Bienvenido</h2>
+			</center>
+			
+			<div align="right">
+				
+				<p:commandButton value="Inicio" action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>
+				<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out"></p:commandButton>
+				</div>
+			
+		</p:panel>
+		<br />
+		<div align="center">
+		
+		<p:panel style="width:50%">
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputText value="Fecha Inicial  "/>
+				<p:calendar value="#{beanClientes.fechainicial}" locale="de" navigator="true" 
+				pattern="dd/MM/yy" required="true"/>
+				<p:commandButton action="#{beanClientes.actionBuscarporFecha()}" value="Buscar" 
+				icon="fa fa-search" />
+				<h:outputText value="Tipo de Usuario"></h:outputText>
+				<p:selectOneMenu value="#{beanClientes.tipomovimiento}" requiered="true">
+				 <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				 <f:selectItem itemValue="" itemLabel="Administrador" />
+				 <f:selectItem itemValue="Cliente" itemLabel="Cliente"/>
+				 <f:selectItem itemValue="Atención al Cliente" itemLabel="Atención al cliente "/>
+				 <f:selectItem itemValue="Cajero"   itemLabel="Cajero" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+		</div>
+		<br />
+		
+		<form >
+
+		<p:dataTable value="#{beanClientes.listaCli}" var="cli">
+			<p:column headerText="FECHA"  >
+				<h:outputText value="#{cli.fechaTransaccion}" />
+			</p:column>
+			<p:column headerText="TIPO">
+				<h:outputText value="#{cli.tipoTransaccion.nombreTipoTransaccion}" />
+			</p:column>
+			<p:column headerText="CANTIDAD">
+				<h:outputText value="#{cli.montoTransaccion}" />
+				<br />
+			</p:column>
+			<p:column headerText="SALDO">
+				<h:outputText value="#{cli.saldoTransaccion}" />
+			</p:column>
+
+		</p:dataTable>
+		</form>
+	</p:panel>
+
+</body> 
+</html>

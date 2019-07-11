@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:p="http://primefaces.org/ui">
+	  
+	 <h:head>
+	 <f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>Manejo de datos reportes</title>
+	</f:facet>
+	 
+	 </h:head> 
+<body> 
+<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+
+	<p:panel
+		header="                Bienvenido   Usuario:  #{beanLogin.usuario}"
+		style="width:100%   ">
+		<p:panel>
+		<center>
+			<h1> ORGANIZACIÓN "AMISTAD"</h1>
+			<h2>Bienvenido</h2>
+		</center>			
+			<h:form>
+			<div align="right">
+				<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
+					icon="fa fa-home"></p:commandButton>
+			</div>
+			</h:form>
+		</p:panel>
+		<br />
+
+
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelMenu style="width:400px">
+				<p:submenu label="MOVIMIENTOS" icon="pi pi-bars" >
+				<p:menuitem value="Historial" ajax="false"
+					action="#{beanClientes.actionListenerMovimientos()}" icon="pi pi-list"/>
+				</p:submenu>
+				<p:submenu label="TRANSFERENCIAS" icon="pi pi-bars" >
+				<p:menuitem value="Realizar Transferencia"
+					action="#{beanClientes.actinoListenerTransferencia()}" />
+				<p:menuitem value="Historial" icon="pi pi-list"/>
+				</p:submenu>
+				<p:submenu label="PŔESTAMOS" icon="pi pi-bars">
+					<p:menuitem value="Solicitar Préstamo"/>
+					<p:menuitem value="Detalles de Préstamos"/>
+				</p:submenu>
+			</p:panelMenu>
+			
+			
+			
+			
+
+			<!-- 			<p:panelMenu style="width:400px">  -->
+			<!-- 				<p:submenu label="MOVIMIENTOS" icon="pi pi-bars"> -->
+			<!-- 					<p:menuitem value="Historial" ajax="false" -->
+			<!-- 						action="#{beanClientes.actionListenerMovimientos()}" -->
+			<!-- 						icon="pi pi-list" /> -->
+			<!-- 				</p:submenu> -->
+			<!--  				<p:submenu label="TRANSAFERENCIAS" icon="pi pi-bars"> -->
+			<!-- 					<p:menuitem value="Realizar Transferencia" ajax="false" -->
+			<!-- 						actionListener="#{beanClientes.actionListenerMovimientos()}" /> -->
+
+			<!-- 				</p:submenu> -->
+
+			<!-- 				<p:submenu label="PRESTAMOS" icon="pi pi-bars"> -->
+			<!-- 					<p:menuitem value="Solicitar" icon="pi pi-check-circle" /> -->
+			<!-- 					<p:menuitem value="Detalle Préstamos" icon="pi pi-info-circle" /> -->
+			<!-- 				</p:submenu> -->
+			<!-- 					</p:panelMenu>  -->
+		</h:form>
+	</p:panel>
+
+
+</body> 
+</html>

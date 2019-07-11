@@ -51,7 +51,10 @@ public class BeanLogin implements Serializable{
 				return "medico/index";
 			}
 			return "clientes/index";*/
-			} 
+			}else if(id_rol.equals("2")) {
+				System.out.println("Usted se ha logueado como Clientes"+ id_rol);
+				return "indexClientes/indexClientes.xhtml?faces-redirect=true";
+			}
 		} catch (Exception e) {
 			JSFUtil.crearMensajeError(e.getMessage());
 			e.printStackTrace();

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui">
+   
+<h:head>
+<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>Realizar Transferencia</title>
+	</f:facet>
+</h:head> 
+<body> 
+<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<p:panel header=" MOVIMIENTOS     Usuario:  #{beanLogin.usuario}"
+		style=" width:100% ">
+		<p:panel>
+<!-- 			<h1>ORGANIZACIÓN "AMISTAD"</h1> -->
+			
+			<h:form>
+			<center>
+				<h1>ORGANIZACIÓN "AMISTAD"</h1>
+				<h2>Transferencias</h2>
+			</center>
+				<div align="right">
+					<p:commandButton value="Inicio"
+						action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>
+					<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
+						icon="fa fa-sign-out" />
+				</div>
+			</h:form>
+		</p:panel>
+		<br />
+		<div align="center">
+			<p:fieldset legend="Ingrese Datos" style="width:50%">
+				<h:form>
+			<h:panelGrid columns="1">
+				<h:outputText value="Cuenta Origen"/>
+				<p:inputText  value="#{beanClientes.cuenta_origen}"  required="true" requiredMessage="Cuenta Origen Obligatorio"/>
+				<h:outputText value="Cuenta Destino" />
+				<p:inputText value="#{beanClientes.cuenta_destino}"   
+				requiered="true" requiredMessage="Ingrese Cuenta Destino">
+				</p:inputText>
+				<h:outputText value="Cantidad" />
+				<p:inputText  value="#{beanClientes.cantidad}"  required="true" requiredMessage="Cantidad Obligatorio"/>
+				<p:commandButton action="#{beanClientes.ActionImprimir()}" value="Aceptar" />
+			</h:panelGrid>
+		</h:form>
+				
+				
+				
+				
+				
+<!-- 				<form> -->
+<!-- 					<h:panelGrid columns="1"> -->
+<!-- 						<h:outputText value="Cuenta Origen" /> -->
+<!-- 						<p:inputText  value="#{beanClientes.cuenta_origen}" maxlength="10" size="10" required="true" requiredMessage="Dato Obligatorio"/> -->
+<!-- 						<h:outputText value="Cuenta destino " /> -->
+<!-- 						<p:inputText  value="#{beanClientes.cuenta_destino}" maxlength="10" size="10" required="true" requiredMessage="Usuario Obligatorio"/> -->
+<!-- 						<h:outputText value="Cantidad" /> -->
+<!-- 						<p:inputText  value="#{beanClientes.cantidad}" maxlength="10" size="10" required="true" requiredMessage="Usuario Obligatorio"/> -->
+<!-- 						<p:commandButton value="Aceptar"  action="#{beanClientes.ActionImprimir()}"  /> -->
+<!-- 					</h:panelGrid> -->
+<!-- 				</form> -->
+			</p:fieldset>
+		</div>
+	</p:panel>
+
+
+</body> 
+</html>

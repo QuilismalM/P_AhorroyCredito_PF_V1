@@ -1,6 +1,5 @@
 package proyecto.model.manager;
 
-
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -12,47 +11,43 @@ import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
 
 
-
-
-
-
 /**
- * Session 	Bean implementation class ManagerLogin
+ * Session Bean implementation class ManagerLogin
  */
 @Stateless
 @LocalBean
 public class ManagerLogin {
-   @PersistenceContext
-   private EntityManager em;
-    /**
-     * Default constructor. 
-     */
+	@PersistenceContext
+	private EntityManager em;
 
-    public ManagerLogin() {
-        // TODO Auto-generated constructor stub
-    }
-    
-    public List <Rol> findAllRoles() {
+	/**
+	 * Default constructor.
+	 */
+
+	public ManagerLogin() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public List<Rol> findAllRoles() {
 		String consulta = "SELECT r FROM Rol r";
 		Query q = em.createQuery(consulta, Rol.class);
 		return q.getResultList();
 	}
-    public Usuario findUsuarioByUsername(String username) {
-		return em.find(Usuario.class,username);
+	public Usuario getUser(String username, String contrasena) {
+		try {
+			Usuario user = (Usuario) em
+					.createQuery("SELECT u from Usuario u where u.username =:name and u.contrasena =:password")
+					.setParameter("name", username).setParameter("password", contrasena).getSingleResult();
+			System.out.println("aqui el usuauri"+user);
+			return user;
+		} catch (Exception e) {
+	
+			return null;
+			
+		}
 	}
-    @SuppressWarnings("unlikely-arg-type")
-	public boolean comprobarUsuario(String username, String contrasena,String id_rol) throws Exception {
-		Usuario u = findUsuarioByUsername(username);
-		if (u == null)
-			throw new Exception("No existe el usuario "+username);
-//    	if(!u.getActivo())
-//    	throw new Exception("El usuario no está activo.");
-		if (u.getContrasena().equals(contrasena) && u.getRol().equals(id_rol))
-			return true;
-		throw new Exception("Contraseña no válida.");
-	}
-    
-    
-    
+
+	
 
 }

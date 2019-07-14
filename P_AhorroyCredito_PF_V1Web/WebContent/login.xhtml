@@ -81,7 +81,7 @@
 								<f:selectItems value="#{beanLogin.listaRoles}" var="rol"
 									itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
 							</p:selectOneMenu>
-							<p:commandButton action="#{beanLogin.actionLogin()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
+							<p:commandButton action="#{beanLogin.send()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
 						</p:panelGrid>
 					</h:form>
 

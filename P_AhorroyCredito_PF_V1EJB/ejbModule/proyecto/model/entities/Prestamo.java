@@ -47,14 +47,15 @@ public class Prestamo implements Serializable {
 	@OneToMany(mappedBy="prestamo")
 	private List<Cuota> cuotas;
 
+	//bi-directional many-to-one association to SolicitudP
+	@ManyToOne
+	@JoinColumn(name="id_solicitud")
+	private SolicitudP solicitudP;
+
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="id_usuarios", nullable=false)
 	private Usuario usuario;
-
-	//bi-directional many-to-one association to SolicitudP
-	@OneToMany(mappedBy="prestamo")
-	private List<SolicitudP> solicitudPs;
 
 	public Prestamo() {
 	}
@@ -137,34 +138,20 @@ public class Prestamo implements Serializable {
 		return cuota;
 	}
 
+	public SolicitudP getSolicitudP() {
+		return this.solicitudP;
+	}
+
+	public void setSolicitudP(SolicitudP solicitudP) {
+		this.solicitudP = solicitudP;
+	}
+
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public List<SolicitudP> getSolicitudPs() {
-		return this.solicitudPs;
-	}
-
-	public void setSolicitudPs(List<SolicitudP> solicitudPs) {
-		this.solicitudPs = solicitudPs;
-	}
-
-	public SolicitudP addSolicitudP(SolicitudP solicitudP) {
-		getSolicitudPs().add(solicitudP);
-		solicitudP.setPrestamo(this);
-
-		return solicitudP;
-	}
-
-	public SolicitudP removeSolicitudP(SolicitudP solicitudP) {
-		getSolicitudPs().remove(solicitudP);
-		solicitudP.setPrestamo(null);
-
-		return solicitudP;
 	}
 
 }

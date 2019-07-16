@@ -30,6 +30,9 @@ public class SolicitudP implements Serializable {
 	@Column(name="fecha_solicitud", nullable=false)
 	private Date fechaSolicitud;
 
+	@Column(name="nro_meses_solicitud", nullable=false)
+	private Integer nroMesesSolicitud;
+
 	@Column(name="valor_solicitudp", precision=10)
 	private BigDecimal valorSolicitudp;
 
@@ -67,6 +70,14 @@ public class SolicitudP implements Serializable {
 
 	public void setFechaSolicitud(Date fechaSolicitud) {
 		this.fechaSolicitud = fechaSolicitud;
+	}
+
+	public Integer getNroMesesSolicitud() {
+		return this.nroMesesSolicitud;
+	}
+
+	public void setNroMesesSolicitud(Integer nroMesesSolicitud) {
+		this.nroMesesSolicitud = nroMesesSolicitud;
 	}
 
 	public BigDecimal getValorSolicitudp() {

@@ -83,31 +83,20 @@ public class BeanLogin implements Serializable {
 		String requestPath=ec.getRequestPathInfo();
 		try {
 			//si no paso por login:
-			if(loginDT==null){
-				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml");
+		if(loginDT==null){
+				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true");
 			}else{
 				//validar las rutas de acceso:
 				if(requestPath.contains("/indexAdministrador") && loginDT.getRutaAcceso().startsWith("/indexAdministrador"))
 					return;
-				if(requestPath.contains("/vendedor") && loginDT.getRutaAcceso().startsWith("/vendedor"))
-					return;
 				//caso contrario significa que hizo login pero intenta acceder a ruta no permitida:
-				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml");
+				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	
-	/*
-	 * public String actionLogin() { try { if (id_rol == 1 ) {
-	 * System.out.println("Aqui esta el mensaje"+id_rol); usuarioSeleccionado =
-	 * managerLogin.extraerUsuario(username, contrasena, id_rol);
-	 * System.out.println(usuarioSeleccionado.getCedulaUsuario());
-	 * ///JSFUtil.crearMensajeInfo("Login correcto"); //return "/admin/menu.xhtml";
-	 * return "indexAdministrador/indexAdmin_Personal.xhtml?faces-redirect=true";
-	 */
 
 	public Usuario getUsuario() {
 		return usuario;

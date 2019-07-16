@@ -1,13 +1,16 @@
 package proyecto.controller.model;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
 import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
 import proyecto.model.login.LoginDT;
@@ -57,7 +60,7 @@ public class BeanLogin implements Serializable {
 	public String accederSistema(){
 		acceso=false;
 		try {
-			loginDT=managerLogin.accederSistema(username, contrasena);
+			loginDT=managerLogin.accederSistema(username, contrasena,id_rol);
 			//verificamos el acceso del usuario:
 			id_rol=loginDT.getId_rol();
 			//redireccion dependiendo del tipo de usuario:
@@ -72,9 +75,31 @@ public class BeanLogin implements Serializable {
 	public String salirSistema(){
 		System.out.println("salirSistema");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login.xhtml?faces-redirect=true";
+		return "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true";
 	}
-
+	
+	public void actionVerificarLogin(){
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		String requestPath=ec.getRequestPathInfo();
+		try {
+			//si no paso por login:
+			if(loginDT==null){
+				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml");
+			}else{
+				//validar las rutas de acceso:
+				if(requestPath.contains("/indexAdministrador") && loginDT.getRutaAcceso().startsWith("/indexAdministrador"))
+					return;
+				if(requestPath.contains("/vendedor") && loginDT.getRutaAcceso().startsWith("/vendedor"))
+					return;
+				//caso contrario significa que hizo login pero intenta acceder a ruta no permitida:
+				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/*
 	 * public String actionLogin() { try { if (id_rol == 1 ) {
 	 * System.out.println("Aqui esta el mensaje"+id_rol); usuarioSeleccionado =

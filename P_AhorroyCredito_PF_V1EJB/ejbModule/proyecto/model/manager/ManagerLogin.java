@@ -51,7 +51,7 @@ public class ManagerLogin {
 //		}
 //	}
 	
-	public LoginDT accederSistema(String username,String contrasena) throws Exception{
+	public LoginDT accederSistema(String username,String contrasena,int id_rol) throws Exception{
 		Usuario usuario = (Usuario) em
 				.createQuery("SELECT u from Usuario u where u.username =:name and u.contrasena =:password")
 				.setParameter("name", username).setParameter("password", contrasena).getSingleResult();
@@ -59,8 +59,9 @@ public class ManagerLogin {
 		
 		if(usuario==null)
 			throw new Exception("Error en usuario y/o clave.");
-		
 		if(!usuario.getContrasena().equals(contrasena))
+			throw new Exception("Error en usuario y/o clave.");
+		if(!usuario.getRol().getIdRol().equals(id_rol))
 			throw new Exception("Error en usuario y/o clave.");
 		
 		LoginDT loginDTO=new LoginDT();
@@ -73,7 +74,11 @@ public class ManagerLogin {
 		if(usuario.getRol().getIdRol().equals(1))
 			loginDTO.setRutaAcceso("indexAdministrador/indexAdministrador.xhtml");
 		else if(usuario.getRol().getIdRol().equals(2))
-			loginDTO.setRutaAcceso("/supervisor/index.xhtml");
+			loginDTO.setRutaAcceso("indexClientes/indexClientes.xhtml");
+		else if (usuario.getRol().getIdRol().equals(3))
+			loginDTO.setRutaAcceso("indexCajero/IndexCajero.xhtml");
+		else
+			loginDTO.setRutaAcceso("indexAtencionCliente/IndexAtencionCliente.xhtml");
 		return loginDTO;
 	}
 

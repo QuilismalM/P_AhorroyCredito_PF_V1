@@ -14,6 +14,7 @@
 	<link href="./IndexPrincipal/css/icomoon.css" rel="stylesheet" />
 	<link href="./IndexPrincipal/css/main.css" rel="stylesheet" />
 	<link href="./IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<title>Ingreso de usuarios</title>
 
 </h:head>
 <body>
@@ -81,7 +82,8 @@
 								<f:selectItems value="#{beanLogin.listaRoles}" var="rol"
 									itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
 							</p:selectOneMenu>
-							<p:commandButton action="#{beanLogin.send()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
+							<p:commandButton action="#{beanLogin.accederSistema()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
+						   <p:messages id="mensajes" />
 						</p:panelGrid>
 					</h:form>
 

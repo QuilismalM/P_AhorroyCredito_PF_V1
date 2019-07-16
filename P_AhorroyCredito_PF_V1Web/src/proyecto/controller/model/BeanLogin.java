@@ -6,11 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
+import proyecto.model.login.LoginDT;
 import proyecto.model.manager.ManagerLogin;
 
 @Named
@@ -24,30 +24,49 @@ public class BeanLogin implements Serializable {
 	private int id_rol;
 	private String username;
 	private String contrasena;
+	 private boolean acceso;
+	
 
 	@EJB
 	private ManagerLogin managerLogin;
 	private List<Rol> listaRoles;
 	private Usuario usuario;
+	private LoginDT loginDT;
 
 	@PostConstruct
 	public void inicializar() {
+		loginDT=new LoginDT();
 		listaRoles = managerLogin.findAllRoles();
 	}
 
-	public String send() {
-		usuario = managerLogin.getUser(username, contrasena);
-		if (usuario == null) {
-			usuario = new Usuario();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not found!", " Login Error!"));
-			return null;
-		} else if (id_rol == 1) {
-			return "indexAdministrador/indexAdministrador.xhtml?faces-redirect=true";
+//	public String send() {
+//		usuario = managerLogin.getUser(username, contrasena);
+//		if (usuario == null) {
+//			usuario = new Usuario();
+//			FacesContext.getCurrentInstance().addMessage(null,
+//					new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not found!", " Login Error!"));
+//			return null;
+//		} else if (id_rol == 1) {
+//			return "indexAdministrador/indexAdministrador.xhtml?faces-redirect=true";
+//		}
+//		else {
+//			return "";
+//		}
+//	}
+	
+	public String accederSistema(){
+		acceso=false;
+		try {
+			loginDT=managerLogin.accederSistema(username, contrasena);
+			//verificamos el acceso del usuario:
+			id_rol=loginDT.getId_rol();
+			//redireccion dependiendo del tipo de usuario:
+			return loginDT.getRutaAcceso()+"?faces-redirect=true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			JSFUtil.crearMensajeError(e.getMessage());
 		}
-		else {
-			return "";
-		}
+		return "";
 	}
 	
 	public String salirSistema(){
@@ -71,6 +90,23 @@ public class BeanLogin implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+
+	public boolean isAcceso() {
+		return acceso;
+	}
+
+	public void setAcceso(boolean acceso) {
+		this.acceso = acceso;
+	}
+
+	public LoginDT getLoginDT() {
+		return loginDT;
+	}
+
+	public void setLoginDT(LoginDT loginDT) {
+		this.loginDT = loginDT;
 	}
 
 	public List<Rol> getListaRoles() {

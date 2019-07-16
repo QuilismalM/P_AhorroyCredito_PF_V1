@@ -30,7 +30,7 @@ public class ManagerCliente {
     }
 
 	public List<Usuario> findAllUsuarios() {
-		String consulta = "SELECT u FROM Usuario u";
+		String consulta = "SELECT u FROM Usuario u where id_rol=1";
 		Query q = em.createQuery(consulta, Usuario.class);
 		return q.getResultList();
 //		Usuario user = (Usuario) em

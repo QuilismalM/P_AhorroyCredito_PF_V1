@@ -71,12 +71,12 @@
 					<p:growl autoUpdate="true"></p:growl>
 					<h:form>
 						<p:panelGrid columns="2">
-							<h:outputText value="ID de usuario:" />
+							<h:outputText value="USERNAME:" />
 							<p:inputText value="#{beanLogin.username}" required="true"
 								requiredMessage="Debe ingresar un ID de usuario." maxlength="15"></p:inputText>
-							<h:outputText value="Contraseña:" />
+							<h:outputText value="CLAVE:" />
 							<p:password value="#{beanLogin.contrasena}" required="true" maxlength="10" size="10"></p:password>
-							<h:outputText value="Tipo Usuario:" />
+							<h:outputText value="TIPO USUARIO:" />
 							<p:selectOneMenu value="#{beanLogin.id_rol}">
 								<f:selectItem itemLabel="Seleccione" />
 								<f:selectItems value="#{beanLogin.listaRoles}" var="rol"
@@ -133,10 +133,5 @@
 	</div>
 	</footer>
 	<!--/#footer-->
-
-
-
-
-
 </body>
 </html>

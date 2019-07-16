@@ -6,37 +6,71 @@
      xmlns:p="http://primefaces.org/ui">
    
 <h:head>
+<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
+
+
 <f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-		<title>Realizar Transferencia</title>
+		<title> Transferencias</title>
 	</f:facet>
 </h:head> 
 <body> 
 <p:growl>
 		<p:autoUpdate />
 	</p:growl>
-	<p:panel header=" MOVIMIENTOS     Usuario:  #{beanLogin.usuario}"
+	<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="slide-img">
+				<a class="navbar-brand" href=""> <img
+					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
+					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
+				</img>
+
+				</a> <a class="nav navbar-brand">
+					<h2>&nbsp;GRUPO AMISTAD</h2>
+				</a>
+				<center>
+					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
+				</center>
+			</div>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li> <p:commandButton value="Inicio" action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>  </li>
+				<li> <p:commandButton value="Salir"
+							action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out" /></li>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
+
+	
+	<p:panel 
 		style=" width:100% ">
 		<p:panel>
-<!-- 			<h1>ORGANIZACIÓN "AMISTAD"</h1> -->
-			
-			<h:form>
-			<center>
-				<h1>ORGANIZACIÓN "AMISTAD"</h1>
-				<h2>Transferencias</h2>
-			</center>
-				<div align="right">
-					<p:commandButton value="Inicio"
-						action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>
-					<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-						icon="fa fa-sign-out" />
-				</div>
-			</h:form>
-		</p:panel>
-		<br />
 		<div align="center">
-			<p:fieldset legend="Ingrese Datos" style="width:50%">
+			<h1 style="background: gray; width:50%" >Ingrese datos</h1>
+			
+			<p:fieldset  style="width:50%">
 				<h:form>
 			<h:panelGrid columns="1">
 				<h:outputText value="Cuenta Origen"/>
@@ -50,25 +84,49 @@
 				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" />
 			</h:panelGrid>
 		</h:form>
-				
-				
-				
-				
-				
-<!-- 				<form> -->
-<!-- 					<h:panelGrid columns="1"> -->
-<!-- 						<h:outputText value="Cuenta Origen" /> -->
-<!-- 						<p:inputText  value="#{beanClientes.cuenta_origen}" maxlength="10" size="10" required="true" requiredMessage="Dato Obligatorio"/> -->
-<!-- 						<h:outputText value="Cuenta destino " /> -->
-<!-- 						<p:inputText  value="#{beanClientes.cuenta_destino}" maxlength="10" size="10" required="true" requiredMessage="Usuario Obligatorio"/> -->
-<!-- 						<h:outputText value="Cantidad" /> -->
-<!-- 						<p:inputText  value="#{beanClientes.cantidad}" maxlength="10" size="10" required="true" requiredMessage="Usuario Obligatorio"/> -->
-<!-- 						<p:commandButton value="Aceptar"  action="#{beanClientes.ActionImprimir()}"  /> -->
-<!-- 					</h:panelGrid> -->
-<!-- 				</form> -->
 			</p:fieldset>
 		</div>
-	</p:panel>
+	</p:panel>  <br/>
+</p:panel>
+<div class="top-bar">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-xs-12">
+						<div class="top-number">
+							<p>
+								<i class="fa fa-phone-square"></i> 0989805294
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-6 col-xs-12">
+						<div class="social">
+							<ul class="social-share">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-skype"></i></a></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/.container-->
+		</div>
+
+		<footer id="footer" class="midnight-blue">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+				</div>
+
+			</div>
+		</div>
+		</footer>
+		
+
 
 
 </body> 

@@ -37,20 +37,19 @@
 		<div align="center">
 		
 		<p:panel style="width:50%">
-		<h:form>
+		<h:form id="formulario">
 			<h:panelGrid columns="3">
 				<h:outputText value="Fecha Inicial  "/>
-				<p:calendar value="#{beanClientes.fechainicial}" locale="de" navigator="true" 
+				<p:calendar id="popup" value="#{beanClientes.fechainicial}" locale="de" navigator="true" 
 				pattern="dd/MM/yy" required="true"/>
 				<p:commandButton action="#{beanClientes.actionBuscarporFecha()}" value="Buscar" 
-				icon="fa fa-search" />
-				<h:outputText value="Tipo de Usuario"></h:outputText>
+				icon="fa fa-search"  update=":formulario"/>
+				<h:outputText value="Tipo de Movimiento"></h:outputText>
 				<p:selectOneMenu value="#{beanClientes.tipomovimiento}" requiered="true">
 				 <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
-				 <f:selectItem itemValue="" itemLabel="Administrador" />
-				 <f:selectItem itemValue="Cliente" itemLabel="Cliente"/>
-				 <f:selectItem itemValue="Atención al Cliente" itemLabel="Atención al cliente "/>
-				 <f:selectItem itemValue="Cajero"   itemLabel="Cajero" />
+				 <f:selectItem itemValue="1" itemLabel="Deposito" />
+				 <f:selectItem itemValue="2" itemLabel="Retiro"/>
+				 <f:selectItem itemValue="General" itemLabel="General"/>
 				</p:selectOneMenu>
 			</h:panelGrid>
 		</h:form>

@@ -36,7 +36,7 @@ public class BeanCajeroTransaccion implements Serializable {
 	private int idTipoTransaccion;
 	private BigDecimal montoTransaccion;
 	private Date fechaTransaccion;
-	private Integer saldoTransaccion;
+	private BigDecimal saldoTransaccion;
     private Transaccion transaccion;
     
     private TipoTransaccion tipoTransaccion;
@@ -97,11 +97,13 @@ public class BeanCajeroTransaccion implements Serializable {
 	}
 	
 
-	public Integer getSaldoTransaccion() {
+
+
+	public BigDecimal getSaldoTransaccion() {
 		return saldoTransaccion;
 	}
 
-	public void setSaldoTransaccion(Integer saldoTransaccion) {
+	public void setSaldoTransaccion(BigDecimal saldoTransaccion) {
 		this.saldoTransaccion = saldoTransaccion;
 	}
 

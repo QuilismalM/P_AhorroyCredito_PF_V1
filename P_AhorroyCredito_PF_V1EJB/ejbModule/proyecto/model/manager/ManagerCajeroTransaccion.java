@@ -65,7 +65,7 @@ public class ManagerCajeroTransaccion {
     public TipoTransaccion buscarTipoTransaccion(int idTipoTransaccion) {
     	return em.find(TipoTransaccion.class,idTipoTransaccion);
     }
-    public void insertarTransaccion(int nroCuenta, int idTipoTransaccion , BigDecimal montoTransaccion ,Date fechaTransaccion,Integer saldoTransaccion)  {
+    public void insertarTransaccion(int nroCuenta, int idTipoTransaccion , BigDecimal montoTransaccion ,Date fechaTransaccion,BigDecimal saldoTransaccion)  {
     	Transaccion transaccion=new Transaccion();
      	CuentaCliente cuentaCliente=buscarCuentaCliente(nroCuenta);
      	

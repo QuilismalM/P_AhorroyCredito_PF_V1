@@ -16,12 +16,13 @@
 	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
-
 	<f:facet name="first">
-		
-		<title>Clientes</title>
-	</f:facet>
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
+		<title>CUENTAS</title>
 
+
+	</f:facet>
 </h:head>
 <body>
 	<header id="header"> <nav class="navbar navbar-inverse"
@@ -35,7 +36,7 @@
 					class="icon-bar"></span>
 			</button>
 			<div class="slide-img">
-				<a class="navbar-brand" href=""> <img
+				<a class="navbar-brand" href="IndexPrincipal.xhtml"> <img
 					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
 					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
 				</img>
@@ -44,24 +45,25 @@
 					<h2>&nbsp;GRUPO AMISTAD</h2>
 				</a>
 				<center>
-					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
+					<a style="color: white;">BIENVENIDO</a>
 				</center>
 			</div>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a> <p:commandButton value="Salir"
-							action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out" /></a></li>
+				<li><a href="../login.xhtml"><span class="glyphicon glyphicon-log-in" />
+						SALIR</a></li>
 			</ul>
 		</div>
 	</div>
 	</nav> </header>
-	<center>
-		<h2 style="color: black;">CLIENTE</h2>
-	</center>
 
-
+	<br />
+	<div align="center">
+		<h1>ORGANIZACIÓN AMISTAD</h1>
+		<h3>CLIENTES</h3>
+	</div>
 
 	<div>
 		<div class="row">

@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
+		<title>Datos Personal</title>
+
+
+	</f:facet>
+</h:head>
+<body>
+
+	<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="slide-img">
+				<a class="navbar-brand" href="IndexPrincipal.xhtml"> <img
+					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
+					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
+				</img>
+
+				</a> <a class="nav navbar-brand">
+					<h2>&nbsp;GRUPO AMISTAD</h2>
+				</a>
+				<center>
+					<a style="color: white;">BIENVENIDO</a>
+				</center>
+			</div>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a href=""><span class="glyphicon glyphicon-log-in" />
+						SALIR</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
+
+	<br />
+	<div class="row">
+
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+		<div align="center">
+			<h2 style="color: black;">CLIENTES </h2>
+		</div>
+		<div style="margin: 40px">
+			<h:form id="form">
+
+				<p:panel collapsed="#{beanCliente.panelColapsado}">
+					<f:facet name="header">
+						<p:commandButton style="background-color:green;"
+							value="Nuevo Cliente" icon="fa fa-plus" update="@form"
+							actionListener="#{beanCliente.actionListenerColapsarPanel()}"></p:commandButton>
+							
+							<p:commandButton style="background-color:blue;"
+					value="CUENTAS" icon="fa fa-plus" onclick="location='indexCuentas.xhtml'"></p:commandButton>
+					</f:facet>
+					<p:panelGrid columns="6">
+						<h:outputText value="cedula:" />
+						<p:inputText value="#{beanCliente.usuario.cedulaUsuario}" />
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{beanCliente.usuario.nombreUsuario}" />
+						<h:outputText value="Apellido:" />
+						<p:inputText value="#{beanCliente.usuario.apellidoUsuario}" />
+						<h:outputText value="direccion:" />
+						<p:inputText value="#{beanCliente.usuario.direccionUsuario}" />
+						<h:outputText value="correo:" />
+						<p:inputText value="#{beanCliente.usuario.correoUsario}" />
+						<h:outputText value="telefono:" />
+						<p:inputText value="#{beanCliente.usuario.telefonoUsuario}" />
+						<h:outputText value="username:" />
+						<p:inputText value="#{beanCliente.usuario.username}" />
+						<h:outputText value="contraseña:" />
+						<p:inputText value="#{beanCliente.usuario.contrasena}" />
+						<!-- 				<h:outputText value="Rol:" /> -->
+						<p:selectOneMenu style="visibility: hidden"
+							value="#{beanCliente.idrol}">
+							<!-- 					<f:selectItem itemLabel="Seleccione" /> -->
+							<f:selectItems value="#{beanCliente.listaRoles}" var="rol"
+								itemLabel="#{rol.tipoRol}" itemValue="1" />
+						</p:selectOneMenu>
+						<!-- 				<h:outputText value="Empresa:" /> -->
+						<p:selectOneMenu style="visibility: hidden"
+							value="#{beanCliente.idem}">
+							<!-- 					<f:selectItem itemLabel="Seleccione Empresa" /> -->
+							<f:selectItems value="#{beanCliente.listaEmpresas}" var="empresa"
+								itemLabel="#{empresa.nombreEmp}" itemValue="1" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="Insertar" icon="fa fa-save"
+							update="@form,:form2"
+							actionListener="#{beanCliente.actionListenerInsertarUsuario()}"></p:commandButton>
+					</p:panelGrid>
+				</p:panel>
+			</h:form>
+			<br />
+			<h:form id="form2">
+				<p:panel header="DATOS DEL CLIENTE">
+
+					<p:dataTable value="#{beanCliente.listaUsuarios}" var="usuario"
+						reflow="true" paginator="true" rows="5">
+						<p:column headerText="CÉDULA" filterBy="#{usuario.cedulaUsuario}"
+							filterMatchMode="contains" priority="2" style="width:80px">
+							<h:outputText value="#{usuario.cedulaUsuario}" />
+						</p:column>
+						<p:column headerText="NOMBRE">
+							<h:outputText
+								value="#{usuario.apellidoUsuario} #{usuario.nombreUsuario} " />
+						</p:column>
+						<p:column headerText="DIRECCIÓN" filterMatchMode="contains"
+							priority="2" style="width:100px">
+							<h:outputText value="#{usuario.direccionUsuario}" />
+						</p:column>
+						<p:column headerText="E-MAIL" filterMatchMode="contains"
+							priority="2" style="width:200px">
+							<h:outputText value="#{usuario.correoUsario}" />
+						</p:column>
+						<p:column headerText="TELÉFONO" filterMatchMode="contains"
+							priority="2" style="width:200px">
+							<h:outputText value="#{usuario.telefonoUsuario}" />
+						</p:column>
+						<!-- 						<p:column headerText="username" filterMatchMode="contains" priority="2" style="width:100px"> -->
+						<!-- 							<h:outputText value="#{usuario.username}" /> -->
+						<!-- 						</p:column> -->
+						<!-- 						<p:column headerText="Password"  -->
+						<!-- 							filterMatchMode="contains" priority="2" style="width:100px"> -->
+						<!-- 							<h:outputText value="#{usuario.contrasena}" /> -->
+						<!-- 						</p:column> -->
+						<!-- 						<h:outputText value="Nombre:" /> -->
+						<!-- 						<p:inputText value="#{beanCliente.usuario.nombreUsuario}" /> -->
+						<!-- 												<p:column headerText="Rol"> -->
+						<!-- 													<h:outputText value="#{usuario.rol.tipoRol}"  /> -->
+						<!-- 												</p:column> -->
+						<!-- 						<p:column headerText="Empresa"> -->
+						<!-- 							<h:outputText value="#{usuario.empresa.nombreEmp}" /> -->
+						<!-- 						</p:column> -->
+						<p:column headerText="OPCIONES" priority="1">
+							<p:commandButton icon="fa fa-close" title="Eliminar"
+								update="@form"
+								actionListener="#{beanCliente.actionListenerEliminarUsuario(usuario.idUsuarios)}">
+								<p:confirm header="Confirmación" message="Desea eliminar?"
+									icon="fa fa-exclamation-triangle"></p:confirm>
+							</p:commandButton>
+							<p:commandButton icon="fa fa-edit" title="Editar"
+								actionListener="#{beanCliente.actionListenerSeleccionarUsuario(usuario)}"
+								update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+							</p:commandButton>
+
+							<p:commandButton title="CREAR CUENTA"
+								actionListener="#{beanCliente.actionListenerSeleccionarUsuario(usuario)}"
+								update=":formcrear" oncomplete="PF('dlgcrear').show();">
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+			<p:dialog header="Editar Información" widgetVar="dlgEdicion">
+				<h:form id="formEdicion">
+					<p:growl>
+						<p:autoUpdate />
+					</p:growl>
+					<p:panelGrid columns="2">
+						<h:outputText value="cedula:" />
+						<p:inputText value="#{beanCliente.user.cedulaUsuario}" />
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{beanCliente.user.nombreUsuario}" />
+						<h:outputText value="Apellido:" />
+						<p:inputText value="#{beanCliente.user.apellidoUsuario}" />
+						<h:outputText value="direccion:" />
+						<p:inputText value="#{beanCliente.user.direccionUsuario}" />
+						<h:outputText value="correo:" />
+						<p:inputText value="#{beanCliente.user.correoUsario}" />
+						<h:outputText value="telefono:" />
+						<p:inputText value="#{beanCliente.user.telefonoUsuario}" />
+						<h:outputText value="username:" />
+						<p:inputText value="#{beanCliente.user.username}" />
+						<h:outputText value="contraseña:" />
+						<p:inputText value="#{beanCliente.user.contrasena}" />
+						<h:outputText value="Rol:" />
+						<p:selectOneMenu value="#{beanCliente.idrol}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems value="#{beanCliente.listaRoles}" var="rol"
+								itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
+						</p:selectOneMenu>
+						<h:outputText value="Empresa:" />
+						<p:selectOneMenu value="#{beanCliente.idem}">
+							<f:selectItem itemLabel="Seleccione Empresa" />
+							<f:selectItems value="#{beanCliente.listaEmpresas}" var="empresa"
+								itemLabel="#{empresa.nombreEmp}"
+								itemValue="#{empresa.idEmpresa}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton value="Actualizar" icon="fa fa-save"
+						update="@form,:form2"
+						actionListener="#{beanCliente.actionListenerActualizar()}"
+						oncomplete="PF('dlgEdicion').hide();"></p:commandButton>
+				</h:form>
+			</p:dialog>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sí" type="button"
+					styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+			</p:confirmDialog>
+
+
+
+
+
+			<p:dialog header="CREAR CUENTA" widgetVar="dlgcrear">
+				<h:form id="formcrear">
+					<p:growl>
+						<p:autoUpdate />
+					</p:growl>
+					<p:panelGrid columns="2">
+						<h:outputText value="CI:" />
+						<h:outputText value="#{beanCliente.user.cedulaUsuario}" />
+						<h:outputText value="CLIENTE:" />
+						<h:outputText
+							value="#{beanCliente.user.apellidoUsuario} #{beanCliente.user.nombreUsuario}" />
+						<h:outputText value="CODIGO PARA CREAR" />
+						<h:outputText id="copy" type="text"
+							value="#{beanCliente.user.idUsuarios}" />
+
+						<h:outputText value="INGRESE CODIGO:" />
+						<p:inputText id="paste" type="text"
+							value="#{beanCliente.idUsuarios}" />
+
+
+						<h:outputText value="SALDO:" />
+						<p:inputText value="#{beanCliente.saldoCuenta}" placeholder="Ingrese Saldo inicial.."/>
+						<h:outputText value="INTERÉS:" />
+						<p:inputText value="#{beanCliente.interesCuenta}" placeholder="Ingrese el interés.." />
+<!-- 						<h:outputText value="ESTADO CUENTA:" /> -->
+						<p:selectOneMenu style="visibility: hidden" value="#{beanCliente.idEstadoCuenta}">
+<!-- 							<f:selectItem itemLabel="Seleccione" /> -->
+						<f:selectItems value="#{beanCliente.listaEstadoCuenta}" var="e"
+								itemLabel="#{e.nombreEstadoc}" itemValue="1" />
+						</p:selectOneMenu>
+						<h:outputText value="TIPO CLIENTE" />
+						<p:selectOneMenu value="#{beanCliente.idTipoCuenta}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems value="#{beanCliente.listaTipoCuenta}" var="t"
+								itemLabel="#{t.nombreTipoCuenta}" itemValue="#{t.idTipoCuenta}" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+					<p:commandButton value="CREAR NUEVA CUENTA" icon="fa fa-save"
+						update="@form,:form2"
+						actionListener="#{beanCliente.actionListenerInsertarCuenta()}"
+						oncomplete="PF('dlgcrear').hide();"></p:commandButton>
+				</h:form>
+			</p:dialog>
+
+
+<div class="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="top-number">
+						<p>
+							<i class="fa fa-phone-square"></i> 0989805294
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="social">
+						<ul class="social-share">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.container-->
+	</div>
+
+	<footer id="footer" class="midnight-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+			</div>
+
+		</div>
+	</div>
+	</footer>
+
+
+		</div>
+	</div>
+	
+	
+	
+</body>
+</html>

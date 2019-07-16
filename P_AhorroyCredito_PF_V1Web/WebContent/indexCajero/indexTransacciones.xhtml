@@ -6,6 +6,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, intial-scale=1, shrink-to-fit=no, user-sacalable=no" />
@@ -15,106 +25,199 @@
 </h:head>
 
 <body>
-	<p:growl>
-		<p:autoUpdate></p:autoUpdate>
-	</p:growl>
-	<h:form id="form">
+	<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="slide-img">
+				<a class="navbar-brand" href="IndexPrincipal.xhtml"> <img
+					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
+					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
+				</img>
 
-		<p:panel collapsed="#{beanCajeroTransaccion.panelColapsado}">
-			<f:facet name="header">
-				<p:commandButton value="Nueva Transaccion" icon="fa fa-plus"
-					update="@form"
-					actionListener="#{beanCajeroTransaccion.actionListenerColapsarPanel()}"></p:commandButton>
-			</f:facet>
+				</a> <a class="nav navbar-brand">
+					<h2>&nbsp;GRUPO AMISTAD</h2>
+				</a>
+				<center>
+					<a style="color: white;">BIENVENIDO</a>
+				</center>
+			</div>
+		</div>
 
-			<p:panelGrid columns="2">
-				<h:outputText value="fecha" />
-				<p:datePicker value="#{beanCajeroTransaccion.fechaTransaccion}"></p:datePicker>
-				<h:outputText value="Nro. Cuenta" />
-				<p:inputText value="#{beanCajeroTransaccion.nroCuenta}"></p:inputText>
-                 <h:outputText value="Tipo Transacción" />
-				<p:selectOneMenu value="#{beanCajeroTransaccion.idTipoTransaccion}">
-					<f:selectItems
-						value="#{beanCajeroTransaccion.listaTipoTransaccion}" var="l"
-						itemLabel="#{l.nombreTipoTransaccion}"
-						itemValue="#{l.idTipoTransaccion}" />
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a href=""><span class="glyphicon glyphicon-log-in" />
+						SALIR</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
 
-				</p:selectOneMenu>
-				<h:outputText value="Monto" />
-				<p:inputText value="#{beanCajeroTransaccion.montoTransaccion}">
-				</p:inputText>
-				<h:outputText value="Saldo" />
-				<p:inputText value="#{beanCajeroTransaccion.saldoTransaccion}">
-				</p:inputText>
-			</p:panelGrid>
-			<p:commandButton value="Insertar" icon="fa fa-save"
-				update="@form,:form2" title="insertar"
-				actionListener="#{beanCajeroTransaccion.actionListenerInsertarTransaccion() }">
-			</p:commandButton>
+	<br />
+	<div class="row">
 
-		</p:panel>
-		<br />
-	</h:form>
-	<h:form id="form2">
-		<p:panel header="Datos Transacciones" >
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+		<div align="center">
+			<h2 style="color: black;">REGISTRO TRANSACCIONES</h2>
+		</div>
+		<div style="margin: 40px">
+			<h:form id="form">
 
-			<p:dataTable value="#{beanCajeroTransaccion.listaTransaccion }"
-				var="transaccion" reflow="true" paginator="true" rows="5">
+				<p:panel collapsed="#{beanCajeroTransaccion.panelColapsado}">
+					<f:facet name="header">
+						<p:commandButton value="Nueva Transaccion" icon="fa fa-plus"
+							update="@form"
+							actionListener="#{beanCajeroTransaccion.actionListenerColapsarPanel()}"></p:commandButton>
+					</f:facet>
 
-				<p:column headerText="Fecha Transaccion">
-					<h:outputText value="#{transaccion.fechaTransaccion}" />
-				</p:column>
-				<p:column headerText="Nro.cuenta">
-					<h:outputText value="#{transaccion.cuentaCliente.nroCuentaCl}" />
-				</p:column>
-				<p:column headerText="Nombre cliente">
-					<h:outputText
-						value="#{transaccion.cuentaCliente.usuario.nombreUsuario}" />
-				</p:column>
-				<p:column headerText="Tipo Transaccion">
-					<h:outputText
-						value="#{transaccion.tipoTransaccion.nombreTipoTransaccion}" />
-				</p:column>
-				<p:column headerText="Cantidad">
-					<h:outputText value="#{transaccion.montoTransaccion}" />
-				</p:column>
-				<p:column headerText="OPCIONES">
-					<p:commandButton icon="fa fa-close" title="Eliminar"
-						update="@form "
-						actionListener="#{beanCajeroTransaccion.actionListenerEliminarTranasaccion(transaccion.idTransaccion)}">
-						<p:confirm header="Confirmación" message="Desea eliminar?"
-							icon="fa fa-exclamation-triangle"></p:confirm>
+					<p:panelGrid columns="2">
+						<h:outputText value="fecha" />
+						<h:outputText value="#{beanCajeroTransaccion.fechaTransaccion}">
+							<f:convertDateTime pattern="dd/MM/yyyy " />
+						</h:outputText>
+						<h:outputText value="Nro. Cuenta" />
+						<p:selectOneMenu value="#{beanCajeroTransaccion.nroCuenta}"
+							filter="true" filterMatchMode="contains">
+							<f:selectItem itemLabel="Seleccione..." itemValue="-1"
+								noSelectionOption="true" />
+							<f:selectItems
+								value="#{beanCajeroTransaccion.listaCuentaCliente}" var="cl"
+								itemLabel="#{cl.nroCuentaCl}" itemValue="#{cl.nroCuentaCl}" />
+
+						</p:selectOneMenu>
+
+						<h:outputText value="Tipo Transacción" />
+						<p:selectOneMenu
+							value="#{beanCajeroTransaccion.idTipoTransaccion}">
+							<f:selectItem itemLabel="Seleccione..." itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems
+								value="#{beanCajeroTransaccion.listaTipoTransaccion}" var="l"
+								itemLabel="#{l.nombreTipoTransaccion}"
+								itemValue="#{l.idTipoTransaccion}" />
+
+						</p:selectOneMenu>
+						<h:outputText value="Monto" />
+						<p:spinner value="#{beanCajeroTransaccion.montoTransaccion}"></p:spinner>
+						
+					</p:panelGrid>
+					<p:commandButton value="Insertar" icon="fa fa-save"
+						update="@form,:form2" title="insertar"
+						actionListener="#{beanCajeroTransaccion.actionListenerInsertarTransaccion() }">
 					</p:commandButton>
-					<p:commandButton icon="fa fa-edit" title="Editar"
-						actionListener="#{beanCajeroTransaccion.actionListenerSeleccionarTransaccion(transaccion)}"
-						update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
 
-		</p:panel>
-	</h:form>
-	<p:dialog header="Editar información" widgetVar="dlgEdicion"
-		modal="true">
-		<h:form id="formEdicion">
-			<p:growl>
-				<p:autoUpdate></p:autoUpdate>
-			</p:growl>
-			<h:outputText value="Monto Transacción: " />
-			<h:inputText
-				value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
-			<br />
-			<p:commandButton value="Actualizar" icon="fa fa-save"
-				actionListener="#{beanCajeroTransaccion.actionListenerActualizarTransaccion()}"
-				update="@form,:form2" />
-		</h:form>
-	</p:dialog>
+				</p:panel>
+				<br />
+			</h:form>
+			<h:form id="form2">
+				<p:panel header="Datos Transacciones">
 
-	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-		<p:commandButton value="SI" type="button"
-			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
-		<p:commandButton value="NO" type="button"
-			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
-	</p:confirmDialog>
+					<p:dataTable value="#{beanCajeroTransaccion.listaTransaccion }"
+						var="transaccion" reflow="true" paginator="true" rows="3">
+
+						<p:column headerText="Fecha Transaccion">
+							<h:outputText value="#{transaccion.fechaTransaccion}" />
+						</p:column>
+						<p:column headerText="Nro.cuenta">
+							<h:outputText value="#{transaccion.cuentaCliente.nroCuentaCl}" />
+						</p:column>
+						<p:column headerText="Nombre cliente">
+							<h:outputText
+								value="#{transaccion.cuentaCliente.usuario.nombreUsuario}" />
+						</p:column>
+						<p:column headerText="Tipo Transaccion">
+							<h:outputText
+								value="#{transaccion.tipoTransaccion.nombreTipoTransaccion}" />
+						</p:column>
+						<p:column headerText="Cantidad">
+							<h:outputText value="#{transaccion.montoTransaccion}" />
+						</p:column>
+						<p:column headerText="OPCIONES">
+							<p:commandButton icon="fa fa-close" title="Eliminar"
+								update="@form "
+								actionListener="#{beanCajeroTransaccion.actionListenerEliminarTranasaccion(transaccion.idTransaccion)}">
+								<p:confirm header="Confirmación" message="Desea eliminar?"
+									icon="fa fa-exclamation-triangle"></p:confirm>
+							</p:commandButton>
+							<p:commandButton icon="fa fa-edit" title="Editar"
+								actionListener="#{beanCajeroTransaccion.actionListenerSeleccionarTransaccion(transaccion)}"
+								update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+
+				</p:panel>
+			</h:form>
+			<p:dialog header="Editar información" widgetVar="dlgEdicion"
+				modal="true">
+				<h:form id="formEdicion">
+					<p:growl>
+						<p:autoUpdate></p:autoUpdate>
+					</p:growl>
+					<h:outputText value="Monto Transacción: " />
+					<h:inputText
+						value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
+					<br />
+					<p:commandButton value="Actualizar" icon="fa fa-save"
+						actionListener="#{beanCajeroTransaccion.actionListenerActualizarTransaccion()}"
+						update="@form,:form2" />
+				</h:form>
+			</p:dialog>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="SI" type="button"
+					styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+				<p:commandButton value="NO" type="button"
+					styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+			</p:confirmDialog>
+		</div>
+
+	</div>
+	<div class="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="top-number">
+						<p>
+							<i class="fa fa-phone-square"></i> 0989805294
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="social">
+						<ul class="social-share">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.container-->
+	</div>
+
+	<footer id="footer" class="midnight-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+			</div>
+
+		</div>
+	</div>
+	</footer>
+
 </body>
 </html>

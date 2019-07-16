@@ -58,7 +58,7 @@ public class ManagerCajeroTransaccion {
     	return em.find(Transaccion.class,idTransaccion);
     }
     public List<TipoTransaccion> findAllTipoTransaccion() {
-  		String consulta= "SELECT t FROM TipoTransaccion t";
+  		String consulta= "SELECT t FROM TipoTransaccion t where id_tipo_transaccion=1 or id_tipo_transaccion=2";
   		Query q = em.createQuery(consulta,TipoTransaccion.class);
   		return q.getResultList();
   	}

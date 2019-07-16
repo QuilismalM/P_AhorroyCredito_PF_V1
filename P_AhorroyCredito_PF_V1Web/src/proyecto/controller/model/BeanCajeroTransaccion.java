@@ -2,7 +2,7 @@ package proyecto.controller.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +35,7 @@ public class BeanCajeroTransaccion implements Serializable {
 	private int nroCuenta;
 	private int idTipoTransaccion;
 	private BigDecimal montoTransaccion;
-	private Date fechaTransaccion;
-	private BigDecimal saldoTransaccion;
+    private BigDecimal saldoTransaccion;
     private Transaccion transaccion;
     
     private TipoTransaccion tipoTransaccion;
@@ -44,7 +43,8 @@ public class BeanCajeroTransaccion implements Serializable {
     private boolean panelColapsado;
     private Transaccion transaccionSeleccionado;
     
-    SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
+   Date fechaTransaccion = new Date();
+  
 	@PostConstruct
 	public void inicializar() {
 		listaCuentaCliente = managerCajeroTransaccion.findAllcuentaCliente();
@@ -81,7 +81,7 @@ public class BeanCajeroTransaccion implements Serializable {
 		listaTransaccion=managerCajeroTransaccion.findAllTransaccion();
 				JSFUtil.crearMensajeInfo("Transacción Eliminado");
 	}
-	public void actionListenerSeleccionarTransaccion(Transaccion transaccion) {
+	public void actionListenerSeleccionarTransaccion(Transaccion transacciron) {
 		transaccionSeleccionado=transaccion;
 	}
 	public void actionListenerActualizarTransaccion() {

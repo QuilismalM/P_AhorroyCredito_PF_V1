@@ -77,6 +77,11 @@ public class BeanLogin implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true";
 	}
+	public String indexAdmin_Personal(){
+		
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/indexAdministrador/indexAdmin_Personal.xhtml?faces-redirect=true";
+	}
 	
 	public void actionVerificarLogin(){
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();

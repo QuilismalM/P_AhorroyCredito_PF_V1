@@ -71,6 +71,14 @@
 						<p:submenu label="Reportes">
 							<p:menuitem value="Historial"
 								ajax="false" icon="pi pi-times" />
+								<p:menuitem value="Tipo Cuenta"
+								ajax="false" icon="pi pi-times" action="#{beanLogin.tipocuenta()}" />
+								<p:menuitem value="Roles"
+								ajax="false" icon="pi pi-times" action="#{beanLogin.roles()}"/>
+								<p:menuitem value="Tipo Transaccion"
+								ajax="false" icon="pi pi-times" action="#{beanLogin.tipotransaccion()}"/>
+								<p:menuitem value="Estado Cuenta"
+								ajax="false" icon="pi pi-times" action="#{beanLogin.estadocuenta()}"/>
 						</p:submenu>
 						<p:separator />
 					</p:panelMenu>

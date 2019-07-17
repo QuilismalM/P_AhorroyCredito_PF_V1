@@ -96,6 +96,24 @@ public class BeanLogin implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	public String indexAdmin_Personal() {
+		return "indexAdmin_Personal";
+	}
+	public String tipocuenta() {
+		return "indexTipoCuenta";
+	}
+	public String roles() {
+		return "indexRol";
+	}
+	public String tipotransaccion() {
+		return "indexTipoTransaccion";
+	}
+	public String estadocuenta() {
+		return "indexEstadoCuenta";
+	}
+	public String indexAdminstrador() {
+		return "indexAdministrador";
+	}
 	
 
 	public Usuario getUsuario() {

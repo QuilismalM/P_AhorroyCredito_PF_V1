@@ -42,6 +42,7 @@ xmlns:p="http://primefaces.org/ui">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
 				</a>
 				<center><a style="color: white;">BIENVENIDO: #{beanLogin.username}</a></center>
+				<a>  <p:commandButton value="Inicio" action="#{beanLogin.indexAdminstrador()}" icon="fa fa-home"/> </a> 
 			</div>
 		</div>
 
@@ -50,6 +51,7 @@ xmlns:p="http://primefaces.org/ui">
 				<li><a>
 						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
 					icon="fa fa-sign-out" /></a></li>
+					
 			</ul>
 		</div>
 	</div>

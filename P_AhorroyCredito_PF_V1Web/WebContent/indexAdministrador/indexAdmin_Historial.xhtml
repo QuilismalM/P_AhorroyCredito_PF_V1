@@ -2,10 +2,223 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
+<h:head>
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
+		<title>HISTORIAL</title>
+
+
+	</f:facet>
+</h:head>
 <body> 
+	<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="slide-img">
+				<a class="navbar-brand" href="IndexPrincipal.xhtml"> <img
+					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
+					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
+				</img>
 
+				</a> <a class="nav navbar-brand">
+					<h2>&nbsp;GRUPO AMISTAD</h2>
+				</a>
+				<center>
+					<a style="color: white;">BIENVENIDO</a>
+				</center>
+			</div>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a href=""><span class="glyphicon glyphicon-log-in" />
+						SALIR</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
+
+	<br />
+	<div class="row">
+
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+		<div align="center">
+			<h2 style="color: black;">HISTORIAL PRESTAMOS </h2>
+		</div>
+		<div style="margin: 40px">
+			<br />
+			<h:form id="form2">
+				<p:panel header="Datos Personal">
+					<p:dataTable value="#{beanCliente.listaCuentaCliente}" var="cliente"
+						reflow="true" paginator="true" rows="5">
+						<p:column headerText="NOmbre Cliente" filterBy="#{cliente.nroCuentaCl}"
+							filterMatchMode="contains" priority="1" style="width:80px">
+							<h:outputText value="#{usuario.cedulaUsuario}" />
+						</p:column>
+						<p:column headerText="Apellido"
+							filterBy="#{usuario.apellidoUsuario}" filterMatchMode="contains"
+							priority="1" style="width:80px">
+							<h:outputText value="#{usuario.apellidoUsuario}" />
+						</p:column>
+						<p:column headerText="direccion"
+							filterBy="#{usuario.direccionUsuario}" filterMatchMode="contains"
+							priority="2" style="width:100px">
+							<h:outputText value="#{usuario.direccionUsuario}" />
+						</p:column>
+						<p:column headerText="Correo" filterBy="#{usuario.correoUsario}"
+							filterMatchMode="contains" priority="2" style="width:200px">
+							<h:outputText value="#{usuario.correoUsario}" />
+						</p:column>
+						<p:column headerText="telefono"
+							filterBy="#{usuario.telefonoUsuario}" filterMatchMode="contains"
+							priority="2" style="width:80px">
+							<h:outputText value="#{usuario.telefonoUsuario}" />
+						</p:column>
+						<p:column headerText="username" filterBy="#{usuario.username}"
+							filterMatchMode="contains" priority="2" style="width:100px">
+							<h:outputText value="#{usuario.username}" />
+						</p:column>
+						<p:column headerText="Password" filterBy="#{usuario.contrasena}"
+							filterMatchMode="contains" priority="2" style="width:100px">
+							<h:outputText value="#{usuario.contrasena}" />
+						</p:column>
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{beanUsuario.usuario.nombreUsuario}" />
+						<p:column headerText="Rol">
+							<h:outputText value="#{usuario.rol.tipoRol}" />
+						</p:column>
+						<p:column headerText="Empresa">
+							<h:outputText value="#{usuario.empresa.nombreEmp}" />
+						</p:column>
+						<p:column headerText="OPCIONES" priority="1">
+							<p:commandButton icon="fa fa-close" title="eliminar"
+								update="@form"
+								actionListener="#{beanUsuario.actionListenerEliminarUsuario(usuario.idUsuarios)}">
+								<p:confirm header="Confirmación" message="Desea eliminar?"
+									icon="fa fa-exclamation-triangle"></p:confirm>
+							</p:commandButton>
+							<p:commandButton icon="fa fa-edit" title="Editar"
+								actionListener="#{beanUsuario.actionListenerSeleccionarUsuario(usuario)}"
+								update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+			<p:dialog header="Editar Información" widgetVar="dlgEdicion">
+				<h:form id="formEdicion">
+					<p:growl>
+						<p:autoUpdate />
+					</p:growl>
+					<p:panelGrid columns="2">
+						<h:outputText value="cedula:" />
+						<p:inputText value="#{beanUsuario.user.cedulaUsuario}" />
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{beanUsuario.user.nombreUsuario}" />
+						<h:outputText value="Apellido:" />
+						<p:inputText value="#{beanUsuario.user.apellidoUsuario}" />
+						<h:outputText value="direccion:" />
+						<p:inputText value="#{beanUsuario.user.direccionUsuario}" />
+						<h:outputText value="correo:" />
+						<p:inputText value="#{beanUsuario.user.correoUsario}" />
+						<h:outputText value="telefono:" />
+						<p:inputText value="#{beanUsuario.user.telefonoUsuario}" />
+						<h:outputText value="username:" />
+						<p:inputText value="#{beanUsuario.user.username}" />
+						<h:outputText value="contraseña:" />
+						<p:inputText value="#{beanUsuario.user.contrasena}" />
+						<h:outputText value="Rol:" />
+						<p:selectOneMenu value="#{beanUsuario.idrol}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems value="#{beanUsuario.listaRoles}" var="rol"
+								itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
+						</p:selectOneMenu>
+						<h:outputText value="Empresa:" />
+						<p:selectOneMenu value="#{beanUsuario.idem}">
+							<f:selectItem itemLabel="Seleccione Empresa" />
+							<f:selectItems value="#{beanUsuario.listaEmpresas}" var="empresa"
+								itemLabel="#{empresa.nombreEmp}"
+								itemValue="#{empresa.idEmpresa}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton value="Actualizar" icon="fa fa-save"
+						update="@form,:form2"
+						actionListener="#{beanUsuario.actionListenerActualizar()}"
+						oncomplete="PF('dlgEdicion').hide();"></p:commandButton>
+				</h:form>
+			</p:dialog>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sí" type="button"
+					styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+			</p:confirmDialog>
+
+		</div>
+
+	</div>
+
+
+
+	<div class="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="top-number">
+						<p>
+							<i class="fa fa-phone-square"></i> 0989805294
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="social">
+						<ul class="social-share">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.container-->
+	</div>
+
+	<footer id="footer" class="midnight-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+			</div>
+
+		</div>
+	</div>
+	</footer>
 </body> 
 </html>

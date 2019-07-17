@@ -15,7 +15,7 @@ import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
 import proyecto.model.login.LoginDT;
 import proyecto.model.manager.ManagerLogin;
-
+import proyecto.controller.model.JSFUtil;
 @Named
 @SessionScoped
 public class BeanLogin implements Serializable {
@@ -76,11 +76,6 @@ public class BeanLogin implements Serializable {
 		System.out.println("salirSistema");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true";
-	}
-	public String indexAdmin_Personal(){
-		
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/indexAdministrador/indexAdmin_Personal.xhtml?faces-redirect=true";
 	}
 	
 	public void actionVerificarLogin(){

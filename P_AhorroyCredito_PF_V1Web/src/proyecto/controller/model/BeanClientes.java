@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import proyecto.model.entities.Transaccion;
 import proyecto.model.manager.ManagerClientes;
-
+import proyecto.controller.model.JSFUtil;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;

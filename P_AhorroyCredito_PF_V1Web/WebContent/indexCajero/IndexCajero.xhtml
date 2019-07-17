@@ -66,15 +66,19 @@
 						<p:autoUpdate />
 					</p:growl>
 					<p:panelMenu style="width:300px">
-						<p:submenu label="CLIENTES">
-							<p:menuitem value="Miembros"
-								icon="pi pi-save" />
+						<p:submenu label="TRANSACCIONES">
+							<p:menuitem value="Realizar Transacción"
+								icon="pi pi-save" ajax="false" 
+								action="#{beanCajeroTransaccion.actionListenerTransacciones()}" />
 
 						</p:submenu>
-						<p:submenu label="REPORTES">
-							<p:menuitem value="Préstamos"
-								ajax="false" icon="pi pi-times" />
+						<p:submenu label="ESTADO DE CUENTAS">
+							<p:menuitem value="Historial Estado de Cuentas"
+								icon="pi pi-save" ajax="false"  
+								action="#{beanCajeroTransaccion.actionListenerHistorialEstadocuenta()}"/>
+
 						</p:submenu>
+						
 						<p:separator />
 					</p:panelMenu>
 					

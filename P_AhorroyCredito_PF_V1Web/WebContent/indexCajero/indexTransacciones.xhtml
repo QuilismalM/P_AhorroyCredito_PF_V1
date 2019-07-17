@@ -45,15 +45,21 @@
 					<h2>&nbsp;GRUPO AMISTAD</h2>
 				</a>
 				<center>
+				
 					<a style="color: white;">BIENVENIDO</a>
+					
 				</center>
+				<a >  <p:commandButton value="Inicio" action="#{beanCajeroTransaccion.actionListenerHome()}" icon="fa fa-home"/>  
+			</a>
 			</div>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href=""><span class="glyphicon glyphicon-log-in" />
-						SALIR</a></li>
+				
+					<li><a>
+						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
+					icon="fa fa-sign-out" /></a></li>
 			</ul>
 		</div>
 	</div>
@@ -106,7 +112,7 @@
 
 						</p:selectOneMenu>
 						<h:outputText value="Monto" />
-						<p:spinner value="#{beanCajeroTransaccion.montoTransaccion}"></p:spinner>
+						<p:spinner value="#{beanCajeroTransaccion.montoTransaccion}" min="1"></p:spinner>
 						
 					</p:panelGrid>
 					<p:commandButton value="Insertar" icon="fa fa-save"

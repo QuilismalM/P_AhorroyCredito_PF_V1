@@ -34,8 +34,8 @@ public class BeanCajeroTransaccion implements Serializable {
 
 	private int nroCuenta;
 	private int idTipoTransaccion;
-	private BigDecimal montoTransaccion;
-    private BigDecimal saldoTransaccion;
+	private double montoTransaccion;
+    private double SaldoTransaccion;
     private Transaccion transaccion;
     
     private TipoTransaccion tipoTransaccion;
@@ -67,7 +67,7 @@ public class BeanCajeroTransaccion implements Serializable {
 	public void actionListenerInsertarTransaccion() {
 		try {
 
-			managerCajeroTransaccion.insertarTransaccion(nroCuenta, idTipoTransaccion,montoTransaccion,fechaTransaccion,saldoTransaccion);
+			managerCajeroTransaccion.insertarTransaccion(nroCuenta, idTipoTransaccion, montoTransaccion, fechaTransaccion, SaldoTransaccion);
 			listaTransaccion = managerCajeroTransaccion.findAllTransaccion();
 			transaccion = new Transaccion();
 			JSFUtil.crearMensajeInfo("Transacción realizada");
@@ -99,13 +99,7 @@ public class BeanCajeroTransaccion implements Serializable {
 
 
 
-	public BigDecimal getSaldoTransaccion() {
-		return saldoTransaccion;
-	}
-
-	public void setSaldoTransaccion(BigDecimal saldoTransaccion) {
-		this.saldoTransaccion = saldoTransaccion;
-	}
+	
 
 	public List<CuentaCliente> getListaCuentaCliente() {
 		return listaCuentaCliente;
@@ -179,16 +173,26 @@ public class BeanCajeroTransaccion implements Serializable {
 		this.idTipoTransaccion = idTipoTransaccion;
 	}
 
-	public BigDecimal getMontoTransaccion() {
+	
+	
+	
+	
+	public double getMontoTransaccion() {
 		return montoTransaccion;
 	}
 
-	public void setMontoTransaccion(BigDecimal montoTransaccion) {
+	public void setMontoTransaccion(double montoTransaccion) {
 		this.montoTransaccion = montoTransaccion;
 	}
-	
-	
-	
+
+	public double getSaldoTransaccion() {
+		return SaldoTransaccion;
+	}
+
+	public void setSaldoTransaccion(double saldoTransaccion) {
+		SaldoTransaccion = saldoTransaccion;
+	}
+
 	public Date getFechaTransaccion() {
 		return fechaTransaccion;
 	}
@@ -207,7 +211,16 @@ public class BeanCajeroTransaccion implements Serializable {
 	public void setTransaccionSeleccionado(Transaccion transaccionSeleccionado) {
 		this.transaccionSeleccionado = transaccionSeleccionado;
 	}
+	////////////////////////////
+	public String actionListenerTransacciones() {
+		return "indexTransacciones";
+	}
 	
-	
+	public String actionListenerHistorialEstadocuenta() {
+		return "indexCajeroEstadoCuenta";
+	}
 
+	public String actionListenerHome() {
+		return "IndexCajero";
+}
 }

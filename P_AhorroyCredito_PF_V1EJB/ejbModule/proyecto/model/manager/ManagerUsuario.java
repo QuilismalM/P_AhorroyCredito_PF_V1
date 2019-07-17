@@ -33,7 +33,7 @@ public class ManagerUsuario {
 	}
 
 	public List<Rol> findAllRoles() {
-		String consulta = "SELECT r FROM Rol r";
+		String consulta = "SELECT r FROM Rol r WHERE r.tipoRol<>'Cliente'";
 		Query q = em.createQuery(consulta, Rol.class);
 		return q.getResultList();
 	}

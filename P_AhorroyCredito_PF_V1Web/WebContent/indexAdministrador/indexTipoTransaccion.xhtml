@@ -4,18 +4,61 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui">
+
 <h:head>
-	<br />
-	<f:facet name="first">
-		<meta name="viewport"
-			content="width=device-width, intial-scale=1, shrink-to-fit=no, user-sacalable=no" />
-		<title>Manejo de datos </title>
-	</f:facet>
+	<!-- Compiled and minified Bootstrap CSS -->
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/prettyPhoto.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/owl.carousel.min.css"
+		rel="stylesheet" />
+	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
+	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<title>Administrador</title>
+
 </h:head>
 <body>
+<header id="header"> <nav class="navbar navbar-inverse"
+		role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="slide-img">
+				<a class="navbar-brand" href=""> <img
+					src="../IndexPrincipal/images/logo1.png" width="150" height="75"
+					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
+				</img>
+                
+				</a> <a class="nav navbar-brand">
+					<h2>&nbsp;GRUPO AMISTAD</h2>
+				</a>
+				<center><a style="color: white;">BIENVENIDO: #{beanLogin.username}</a></center>
+			</div>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a>
+						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
+					icon="fa fa-sign-out" /></a></li>
+			</ul>
+		</div>
+	</div>
+	</nav> </header>
+	<center><h2 style="color: black;">Administrador : Tipo Transacción</h2></center>
+	<br></br>
 	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
+	<center>
 	<p:panel header="Registro Nuevo Tipo Transacción	" style="width:600px">
 		<h:form id="form">
 			
@@ -96,13 +139,54 @@
 		</p:panel>
 
 	</p:panel>
+	</center>
+	<center>
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="SI" type="button"
 			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
 		<p:commandButton value="NO" type="button"
 			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 	</p:confirmDialog>
-		<p:commandButton onclick="location.href='index.html'" value="REGRESAR"></p:commandButton>
+	</center>
+		<p></p>
+	<br />
+	<div class="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="top-number">
+						<p>
+							<i class="fa fa-phone-square"></i> 0989805294
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="social">
+						<ul class="social-share">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.container-->
+	</div>
+
+	<footer id="footer" class="midnight-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+			</div>
+
+		</div>
+	</div>
+	</footer>
 	
 </body>
 </html>

@@ -37,6 +37,7 @@ public class ManagerLogin {
 		Query q = em.createQuery(consulta, Rol.class);
 		return q.getResultList();
 	}
+	
 //	public Usuario getUser(String username, String contrasena) {
 //		try {
 //			Usuario user = (Usuario) em
@@ -54,15 +55,13 @@ public class ManagerLogin {
 	public LoginDT accederSistema(String username,String contrasena,int id_rol) throws Exception{
 		Usuario usuario = (Usuario) em
 				.createQuery("SELECT u from Usuario u where u.username =:name and u.contrasena =:password")
-				.setParameter("name", username).setParameter("password", contrasena).getSingleResult();
-		
-		
+				.setParameter("name", username).setParameter("password", contrasena).getSingleResult();	
 		if(usuario==null)
 			throw new Exception("Error en usuario y/o clave.");
 		if(!usuario.getContrasena().equals(contrasena))
-			throw new Exception("Error en usuario y/o clave.");
+			throw new Exception("Error en contraseña");
 		if(!usuario.getRol().getIdRol().equals(id_rol))
-			throw new Exception("Error en usuario y/o clave.");
+			throw new Exception("Error en rol");
 		
 		LoginDT loginDTO=new LoginDT();
 		
@@ -72,13 +71,13 @@ public class ManagerLogin {
 		
 		//dependiendo del tipo de usuario, configuramos la ruta de acceso a las pags web:
 		if(usuario.getRol().getIdRol().equals(1))
-			loginDTO.setRutaAcceso("indexAdministrador/indexAdministrador.xhtml");
+			loginDTO.setRutaAcceso("/indexAdministrador/indexAdministrador.xhtml");
 		else if(usuario.getRol().getIdRol().equals(2))
-			loginDTO.setRutaAcceso("indexClientes/indexClientes.xhtml");
+			loginDTO.setRutaAcceso("/indexClientes/indexClientes.xhtml");
 		else if (usuario.getRol().getIdRol().equals(3))
-			loginDTO.setRutaAcceso("indexCajero/IndexCajero.xhtml");
+			loginDTO.setRutaAcceso("/indexCajero/IndexCajero.xhtml");
 		else
-			loginDTO.setRutaAcceso("indexAtencionCliente/IndexAtencionCliente.xhtml");
+			loginDTO.setRutaAcceso("/indexAtencionCliente/IndexAtencionCliente.xhtml");
 		return loginDTO;
 	}
 

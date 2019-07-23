@@ -4,6 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:event listener="#{beanLogin.actionVerificarLogin()}"
+		type="preRenderView"></f:event>
+</f:metadata>
 
 <h:head>
 	<!-- Compiled and minified Bootstrap CSS -->
@@ -17,9 +21,11 @@
 	<link href="../IndexPrincipal/css/icomoon.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Administrador</title>
 
 </h:head>
+
 <body>
 	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
@@ -55,6 +61,10 @@
 	</nav> </header>
 	<center><h2 style="color: black;">Administrador</h2></center>
 	<br></br>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+    <p:messages id="mensajes" />
 	<div>
 		<div class="row">
 			<div class="col-sm-4">

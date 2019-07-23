@@ -12,10 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import proyecto.model.entities.Rol;
-import proyecto.model.entities.Usuario;
 import proyecto.model.login.LoginDT;
 import proyecto.model.manager.ManagerLogin;
+import proyecto.model.utl.ModelUtil;
 import proyecto.controller.model.JSFUtil;
+
 @Named
 @SessionScoped
 public class BeanLogin implements Serializable {
@@ -27,18 +28,15 @@ public class BeanLogin implements Serializable {
 	private int id_rol;
 	private String username;
 	private String contrasena;
-	 private boolean acceso;
-	
+	private boolean acceso;
 
 	@EJB
 	private ManagerLogin managerLogin;
-	private List<Rol> listaRoles;
-	private Usuario usuario;
 	private LoginDT loginDT;
-
+	private List<Rol> listaRoles;
 	@PostConstruct
 	public void inicializar() {
-		loginDT=new LoginDT();
+		loginDT = new LoginDT();
 		listaRoles = managerLogin.findAllRoles();
 	}
 
@@ -56,74 +54,76 @@ public class BeanLogin implements Serializable {
 //			return "";
 //		}
 //	}
-	
-	public String accederSistema(){
-		acceso=false;
+
+	public String accederSistema() {
+		acceso = false;
 		try {
-			loginDT=managerLogin.accederSistema(username, contrasena,id_rol);
-			//verificamos el acceso del usuario:
-			id_rol=loginDT.getId_rol();
-			//redireccion dependiendo del tipo de usuario:
-			return loginDT.getRutaAcceso()+"?faces-redirect=true";
+			loginDT = managerLogin.accederSistema(username, contrasena, id_rol);
+			id_rol = loginDT.getId_rol();
+					
+			return loginDT.getRutaAcceso() + "?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
-			JSFUtil.crearMensajeError(e.getMessage());
+			JSFUtil.crearMensajeError("Login Incorrecto");
 		}
 		return "";
 	}
-	
-	public String salirSistema(){
+
+	public String salirSistema() {
 		System.out.println("salirSistema");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true";
 	}
-	
-	public void actionVerificarLogin(){
+
+	public void actionVerificarLogin() {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		String requestPath=ec.getRequestPathInfo();
+		String requestPath = ec.getRequestPathInfo();
 		try {
-			//si no paso por login:
-		if(loginDT==null){
-				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true");
-			}else{
-				//validar las rutas de acceso:
-				if(requestPath.contains("/indexAdministrador") && loginDT.getRutaAcceso().startsWith("/indexAdministrador"))
+			// si no paso por login:
+			if (loginDT == null || ModelUtil.isEmpty(loginDT.getRutaAcceso())){
+				ec.redirect(ec.getRequestContextPath() + "/faces/IndexPrincipal/IndexPrincipal.xhtml");
+			} else {
+				// validar las rutas de acceso:
+				if (requestPath.contains("/indexAdministrador") && loginDT.getRutaAcceso().startsWith("/indexAdministrador"))
 					return;
-				//caso contrario significa que hizo login pero intenta acceder a ruta no permitida:
-				ec.redirect(ec.getRequestContextPath() + "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true");
+				if (requestPath.contains("/indexCajero") && loginDT.getRutaAcceso().startsWith("/indexCajero"))				 
+					return;
+				if (requestPath.contains("/indexClientes") && loginDT.getRutaAcceso().startsWith("/indexClientes"))				 
+					return;
+				if (requestPath.contains("/indexAtencionCliente") && loginDT.getRutaAcceso().startsWith("/indexAtencionCliente"))				 
+					return;
+				// caso contrario significa que hizo login pero intenta acceder a ruta no permitida:
+				ec.redirect(ec.getRequestContextPath() + "/faces/IndexPrincipal/IndexPrincipal.xhtml");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	public String indexAdmin_Personal() {
 		return "indexAdmin_Personal";
 	}
+
 	public String tipocuenta() {
 		return "indexTipoCuenta";
 	}
+
 	public String roles() {
 		return "indexRol";
 	}
+
 	public String tipotransaccion() {
 		return "indexTipoTransaccion";
 	}
+
 	public String estadocuenta() {
 		return "indexEstadoCuenta";
 	}
+
 	public String indexAdminstrador() {
 		return "indexAdministrador";
 	}
-	
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 
 	public boolean isAcceso() {
 		return acceso;

@@ -14,8 +14,8 @@
 	<link href="./IndexPrincipal/css/icomoon.css" rel="stylesheet" />
 	<link href="./IndexPrincipal/css/main.css" rel="stylesheet" />
 	<link href="./IndexPrincipal/css/responsive.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Ingreso de usuarios</title>
-
 </h:head>
 <body>
 <!-- <a href="../indexAdministrador/indexAdmin_Personal.xhtml"></a> -->
@@ -61,7 +61,10 @@
 		</div>
 	</div>
 	</nav> </header>
-	<br />
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+    <p:messages id="mensajes" />
 	<br />
 	<div class="container">
 		<div class="row">
@@ -73,9 +76,9 @@
 						<p:panelGrid columns="2">
 							<h:outputText value="USERNAME:" />
 							<p:inputText value="#{beanLogin.username}" required="true"
-								requiredMessage="Debe ingresar un ID de usuario." maxlength="15"></p:inputText>
+								requiredMessage="Ingresar username" maxlength="15"></p:inputText>
 							<h:outputText value="CLAVE:" />
-							<p:password value="#{beanLogin.contrasena}" required="true" maxlength="10" size="10"></p:password>
+							<p:password value="#{beanLogin.contrasena}" required="true" requiredMessage="Ingrese contraseña" maxlength="15" size="15"></p:password>
 							<h:outputText value="TIPO USUARIO:" />
 							<p:selectOneMenu value="#{beanLogin.id_rol}">
 								<f:selectItem itemLabel="Seleccione" />

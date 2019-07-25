@@ -28,6 +28,9 @@ public class BeanLogin implements Serializable {
 	private int id_rol;
 	private String username;
 	private String contrasena;
+	private String nombre_usuario;
+	private String apellido_usuario;
+	private String cedula;
 	private boolean acceso;
 
 	@EJB
@@ -60,7 +63,9 @@ public class BeanLogin implements Serializable {
 		try {
 			loginDT = managerLogin.accederSistema(username, contrasena, id_rol);
 			id_rol = loginDT.getId_rol();
-					
+			nombre_usuario = loginDT.getNombre_usuario();
+			apellido_usuario= loginDT.getApellido_usuario();
+			cedula= loginDT.getCedula();
 			return loginDT.getRutaAcceso() + "?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,5 +177,30 @@ public class BeanLogin implements Serializable {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
+	public String getNombre_usuario() {
+		return nombre_usuario;
+	}
+
+	public void setNombre_usuario(String nombre_usuario) {
+		this.nombre_usuario = nombre_usuario;
+	}
+
+	public String getApellido_usuario() {
+		return apellido_usuario;
+	}
+
+	public void setApellido_usuario(String apellido_usuario) {
+		this.apellido_usuario = apellido_usuario;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+	
 
 }

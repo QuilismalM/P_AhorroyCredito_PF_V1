@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+
+import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.SolicitudP;
 import proyecto.model.manager.ManagerSolicitudPrestamo;
 
@@ -21,17 +23,20 @@ public class BeanSolicitudPrestamo implements Serializable {
 	@EJB
 	private ManagerSolicitudPrestamo mangerSolicitud;
 	private List<SolicitudP> listaSolicitud;
+	private List<CuentaCliente> listaCuentaCliente;
 	private SolicitudP solicitudP;
 	private SolicitudP solicitudPseleccionada;
 
 	private int id_solicitud;
 	private BigDecimal valor_solicitud;
 	private String estado_solicitud;
-	private int nro_cuenta_cliente;
+	private int nroCuentaCl;
+	private int nroMeses;
 	Date fecha_solicitud = new Date();
 
 	@PostConstruct
 	public void inicializar() {
+		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.findAllSolicitudP();
 		solicitudP = new SolicitudP();
 
@@ -39,8 +44,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	public void actionListenerInsertarSolicitud() {
 		try {
-			mangerSolicitud.insertarSolucitudP(id_solicitud, valor_solicitud, estado_solicitud, fecha_solicitud,
-					nro_cuenta_cliente);
+			mangerSolicitud.insertarSolucitudP(valor_solicitud, estado_solicitud, fecha_solicitud,nroCuentaCl,nroMeses);
 			listaSolicitud = mangerSolicitud.findAllSolicitudP();
 			solicitudP = new SolicitudP();
 			JSFUtil.crearMensajeInfo("Datos insertados");
@@ -75,8 +79,27 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	}
 	
+	
+	
+	public List<CuentaCliente> getListaCuentaCliente() {
+		return listaCuentaCliente;
+	}
+
+	public void setListaCuentaCliente(List<CuentaCliente> listaCuentaCliente) {
+		this.listaCuentaCliente = listaCuentaCliente;
+	}
+
 	public int getId_solicitud() {
 		return id_solicitud;
+	}
+	
+
+	public int getNroMeses() {
+		return nroMeses;
+	}
+
+	public void setNroMeses(int nroMeses) {
+		this.nroMeses = nroMeses;
 	}
 
 	public void setId_solicitud(int id_solicitud) {
@@ -99,12 +122,13 @@ public class BeanSolicitudPrestamo implements Serializable {
 		this.estado_solicitud = estado_solicitud;
 	}
 
-	public int getNro_cuenta_cliente() {
-		return nro_cuenta_cliente;
+
+	public int getNroCuentaCl() {
+		return nroCuentaCl;
 	}
 
-	public void setNro_cuenta_cliente(int nro_cuenta_cliente) {
-		this.nro_cuenta_cliente = nro_cuenta_cliente;
+	public void setNroCuentaCl(int nroCuentaCl) {
+		this.nroCuentaCl = nroCuentaCl;
 	}
 
 	public Date getFecha_solicitud() {

@@ -68,6 +68,9 @@ public class ManagerLogin {
 		loginDTO.setUsername(usuario.getUsername());
 		loginDTO.setId_rol(usuario.getRol().getIdRol());
 		loginDTO.setContrasena(usuario.getContrasena());
+		loginDTO.setNombre_usuario(usuario.getNombreUsuario());
+		loginDTO.setApellido_usuario(usuario.getApellidoUsuario());
+		loginDTO.setCedula(usuario.getCedulaUsuario());
 		
 		//dependiendo del tipo de usuario, configuramos la ruta de acceso a las pags web:
 		if(usuario.getRol().getIdRol().equals(1))

@@ -3,7 +3,10 @@ package proyecto.model.login;
 public class LoginDT {
 	private String username;
 	private int id_usuarios;
-	private String contrasena ;
+	private String contrasena;
+	private String nombre_usuario;
+	private String apellido_usuario;
+	private String cedula;
 	private int id_rol;
 	private String rutaAcceso;
 	public String getUsername() {
@@ -35,6 +38,24 @@ public class LoginDT {
 	}
 	public void setRutaAcceso(String rutaAcceso) {
 		this.rutaAcceso = rutaAcceso;
+	}
+	public String getNombre_usuario() {
+		return nombre_usuario;
+	}
+	public void setNombre_usuario(String nombre_usuario) {
+		this.nombre_usuario = nombre_usuario;
+	}
+	public String getApellido_usuario() {
+		return apellido_usuario;
+	}
+	public void setApellido_usuario(String apellido_usuario) {
+		this.apellido_usuario = apellido_usuario;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 	
 	

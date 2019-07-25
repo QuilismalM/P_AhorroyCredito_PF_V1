@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.SolicitudP;
 
+
 /**
  * Session Bean implementation class ManagerSolicitudPrestamo
  */
@@ -28,8 +29,8 @@ public class ManagerSolicitudPrestamo {
 	public ManagerSolicitudPrestamo() {
 		// TODO Auto-generated constructor stub
 	}
-	 public CuentaCliente buscarCuentaCliente(int nroCuenta) {
-	   	return em.find(CuentaCliente.class,nroCuenta);
+	 public CuentaCliente buscarCuentaCliente(int nroCuentaCl) {
+	   	return em.find(CuentaCliente.class,nroCuentaCl);
 	 }
 
 	public SolicitudP findSolicitudPByIdSolicitud(int id_solicitudp) {
@@ -46,15 +47,14 @@ public class ManagerSolicitudPrestamo {
 			Query q = em.createQuery(consulta, CuentaCliente.class);
 			return q.getResultList();
 		}
-	public void insertarSolucitudP(int id_solicitud, BigDecimal valor_solicitud,String estado_solicitud,Date fecha_solicitud,int nro_cuenta_cliente) {
+	public void insertarSolucitudP(BigDecimal valor_solicitud,String estado_solicitud,Date fecha_solicitud,int nroCuentaCl,int nro_meses) {
 		SolicitudP solicitudP = new SolicitudP();
-		CuentaCliente cuentaCliente= buscarCuentaCliente(nro_cuenta_cliente);
-		solicitudP.setIdSolicitud(id_solicitud);
+		CuentaCliente cuentaCliente= buscarCuentaCliente(nroCuentaCl);
 		solicitudP.setValorSolicitudp(valor_solicitud);
 		solicitudP.setEstadoSolicitud(estado_solicitud);
 		solicitudP.setFechaSolicitud(fecha_solicitud);
 		solicitudP.setCuentaCliente(cuentaCliente);
-		
+		solicitudP.setNroMesesSolicitud(nro_meses);
 		em.persist(solicitudP);
 
 	}
@@ -79,12 +79,23 @@ public class ManagerSolicitudPrestamo {
 		if (solicitudP != null)
 			em.remove(solicitudP);
 	}
-
-	public void actualizarSolicitudP(SolicitudP solicitudP) throws Exception {
-		SolicitudP t = findSolicitudPByIdSolicitud(solicitudP.getIdSolicitud());
-		if (t == null)
-			throw new Exception("No  existe solicitud");
-		em.merge(t);
+	public SolicitudP buscarSolicitudP(int idsolicitud) {
+		return em.find(SolicitudP.class, idsolicitud);
 	}
+	public void actualizarSolicitudP(SolicitudP solicitudP) throws Exception {
+		SolicitudP s = buscarSolicitudP(solicitudP.getIdSolicitud());
+		if (s == null)
+			throw new Exception("No existe la solicitud.");
+		s.setValorSolicitudp(solicitudP.getValorSolicitudp());
+		s.setNroMesesSolicitud(solicitudP.getNroMesesSolicitud());
+		em.merge(s);
+	}
+
+//	public void actualizarSolicitudP(SolicitudP solicitudP) throws Exception {
+//		SolicitudP t = findSolicitudPByIdSolicitud(solicitudP.getIdSolicitud());
+//		if (t == null)
+//			throw new Exception("No  existe solicitud");
+//		em.merge(t);
+//	}
 
 }

@@ -29,6 +29,17 @@ public class ManagerSolicitudPrestamo {
 	public ManagerSolicitudPrestamo() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	public List<SolicitudP> SolcitudesCliente(int nro_cuenta_cl){
+		String consulta = "Select s from SolicitudP s JOIN s.cuentaCliente c where c.nroCuentaCl = :nro_cuenta_cl";
+		Query query=em.createQuery(consulta);
+		query.setParameter("nro_cuenta_cl", nro_cuenta_cl);
+		return query.getResultList();
+	}
+	
+	
+	
 	 public CuentaCliente buscarCuentaCliente(int nroCuentaCl) {
 	   	return em.find(CuentaCliente.class,nroCuentaCl);
 	 }
@@ -58,22 +69,6 @@ public class ManagerSolicitudPrestamo {
 		em.persist(solicitudP);
 
 	}
-	
-//	   public void insertarTransaccion(int nroCuenta, int idTipoTransaccion , BigDecimal montoTransaccion ,Date fechaTransaccion,BigDecimal saldoTransaccion)  {
-//	    	Transaccion transaccion=new Transaccion();
-//	     	CuentaCliente cuentaCliente=buscarCuentaCliente(nroCuenta);
-//	     	
-//	        TipoTransaccion tipoTransaccion=buscarTipoTransaccion(idTipoTransaccion);
-//	     	
-//	     	transaccion.setCuentaCliente(cuentaCliente);
-//	     	transaccion.setTipoTransaccion(tipoTransaccion);
-//	     	transaccion.setMontoTransaccion(montoTransaccion);
-//	     	transaccion.setFechaTransaccion(fechaTransaccion); 
-//	     	transaccion.setSaldoTransaccion(saldoTransaccion);
-//	     	em.persist(transaccion);
-//	     
-//	    }
-
 	public void eliminarSolicitudP(int id_solicitudp) {
 		SolicitudP solicitudP = findSolicitudPByIdSolicitud(id_solicitudp);
 		if (solicitudP != null)

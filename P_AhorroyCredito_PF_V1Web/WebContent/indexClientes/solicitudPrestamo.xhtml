@@ -4,8 +4,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
-
 <h:head></h:head>
 <body>
 	<p:growl>
@@ -36,8 +34,8 @@
 				<p:selectOneMenu value="#{beanSolicitudPrestamo.nroCuentaCl}" >
 				
 					<f:selectItems value="#{beanCajeroTransaccion.listaCuentaCliente}"
-						var="cl" itemLabel="#{cl.nroCuentaCl}"
-						itemValue="#{cl.nroCuentaCl}" />
+						var="cl" itemLabel="#{beanSolicitudPrestamo.nroCuentaCl}"
+						itemValue="#{beanSolicitudPrestamo.nroCuentaCl}" />
 
 				</p:selectOneMenu>
 				<p:commandButton value="Insertar" icon="fa fa-save"

@@ -30,14 +30,14 @@ public class BeanSolicitudPrestamo implements Serializable {
 	private int id_solicitud;
 	private BigDecimal valor_solicitud;
 	private String estado_solicitud;
-	private int nroCuentaCl;
+	private int nroCuentaCl=100010;
 	private int nroMeses;
 	Date fecha_solicitud = new Date();
 
 	@PostConstruct
 	public void inicializar() {
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
-		listaSolicitud = mangerSolicitud.findAllSolicitudP();
+		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 		solicitudP = new SolicitudP();
 
 	}
@@ -45,7 +45,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	public void actionListenerInsertarSolicitud() {
 		try {
 			mangerSolicitud.insertarSolucitudP(valor_solicitud, estado_solicitud, fecha_solicitud,nroCuentaCl,nroMeses);
-			listaSolicitud = mangerSolicitud.findAllSolicitudP();
+			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			solicitudP = new SolicitudP();
 			JSFUtil.crearMensajeInfo("Datos insertados");
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	public void actionListenerEliminarSolicitud(int id_solicitudp) {
 		mangerSolicitud.eliminarSolicitudP(id_solicitudp);
-		listaSolicitud = mangerSolicitud.findAllSolicitudP();
+		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 		JSFUtil.crearMensajeInfo("Eliminado");
 
 	}
@@ -68,7 +68,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	public void actionListenerActualizarSolicitudl() {
 		try {
 			mangerSolicitud.actualizarSolicitudP(solicitudPseleccionada);
-			listaSolicitud = mangerSolicitud.findAllSolicitudP();
+			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			JSFUtil.crearMensajeInfo("Datos Actualizados");
 
 		} catch (Exception e) {

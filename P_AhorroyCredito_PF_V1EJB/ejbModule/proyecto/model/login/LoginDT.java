@@ -7,6 +7,7 @@ public class LoginDT {
 	private String nombre_usuario;
 	private String apellido_usuario;
 	private String cedula;
+	private int cuentaClienteCl;
 	private int id_rol;
 	private String rutaAcceso;
 	public String getUsername() {
@@ -57,7 +58,12 @@ public class LoginDT {
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-	
+	public int getCuentaClienteCl() {
+		return cuentaClienteCl;
+	}
+	public void setCuentaClienteCl(int cuentaClienteCl) {
+		this.cuentaClienteCl = cuentaClienteCl;
+	}
 	
 
 }

@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
+import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;
 import proyecto.model.login.LoginDT;
@@ -38,19 +40,7 @@ public class ManagerLogin {
 		return q.getResultList();
 	}
 	
-//	public Usuario getUser(String username, String contrasena) {
-//		try {
-//			Usuario user = (Usuario) em
-//					.createQuery("SELECT u from Usuario u where u.username =:name and u.contrasena =:password")
-//					.setParameter("name", username).setParameter("password", contrasena).getSingleResult();
-//			System.out.println("aqui el usuauri"+user);
-//			return user;
-//		} catch (Exception e) {
-//	
-//			return null;
-//			
-//		}
-//	}
+
 	
 	public LoginDT accederSistema(String username,String contrasena,int id_rol) throws Exception{
 		Usuario usuario = (Usuario) em
@@ -71,7 +61,7 @@ public class ManagerLogin {
 		loginDTO.setNombre_usuario(usuario.getNombreUsuario());
 		loginDTO.setApellido_usuario(usuario.getApellidoUsuario());
 		loginDTO.setCedula(usuario.getCedulaUsuario());
-		
+		loginDTO.setId_usuarios(usuario.getIdUsuarios());
 		//dependiendo del tipo de usuario, configuramos la ruta de acceso a las pags web:
 		if(usuario.getRol().getIdRol().equals(1))
 			loginDTO.setRutaAcceso("/indexAdministrador/indexAdministrador.xhtml");
@@ -83,7 +73,16 @@ public class ManagerLogin {
 			loginDTO.setRutaAcceso("/indexAtencionCliente/IndexAtencionCliente.xhtml");
 		return loginDTO;
 	}
-
 	
-
+	public CuentaCliente CuentaByIdUsuario(int idUsuario) {
+		CuentaCliente cuentaCliente = (CuentaCliente) em.
+				createQuery("SELECT c from CuentaCliente c JOIN c.usuario u where u.idUsuarios = :idUsuario")
+				.setParameter("idUsuario", idUsuario).getSingleResult();
+		return cuentaCliente;
+	}
+//	String consulta = "Select s from SolicitudP s JOIN s.cuentaCliente c where c.nroCuentaCl = :nro_cuenta_cl";
+//	Query query=em.createQuery(consulta);
+//	query.setParameter("nro_cuenta_cl", nro_cuenta_cl);
+//	return query.getResultList();
+//	
 }

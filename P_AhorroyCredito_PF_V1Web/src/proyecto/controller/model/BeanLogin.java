@@ -10,7 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
 import proyecto.model.entities.Rol;
 import proyecto.model.login.LoginDT;
 import proyecto.model.manager.ManagerLogin;
@@ -26,6 +25,7 @@ public class BeanLogin implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id_rol;
+	private int id_usuario;
 	private String username;
 	private String contrasena;
 	private String nombre_usuario;
@@ -42,22 +42,6 @@ public class BeanLogin implements Serializable {
 		loginDT = new LoginDT();
 		listaRoles = managerLogin.findAllRoles();
 	}
-
-//	public String send() {
-//		usuario = managerLogin.getUser(username, contrasena);
-//		if (usuario == null) {
-//			usuario = new Usuario();
-//			FacesContext.getCurrentInstance().addMessage(null,
-//					new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not found!", " Login Error!"));
-//			return null;
-//		} else if (id_rol == 1) {
-//			return "indexAdministrador/indexAdministrador.xhtml?faces-redirect=true";
-//		}
-//		else {
-//			return "";
-//		}
-//	}
-
 	public String accederSistema() {
 		acceso = false;
 		try {
@@ -65,6 +49,7 @@ public class BeanLogin implements Serializable {
 			id_rol = loginDT.getId_rol();
 			nombre_usuario = loginDT.getNombre_usuario();
 			apellido_usuario= loginDT.getApellido_usuario();
+			id_usuario = loginDT.getId_usuarios();
 			cedula= loginDT.getCedula();
 			return loginDT.getRutaAcceso() + "?faces-redirect=true";
 		} catch (Exception e) {
@@ -104,10 +89,12 @@ public class BeanLogin implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
+    
 	public String indexAdmin_Personal() {
 		return "indexAdmin_Personal";
 	}
+
+
 
 	public String tipocuenta() {
 		return "indexTipoCuenta";
@@ -200,6 +187,14 @@ public class BeanLogin implements Serializable {
 
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
+	}
+
+	public int getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 	
 

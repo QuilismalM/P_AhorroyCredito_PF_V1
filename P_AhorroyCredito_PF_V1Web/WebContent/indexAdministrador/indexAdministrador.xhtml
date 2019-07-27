@@ -85,7 +85,9 @@
 
 						</p:submenu>
 						<p:submenu label="Reportes">
-							<p:menuitem value="Historial" ajax="false" icon="pi pi-times" />
+							<p:menuitem value="Historial" ajax="false" icon="pi pi-times" 
+							action="#{beanLogin.indexAdmin_Historial()}" />
+							
 							<p:menuitem value="Tipo Cuenta" ajax="false" icon="pi pi-times"
 								action="#{beanLogin.tipocuenta()}" />
 							<p:menuitem value="Roles" ajax="false" icon="pi pi-times"

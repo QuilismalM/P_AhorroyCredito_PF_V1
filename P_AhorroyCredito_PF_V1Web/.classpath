@@ -18,6 +18,5 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="/Proyecto_A_CreditoEJB"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

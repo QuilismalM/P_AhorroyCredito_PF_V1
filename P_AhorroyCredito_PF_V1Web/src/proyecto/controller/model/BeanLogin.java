@@ -105,6 +105,9 @@ public class BeanLogin implements Serializable {
 	public String indexAdmin_Personal() {
 		return "indexAdmin_Personal";
 	}
+	public String indexAdmin_Historial() {
+		return "indexAdmin_Historial";
+	}
 
 
 

@@ -89,11 +89,11 @@
 						<h:outputText value="#{p.usuario.cedulaUsuario}" />
 					</p:column>
 
-					<p:column headerText="NRO CUENTA">
+					<p:column headerText="NRO CUENTA" filterBy="#{p.nroCuentaCl}" filterMatchMode="contains">
 						<h:outputText value="#{p.nroCuentaCl}" />
 					</p:column>
 
-					<p:column headerText="CLIENTE">
+					<p:column headerText="CLIENTE" filterBy="#{p.usuario.nombreUsuario}" filterMatchMode="contains">
 						<h:outputText
 							value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
 					</p:column>

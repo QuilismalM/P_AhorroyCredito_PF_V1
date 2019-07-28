@@ -75,23 +75,50 @@
 			<h1 style="background: gray; width:50%" >Ingrese datos</h1>
 			
 			<p:fieldset  style="width:50%">
-				<h:form>
+				<h:form id="form1">
 			<h:panelGrid columns="1">
-				<h:outputText value="Cuenta Origen"/>
-				<p:inputText  value="#{beanClientes.cuenta_origen}"  required="true" requiredMessage="Cuenta Origen Obligatorio"/>
+				<h:outputText value="Número de Cuenta"/>
+				<h:outputText  value="#{beanClientes.cuenta_origen}"  required="true" requiredMessage="Cuenta Origen Obligatorio"/>
 				<h:outputText value="Cuenta Destino" />
 				<p:inputText value="#{beanClientes.cuenta_destino}"   
 				requiered="true" requiredMessage="Ingrese Cuenta Destino">
 				</p:inputText>
 				<h:outputText value="Cantidad" />
 				<p:inputText  value="#{beanClientes.cantidad}"  required="true" requiredMessage="Cantidad Obligatorio"/>
-				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" />
+				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" 
+				   />
 			</h:panelGrid>
 		</h:form>
 			</p:fieldset>
 		</div>
 	</p:panel>  <br/>
 </p:panel>
+
+<form id="form2" >
+
+		<p:dataTable value="#{beanClientes.list2}" var="tr" paginator="true" rows="6" reflow="true">
+			<p:column headerText="FECHA"  >
+				<h:outputText value="#{tr.fechaTransaccion}" />
+			</p:column>
+			<p:column headerText="TIPO">
+				<h:outputText value="#{tr.tipoTransaccion.nombreTipoTransaccion}" />
+			</p:column>
+			<p:column headerText="CUENTA DESTINO">
+				<h:outputText value="#{tr.cuentaDestino}" />
+			</p:column>
+			<p:column headerText="CANTIDAD">
+				<h:outputText value="#{tr.montoTransaccion}" />
+				<br />
+			</p:column>
+			<p:column headerText="SALDO">
+				<h:outputText value="#{tr.saldoTransaccion}" />
+			</p:column>
+
+		</p:dataTable>
+		</form>
+
+
+
 <div class="top-bar">
 			<div class="container">
 				<div class="row">

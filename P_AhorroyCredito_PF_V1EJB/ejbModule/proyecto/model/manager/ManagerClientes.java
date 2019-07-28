@@ -38,9 +38,11 @@ public class ManagerClientes {
     	return q.getResultList();
     }
     
-//     public List<Transaccion> findAllTransacciones(){
-//    	 
-//     }
+     public List<Transaccion> findAllTransacciones(int cuenta){
+    	 String consulta = "select t from Transaccion t where nro_cuenta_cl="+ cuenta + "and id_tipo_transaccion=" + 3;
+    	 Query q  = em.createQuery(consulta, Transaccion.class);
+    	 return q.getResultList();
+     }
      
      
      public List<Transaccion> findAllDep_Ret(int  cuenta){
@@ -52,7 +54,7 @@ public class ManagerClientes {
      public List<Transaccion> SearchMovimientos(String fecchainicial, String tipomovimiento, int cuenta){
     	 if(!tipomovimiento.equals("General")) {
     	 String consulta = "select t from Transaccion  t where fecha_transaccion>='"+ fecchainicial
-    	 +"' and id_tipo_transaccion=" + tipomovimiento;
+    	 +"' and id_tipo_transaccion=" + tipomovimiento+"and nro_cuenta_cl="+ cuenta;
     	 Query q = em.createQuery(consulta, Transaccion.class);
     	 return q.getResultList();
     	 }

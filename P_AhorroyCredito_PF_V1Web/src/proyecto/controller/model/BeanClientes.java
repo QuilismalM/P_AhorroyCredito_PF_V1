@@ -38,6 +38,7 @@ public class BeanClientes implements Serializable {
 		fechainicial= new Date();
 		cuenta_origen= managerLog.getCuenta();
 		listaCli= managercli.findAllDep_Ret(cuenta_origen);
+		list2=managercli.findAllTransacciones(cuenta_origen);
 	}
 	
 	
@@ -85,6 +86,7 @@ public class BeanClientes implements Serializable {
 	public void actionRealizarTransferecia() {
 		try {
 			managercli.realizarTransferencia(cuenta_origen, cuenta_destino, cantidad);
+			list2= managercli.findAllTransacciones(cuenta_origen);
 			transaccion = new Transaccion();
 			JSFUtil.crearMensajeInfo("Transacción Realizada con éxito");
 		} catch (Exception e) {

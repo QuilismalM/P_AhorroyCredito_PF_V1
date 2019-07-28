@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.SolicitudP;
 import proyecto.model.manager.ManagerSolicitudPrestamo;
@@ -18,33 +17,45 @@ import proyecto.model.manager.ManagerSolicitudPrestamo;
 @SessionScoped
 public class BeanSolicitudPrestamo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 1L;     
 	@EJB
 	private ManagerSolicitudPrestamo mangerSolicitud;
 	private List<SolicitudP> listaSolicitud;
 	private List<CuentaCliente> listaCuentaCliente;
 	private SolicitudP solicitudP;
 	private SolicitudP solicitudPseleccionada;
+	private BeanLogin beanLogin;
 
+    
 	private int id_solicitud;
 	private BigDecimal valor_solicitud;
 	private String estado_solicitud;
 	private int nroCuentaCl;
 	private int nroMeses;
 	Date fecha_solicitud = new Date();
-
+	private boolean panelColapsado;
 	@PostConstruct
 	public void inicializar() {
+		CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
+		nroCuentaCl=cl.getNroCuentaCl();
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+<<<<<<< HEAD
 		listaSolicitud = mangerSolicitud.findAllSolicitudP();
+=======
+		panelColapsado=true;
+>>>>>>> refs/remotes/origin/master
 		solicitudP = new SolicitudP();
 
 	}
+	public void actionListenerColapsarPanel() {
+		panelColapsado=!panelColapsado;
+	}
+
 
 	public void actionListenerInsertarSolicitud() {
 		try {
+			estado_solicitud="Pendiente";
 			mangerSolicitud.insertarSolucitudP(valor_solicitud, estado_solicitud, fecha_solicitud,nroCuentaCl,nroMeses);
 			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			solicitudP = new SolicitudP();
@@ -61,6 +72,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 		JSFUtil.crearMensajeInfo("Eliminado");
 
 	}
+	
 
 	public void actionListenerSeleccionarSolicitud(SolicitudP solicitudP) {
 		solicitudPseleccionada = solicitudP;
@@ -80,6 +92,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	}
 	
+<<<<<<< HEAD
 	///////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 	
@@ -103,6 +116,10 @@ public class BeanSolicitudPrestamo implements Serializable {
 	///////////////////////////////////////////////////////////////
 	
 	
+=======
+
+
+>>>>>>> refs/remotes/origin/master
 	public List<CuentaCliente> getListaCuentaCliente() {
 		return listaCuentaCliente;
 	}
@@ -115,7 +132,6 @@ public class BeanSolicitudPrestamo implements Serializable {
 		return id_solicitud;
 	}
 	
-
 	public int getNroMeses() {
 		return nroMeses;
 	}
@@ -131,6 +147,26 @@ public class BeanSolicitudPrestamo implements Serializable {
 	public BigDecimal getValor_solicitud() {
 		return valor_solicitud;
 	}
+
+	public BeanLogin getBeanLogin() {
+		return beanLogin;
+	}
+
+
+	public void setBeanLogin(BeanLogin beanLogin) {
+		this.beanLogin = beanLogin;
+	}
+
+
+	public boolean isPanelColapsado() {
+		return panelColapsado;
+	}
+
+
+	public void setPanelColapsado(boolean panelColapsado) {
+		this.panelColapsado = panelColapsado;
+	}
+
 
 	public void setValor_solicitud(BigDecimal valor_solicitud) {
 		this.valor_solicitud = valor_solicitud;

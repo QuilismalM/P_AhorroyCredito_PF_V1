@@ -3,19 +3,20 @@ package proyecto.controller.model;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+
+import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.Rol;
 import proyecto.model.login.LoginDT;
 import proyecto.model.manager.ManagerLogin;
 import proyecto.model.utl.ModelUtil;
 import proyecto.controller.model.JSFUtil;
-
 @Named
 @SessionScoped
 public class BeanLogin implements Serializable {
@@ -31,19 +32,25 @@ public class BeanLogin implements Serializable {
 	private String nombre_usuario;
 	private String apellido_usuario;
 	private String cedula;
+	private int cuentaCl;
 	private boolean acceso;
 
 	@EJB
 	private ManagerLogin managerLogin;
 	private LoginDT loginDT;
+	private CuentaCliente cuentaCliente;
 	private List<Rol> listaRoles;
 	@PostConstruct
 	public void inicializar() {
 		loginDT = new LoginDT();
 		listaRoles = managerLogin.findAllRoles();
 	}
+	public CuentaCliente seleccionarCuenta() {
+		return cuentaCliente;
+	}
 	public String accederSistema() {
 		acceso = false;
+		
 		try {
 			loginDT = managerLogin.accederSistema(username, contrasena, id_rol);
 			id_rol = loginDT.getId_rol();
@@ -51,6 +58,12 @@ public class BeanLogin implements Serializable {
 			apellido_usuario= loginDT.getApellido_usuario();
 			id_usuario = loginDT.getId_usuarios();
 			cedula= loginDT.getCedula();
+			if (id_rol==2) {
+				cuentaCliente = managerLogin.CuentaByIdUsuario(id_usuario);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cuentaCliente",cuentaCliente);
+				System.out.println("BeanLogin"+cuentaCl);
+				return loginDT.getRutaAcceso() + "?faces-redirect=true";
+			}
 			return loginDT.getRutaAcceso() + "?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,8 +72,10 @@ public class BeanLogin implements Serializable {
 		return "";
 	}
 
+
 	public String salirSistema() {
 		System.out.println("salirSistema");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/IndexPrincipal/IndexPrincipal.xhtml?faces-redirect=true";
 	}
@@ -93,6 +108,9 @@ public class BeanLogin implements Serializable {
 	public String indexAdmin_Personal() {
 		return "indexAdmin_Personal";
 	}
+	public String indexAdmin_Historial() {
+		return "indexAdmin_Historial";
+	}
 
 
 
@@ -116,7 +134,12 @@ public class BeanLogin implements Serializable {
 		return "indexAdministrador";
 	}
 
-
+	public int getCuentaCl() {
+		return cuentaCl;
+	}
+	public void setCuentaCl(int cuentaCl) {
+		this.cuentaCl = cuentaCl;
+	}
 	public boolean isAcceso() {
 		return acceso;
 	}
@@ -196,6 +219,11 @@ public class BeanLogin implements Serializable {
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
-	
+	public CuentaCliente getCuentaCliente() {
+		return cuentaCliente;
+	}
+	public void setCuentaCliente(CuentaCliente cuentaCliente) {
+		this.cuentaCliente = cuentaCliente;
+	}
 
 }

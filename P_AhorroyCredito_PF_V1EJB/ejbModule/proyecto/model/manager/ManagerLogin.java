@@ -24,7 +24,7 @@ import proyecto.model.login.LoginDT;
 public class ManagerLogin {
 	@PersistenceContext
 	private EntityManager em;
-
+	private int cuenta;
 	/**
 	 * Default constructor.
 	 */
@@ -62,6 +62,16 @@ public class ManagerLogin {
 		loginDTO.setApellido_usuario(usuario.getApellidoUsuario());
 		loginDTO.setCedula(usuario.getCedulaUsuario());
 		loginDTO.setId_usuarios(usuario.getIdUsuarios());
+		
+		int a = usuario.getIdUsuarios();
+		 String consulta = "select cl from  CuentaCliente cl where id_usuarios=" + a;
+    	 Query q = em.createQuery(consulta, CuentaCliente.class);
+    	 List<CuentaCliente> list = q.getResultList();
+    	 for (CuentaCliente c : list) {
+    		 cuenta= c.getNroCuentaCl();
+			 //System.out.println("impresion de consulta de saldo="+ saldoactual);
+    	 }
+		
 		//dependiendo del tipo de usuario, configuramos la ruta de acceso a las pags web:
 		if(usuario.getRol().getIdRol().equals(1))
 			loginDTO.setRutaAcceso("/indexAdministrador/indexAdministrador.xhtml");
@@ -80,6 +90,17 @@ public class ManagerLogin {
 				.setParameter("idUsuario", idUsuario).getSingleResult();
 		return cuentaCliente;
 	}
+
+
+	public int getCuenta() {
+		return cuenta;
+	}
+
+
+//	public void setCuenta(int cuenta) {
+//		this.cuenta = cuenta;
+//	}
+	
 //	String consulta = "Select s from SolicitudP s JOIN s.cuentaCliente c where c.nroCuentaCl = :nro_cuenta_cl";
 //	Query query=em.createQuery(consulta);
 //	query.setParameter("nro_cuenta_cl", nro_cuenta_cl);

@@ -1,17 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <f:metadata>
 	<f:event listener="#{beanLogin.actionVerificarLogin()}"
 		type="preRenderView"></f:event>
 </f:metadata>
- 
-     <h:head>
-     
-     <link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
+
+<h:head>
+
+	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/font-awesome.min.css"
 		rel="stylesheet" />
 	<link href="../IndexPrincipal/css/animate.min.css" rel="stylesheet" />
@@ -22,17 +22,17 @@
 	<link href="../IndexPrincipal/css/main.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/responsive.css" rel="stylesheet" />
 
-     
-     
-     <f:facet name="first">
+
+
+	<f:facet name="first">
 		<meta name="viewport"
-			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />	
-			
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+
 		<title>Manejo de datos Moviminetos</title>
 	</f:facet>
-     </h:head> 
-<body> 
-<header id="header"> <nav class="navbar navbar-inverse"
+</h:head>
+<body>
+	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">
 		<div class="navbar-header">
@@ -50,134 +50,129 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+					<h5>
+						<h:outputText
+							value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					#{beanLogin.apellido_usuario}-#{beanLogin.cedula}" />
+					</h5>
 				</a>
-				<center>
-					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
-				</center>
 			</div>
 		</div>
-
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li> <p:commandButton value="Inicio" action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>  </li>
-				<li> <p:commandButton value="Salir"
-							action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out" /></li>
+				<li><a><p:commandButton value="CERRAR SESIÓN"
+							action="#{beanLogin.salirSistema()}" icon="pi pi-sign-out">
+
+						</p:commandButton></a></li>
 			</ul>
 		</div>
 	</div>
 	</nav> </header>
-
-
-
-
-
-
-<p:growl>
+	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
-
-	<p:panel
-	
-		style=" width:100% ">
-<!-- 		<p:panel> -->
-<!-- 		<center> -->
-<!-- 			<h1>ORGANIZACIÓN "AMISTAD"   </h1> -->
-<!-- 			<h2> Bienvenido</h2> -->
-<!-- 			</center> -->
-			
-<!-- 			<div align="right"> -->
-				
-<!-- 				<p:commandButton value="Inicio" action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/> -->
-<!-- 				<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out"></p:commandButton> -->
-<!-- 				</div> -->
-			
-<!-- 		</p:panel> -->
-		<br />
-		<div align="center">
-		
-		<p:panel style="width:50%">
-		<h:form id="formulario">
-			<h:panelGrid columns="3">
-				<h:outputText value="Fecha Inicial  "/>
-				<p:calendar id="popup" value="#{beanClientes.fechainicial}" locale="de" navigator="true" 
-				pattern="dd/MM/yy" required="true"/>
-				<p:commandButton action="#{beanClientes.actionBuscarporFecha()}" value="Buscar" 
-				icon="fa fa-search"  update=""/> 
-				<h:outputText value="Tipo de Movimiento  "></h:outputText>
-				<p:selectOneMenu value="#{beanClientes.tipomovimiento}" requiered="true">
-				 <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
-				 <f:selectItem itemValue="1" itemLabel="Deposito" />
-				 <f:selectItem itemValue="2" itemLabel="Retiro"/>
-				 <f:selectItem itemValue="General" itemLabel="General"/>
-				</p:selectOneMenu>
-			</h:panelGrid>
-		</h:form>
-	</p:panel>
+	<br></br>
+	<div class="row" style="margin-left: 100px">
+		<div class="col-sm-4">
+			<p:linkButton outcome="indexClientes" value="REGRESAR"
+				icon="pi pi-chevron-left" style="margin-right:20px;">
+				<f:param name="productId" value="20" />
+			</p:linkButton>
 		</div>
-		<br />
-		
-		<form id="form1" >
+		<div class="col-sm-6">
+			<h2 style="color: black;">MOVIMIENTOS REALIZADOS</h2>
+		</div>
+	</div>
 
-		<p:dataTable value="#{beanClientes.listaCli}" var="cli" paginator="true" rows="6" reflow="true">
-			<p:column headerText="FECHA"  >
-				<h:outputText value="#{cli.fechaTransaccion}" />
-			</p:column>
-			<p:column headerText="TIPO">
-				<h:outputText value="#{cli.tipoTransaccion.nombreTipoTransaccion}" />
-			</p:column>
-			<p:column headerText="CANTIDAD">
-				<h:outputText value="#{cli.montoTransaccion}" />
-				<br />
-			</p:column>
-			<p:column headerText="SALDO">
-				<h:outputText value="#{cli.saldoTransaccion}" />
-			</p:column>
+	<br />
+	<div align="center">
 
-		</p:dataTable>
-		</form>
-	</p:panel>
-	
-	<div class="top-bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-xs-12">
-						<div class="top-number">
-							<p>
-								<i class="fa fa-phone-square"></i> 0989805294
-							</p>
-						</div>
-					</div>
-					<div class="col-sm-6 col-xs-12">
-						<div class="social">
-							<ul class="social-share">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-skype"></i></a></li>
-							</ul>
-
-						</div>
-					</div>
-				</div>
+		<p:panel header="BÚSQUEDA" style="width:50%">
+			<div align="center">
+				<h:form id="formulario">
+					<h:panelGrid columns="3">
+						<h:outputText value="Fecha Inicial  " />
+						<p:calendar id="popup" value="#{beanClientes.fechainicial}"
+							locale="de" navigator="true" pattern="dd/MM/yy" required="true" />
+						<p:commandButton action="#{beanClientes.actionBuscarporFecha()}"
+							value="Buscar" icon="fa fa-search" update="@form,:form2" />
+						<h:outputText value="Tipo de Movimiento  "></h:outputText>
+						<p:selectOneMenu value="#{beanClientes.tipomovimiento}"
+							requiered="true">
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+							<f:selectItem itemValue="1" itemLabel="Deposito" />
+							<f:selectItem itemValue="2" itemLabel="Retiro" />
+							<f:selectItem itemValue="General" itemLabel="General" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</h:form>
 			</div>
-			<!--/.container-->
-		</div>
+		</p:panel>
+	</div>
+	<div style="margin: 50px">
+		<h:form id="form2">
 
-		<footer id="footer" class="midnight-blue">
+			<p:dataTable value="#{beanClientes.listaCli}" var="cli"
+				paginator="true" rows="6" reflow="true">
+				<p:column headerText="FECHA">
+					<h:outputText value="#{cli.fechaTransaccion}" />
+				</p:column>
+				<p:column headerText="TIPO">
+					<h:outputText value="#{cli.tipoTransaccion.nombreTipoTransaccion}" />
+				</p:column>
+				<p:column headerText="CANTIDAD">
+					<h:outputText value="#{cli.montoTransaccion}" />
+					<br />
+				</p:column>
+				<p:column headerText="SALDO">
+					<h:outputText value="#{cli.saldoTransaccion}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</div>
+	<br></br>
+	<div class="top-bar">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
-					&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+				<div class="col-sm-6 col-xs-12">
+					<div class="top-number">
+						<p>
+							<i class="fa fa-phone-square"></i> 0989805294
+						</p>
+					</div>
 				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="social">
+						<ul class="social-share">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
 
+					</div>
+				</div>
 			</div>
 		</div>
-		</footer>
-		
+		<!--/.container-->
+	</div>
 
-	
-	
+	<footer id="footer" class="midnight-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				&copy; 2019 <a>Grupo Amistad </a>. All Rights Reserved.
+			</div>
 
-</body> 
+		</div>
+	</div>
+	</footer>
+
+
+
+
+
+</body>
 </html>

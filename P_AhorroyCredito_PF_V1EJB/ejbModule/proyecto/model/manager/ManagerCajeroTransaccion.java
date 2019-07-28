@@ -31,7 +31,7 @@ public class ManagerCajeroTransaccion {
 	public ManagerCajeroTransaccion() {
 
 	}
-	
+
 	public List<CuentaCliente> findAllcuentaCliente() {
 		String consulta = "SELECT c FROM CuentaCliente c";
 		Query q = em.createQuery(consulta, CuentaCliente.class);
@@ -71,20 +71,36 @@ public class ManagerCajeroTransaccion {
 	public TipoTransaccion buscarTipoTransaccion(int idTipoTransaccion) {
 		return em.find(TipoTransaccion.class, idTipoTransaccion);
 	}
+
+	public Double saldoTransaccion1(double montoTransaccion) {
+      TipoTransaccion tipoTransaccion=new TipoTransaccion();
+      double saldo = 100;
+     
+     
+		if(tipoTransaccion.getNombreTipoTransaccion()=="Deposito") {
+			
+			
+	        saldo= montoTransaccion + saldo;
+	        System.out.print("DEPOSTO");
+	     
+	        if(tipoTransaccion.getNombreTipoTransaccion()=="Retiro") {
+	        	saldo=saldo-montoTransaccion;
+	        	 System.out.print("RETITO");
+	        	
+	        }
+		}
+			
 	
 
-	public Double saldoTransaccion1(double montoTransaccion ) {
+		return saldo;	
 		
-		double saldo = 0.0;
-       saldo=montoTransaccion+saldo;
-       
-		return saldo;
+		
 
 	}
 
 	public void insertarTransaccion(int nroCuenta, int idTipoTransaccion, double montoTransaccion,
-			Date fechaTransaccion , double SaldoTransaccion) {
-		
+			Date fechaTransaccion, double SaldoTransaccion) {
+
 		Transaccion transaccion = new Transaccion();
 		CuentaCliente cuentaCliente = buscarCuentaCliente(nroCuenta);
 
@@ -92,7 +108,7 @@ public class ManagerCajeroTransaccion {
 
 		transaccion.setCuentaCliente(cuentaCliente);
 		transaccion.setTipoTransaccion(tipoTransaccion);
-		transaccion.setMontoTransaccion( new BigDecimal(montoTransaccion) );
+		transaccion.setMontoTransaccion(new BigDecimal(montoTransaccion));
 		transaccion.setFechaTransaccion(fechaTransaccion);
 		transaccion.setSaldoTransaccion(new BigDecimal(saldoTransaccion1(montoTransaccion)));
 		em.persist(transaccion);
@@ -109,11 +125,34 @@ public class ManagerCajeroTransaccion {
 		Transaccion e = buscarTransaccion(transaccion.getIdTransaccion());
 		if (e == null)
 			throw new Exception("No existe la transaccion.");
+		e.setFechaTransaccion(transaccion.getFechaTransaccion());
 		e.setCuentaCliente(transaccion.getCuentaCliente());
 		e.setTipoTransaccion(transaccion.getTipoTransaccion());
 		e.setMontoTransaccion(transaccion.getMontoTransaccion());
 		e.setSaldoTransaccion(transaccion.getSaldoTransaccion());
 		em.merge(e);
 	}
+
+	public List<Transaccion> findTransaccionesByNrocuenta(int nroCuenta) throws Exception {
+		List<Transaccion> listado = null;
+		
+		try {
+			String consulta = "SELECT t FROM Transaccion t JOIN t.cuentaCliente c where c.nroCuentaCl= :nroCuenta";
+			Query q = em.createQuery(consulta);
+			q.setParameter("nroCuenta", nroCuenta);
+			listado = q.getResultList();
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(e.getMessage());
+		}
+		return listado;
+
+	}
+	
+
+
+
 
 }

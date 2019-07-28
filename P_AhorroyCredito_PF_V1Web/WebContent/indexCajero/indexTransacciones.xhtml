@@ -139,9 +139,9 @@
 						<p:column headerText="Nro.cuenta">
 							<h:outputText value="#{transaccion.cuentaCliente.nroCuentaCl}" />
 						</p:column>
-						<p:column headerText="Nombre cliente">
+						<p:column headerText="Cliente">
 							<h:outputText
-								value="#{transaccion.cuentaCliente.usuario.nombreUsuario}" />
+								value="#{transaccion.cuentaCliente.usuario.nombreUsuario} #{transaccion.cuentaCliente.usuario.apellidoUsuario}" />
 						</p:column>
 						<p:column headerText="Tipo Transaccion">
 							<h:outputText
@@ -170,12 +170,18 @@
 				modal="true">
 				<h:form id="formEdicion">
 					<p:growl>
-						<p:autoUpdate></p:autoUpdate>
+						<p:autoUpdate/>
 					</p:growl>
+					<p:panelGrid columns="2">
+				
+					 <h:outputText value="Fecha Transacción" />
+					<h:outputText value="#{beanCajeroTransaccion.transaccionSeleccionado.fechaTransaccion}" />
+					<h:outputText value="Nro Cuenta" />
+					<h:outputText value="#{beanCajeroTransaccion.transaccionSeleccionado.cuentaCliente.nroCuentaCl}" />
 					<h:outputText value="Monto Transacción: " />
 					<h:inputText
-						value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
-					<br />
+					value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
+					</p:panelGrid>
 					<p:commandButton value="Actualizar" icon="fa fa-save"
 						actionListener="#{beanCajeroTransaccion.actionListenerActualizarTransaccion()}"
 						update="@form,:form2" />
@@ -189,6 +195,11 @@
 					styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 			</p:confirmDialog>
 		</div>
+		
+		<b></b>
+		
+		
+
 
 	</div>
 	<div class="top-bar">

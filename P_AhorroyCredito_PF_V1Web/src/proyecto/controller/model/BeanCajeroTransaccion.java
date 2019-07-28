@@ -36,8 +36,8 @@ public class BeanCajeroTransaccion implements Serializable {
 	private int idTipoTransaccion;
 	private double montoTransaccion;
     private double SaldoTransaccion;
-    private Transaccion transaccion;
     
+    private Transaccion transaccion;
     private TipoTransaccion tipoTransaccion;
     private CuentaCliente cuentaCliente;
     private boolean panelColapsado;
@@ -81,7 +81,7 @@ public class BeanCajeroTransaccion implements Serializable {
 		listaTransaccion=managerCajeroTransaccion.findAllTransaccion();
 				JSFUtil.crearMensajeInfo("Transacción Eliminado");
 	}
-	public void actionListenerSeleccionarTransaccion(Transaccion transacciron) {
+	public void actionListenerSeleccionarTransaccion(Transaccion transaccion) {
 		transaccionSeleccionado=transaccion;
 	}
 	public void actionListenerActualizarTransaccion() {
@@ -96,6 +96,21 @@ public class BeanCajeroTransaccion implements Serializable {
 	}
 	}
 	
+
+public void actionBuscarTransaccion() {
+	try {
+		listaTransaccion= managerCajeroTransaccion.findTransaccionesByNrocuenta(nroCuenta);
+		//listaTransaccion=managerCajeroTransaccion.findAllTransaccion();
+		if(listaTransaccion==null) {
+			JSFUtil.crearMensajeInfo("No existe cuenta");
+		}
+        
+	}catch (Exception e) {
+		JSFUtil.crearMensajeError(e.getMessage());
+		e.printStackTrace();
+	}
+}
+
 
 
 

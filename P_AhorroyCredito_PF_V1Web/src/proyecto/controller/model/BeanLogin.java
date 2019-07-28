@@ -58,9 +58,12 @@ public class BeanLogin implements Serializable {
 			apellido_usuario= loginDT.getApellido_usuario();
 			id_usuario = loginDT.getId_usuarios();
 			cedula= loginDT.getCedula();
-			cuentaCliente = managerLogin.CuentaByIdUsuario(id_usuario);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cuentaCliente",cuentaCliente);
-			System.out.println("BeanLogin"+cuentaCl);
+			if (id_rol==2) {
+				cuentaCliente = managerLogin.CuentaByIdUsuario(id_usuario);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cuentaCliente",cuentaCliente);
+				System.out.println("BeanLogin"+cuentaCl);
+				return loginDT.getRutaAcceso() + "?faces-redirect=true";
+			}
 			return loginDT.getRutaAcceso() + "?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -42,10 +42,13 @@
 					style="margin-bottom: 15px; border-radius: 200px" alt="logo1">
 				</img>
                 
-				</a> <a class="nav navbar-brand">
+				</a> 
+				<a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					 #{beanLogin.apellido_usuario}-#{beanLogin.cedula}" /> 
+					</h5>
 				</a>
-				<center><a style="color: white;">BIENVENIDO: #{beanLogin.username}</a></center>
 			</div>
 		</div>
 

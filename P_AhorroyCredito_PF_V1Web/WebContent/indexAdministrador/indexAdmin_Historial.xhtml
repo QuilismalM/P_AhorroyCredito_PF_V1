@@ -66,96 +66,89 @@
 	<br />
 	<div align="center">
 		<h1>ORGANIZACIÓN AMISTAD</h1>
-		<h3>HISTORIAL</h3>
 	</div>
-	<p:commandButton style="background-color:blue;"
-					value="ATRAS" icon="fa-long-arrow-left" onclick="location='indexCliente.xhtml'"></p:commandButton>
-	<h:form id="form2">
-		<p:panel header="Datos" />
-		<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}"
-			reflow="true" var="p" paginator="true" rows="5">
-			<p:column headerText="NRO CUENTA">
-				<h:outputText value="#{p.nroCuentaCl}" />
-			</p:column>
-			<p:column headerText="CI">
-				<h:outputText value="#{p.usuario.cedulaUsuario}" />
-			</p:column>
+	<div align="center">
+			<h2 style="color: black;">HISTORIAL DEL CLIENTE</h2>
+		</div>
 
-			<p:column headerText="CLIENTE">
-				<h:outputText
-					value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
-			</p:column>
-			<p:column headerText="DIRECCION">
-				<h:outputText value="#{p.usuario.direccionUsuario}" />
-			</p:column>
-			<p:column headerText="TELEFONO">
-				<h:outputText value="#{p.usuario.telefonoUsuario}" />
-			</p:column>
-			<p:column headerText="USUARIO">
-				<h:outputText value="#{p.usuario.username}" />
-			</p:column>
-			<p:column headerText="INTERÉS">
-				<h:outputText value="#{p.interesCuenta}%" />
-			</p:column>
-			
-			<p:column headerText="SALDO">
-				<h:outputText value="#{p.saldoCuenta}" />
-			</p:column>
 
-			<p:column headerText="OPCIONES" priority="2">
-				<p:commandButton style="background-color:green;" value="Eliminar"
-					icon="fa fa-close" title="Eliminar" update="@form"
-					actionListener="#{beanGestionCliente.actionListenerEliminarCuentaCliente(p.nroCuentaCl)}">
-					<p:confirm header="Confirmación" message="Desea elimnar?"
-						icon="fa fa-exclamation-triangle"></p:confirm>
+		<div style="margin: 40px">
+			<h:form>
+				<p:commandButton style="background-color:green;" value="Regresar"
+					icon="fa fa-long-arrow-left"
+					onclick="location='indexAdministrador.xhtml'">
 				</p:commandButton>
-				<p:commandButton style="background-color:green;" value="Editar"
-					icon="fa fa-edit" title="Editar"
-					actionListener="#{beanGestionCliente.actionListenerSeleccionarCuentaCliente(p)}"
-					update=":formEdicion" oncomplete="PF('dlgEdicion').show();"></p:commandButton>
-			</p:column>
-		</p:dataTable>
-	</h:form>
-	<p:dialog header="Editar información" widgetVar="dlgEdicion"
-		modal="true">
-		<h:form id="formEdicion">
-			<p:growl>
-				<p:autoUpdate />
-			</p:growl>
-			<h:outputText value="NRO DE CUENTA:" />
-			<h:outputText
-				value="#{beanGestionCliente.cuentaClienteSeleccionado.nroCuentaCl}" />
-			<p:panelGrid columns="2">
-				<h:outputText value="NOMBRE CLIENTE:" />
+			</h:form>
+		</div>
+		<div style="margin: 40px">
+			<h:form id="form2">
+
+				<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}"
+					reflow="true" var="p" paginator="true" rows="5">
+					<p:column headerText="Cedula" filterBy="#{p.usuario.cedulaUsuario}" filterMatchMode="contains">
+						<h:outputText value="#{p.usuario.cedulaUsuario}" />
+					</p:column>
+
+					<p:column headerText="NRO CUENTA" filterBy="#{p.nroCuentaCl}" filterMatchMode="contains">
+						<h:outputText value="#{p.nroCuentaCl}" />
+					</p:column>
+
+					<p:column headerText="CLIENTE" filterBy="#{p.usuario.nombreUsuario}" filterMatchMode="contains">
+						<h:outputText
+							value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
+					</p:column>
+					<p:column headerText="DIRECCION">
+						<h:outputText value="#{p.usuario.direccionUsuario}" />
+					</p:column>
+
+
+					<p:column headerText="SALDO DISPONIBLE">
+						<h:outputText value="#{p.saldoCuenta}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</div>
+		<p:dialog header="Editar información" widgetVar="dlgEdicion"
+			modal="true">
+			<h:form id="formEdicion">
+				<p:growl>
+					<p:autoUpdate />
+				</p:growl>
+				<h:outputText value="NRO DE CUENTA:" />
 				<h:outputText
-					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario} #{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
-				
-				<h:outputText value="CEDULA:" />
-			<h:outputText
-					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
-				<h:outputText value="INTERES:" />
-				<p:inputText
-					value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.nroCuentaCl}" />
+				<p:panelGrid columns="2">
+					<h:outputText value="NOMBRE CLIENTE:" />
+					<h:outputText
+						value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario} #{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
 
-				<h:outputText value="SALDO CUENTA:" />
-				<p:inputText
-					value="#{beanGestionCliente.cuentaClienteSeleccionado.saldoCuenta}" />
+					<h:outputText value="CEDULA:" />
+					<h:outputText
+						value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
+					<h:outputText value="INTERES:" />
+					<p:inputText
+						value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
 
-			</p:panelGrid>
-			<p:commandButton value="Actualizar" icon="fa fa-save"
-				update="@form,:form2"
-				actionListener="#{beanGestionCliente.actionListenerActualizarCuentaCliente()}" />
-		</h:form>
-	</p:dialog>
-	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-		<p:commandButton value="Si" type="button"
-			styleClass="ui-confirmdialog-yes" icon="fa fa-check"></p:commandButton>
-		<p:commandButton value="No" type="button"
-			styleClass="ui-confirmdialog-no" icon="fa fa-times"></p:commandButton>
-	</p:confirmDialog>
+					<h:outputText value="SALDO CUENTA:" />
+					<p:inputText
+						value="#{beanGestionCliente.cuentaClienteSeleccionado.saldoCuenta}" />
 
+				</p:panelGrid>
+				<p:commandButton value="Actualizar" icon="fa fa-save"
+					update="@form,:form2"
+					actionListener="#{beanGestionCliente.actionListenerActualizarCuentaCliente()}" />
+			</h:form>
+		</p:dialog>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes" icon="fa fa-check"></p:commandButton>
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="fa fa-times"></p:commandButton>
+		</p:confirmDialog>
 
-<div class="top-bar">
+	
+	<div class="top-bar">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">

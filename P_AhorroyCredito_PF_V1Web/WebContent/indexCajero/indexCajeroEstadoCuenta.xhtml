@@ -50,15 +50,14 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
-					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
-					 #{beanLogin.apellido_usuario}-#{beanLogin.cedula}" /> 
+					<h5>
+						<h:outputText
+							value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					 #{beanLogin.apellido_usuario}-#{beanLogin.cedula}" />
 					</h5>
 				</a>
-				
-				<a> <p:commandButton value="Inicio"
-						action="#{beanCajeroTransaccion.actionListenerHome()}"
-						icon="fa fa-home" />
-				</a>
+
+
 			</div>
 		</div>
 
@@ -72,6 +71,18 @@
 	</div>
 	</nav> </header>
 	<br />
+	<div class="row" style="margin-left: 100px">
+	<div class="col-sm-4">
+		<a> <p:commandButton value="REGRESAR"
+				action="#{beanCajeroTransaccion.actionListenerHome()}"
+				icon="pi pi-chevron-left" />
+		</a>
+
+	</div>
+	</div>
+
+
+
 	<div align="center">
 		<h:form id="form1">
 

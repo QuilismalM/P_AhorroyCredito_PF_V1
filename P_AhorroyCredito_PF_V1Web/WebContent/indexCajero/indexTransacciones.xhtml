@@ -47,39 +47,52 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
-					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
-					 #{beanLogin.apellido_usuario}-#{beanLogin.cedula}" /> 
+					<h5>
+						<h:outputText
+							value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					 #{beanLogin.apellido_usuario}-#{beanLogin.cedula}" />
 					</h5>
 				</a>
-				
-				 
-			
+
+
+
 			</div>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a >  <p:commandButton value="Inicio" action="#{beanCajeroTransaccion.actionListenerHome()}" icon="fa fa-home"/>
-				</a>
-				</li>
-				 
-					<li><a>
-						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-					icon="fa fa-sign-out" /></a></li>
+				
+
+				<li><a> <p:commandButton value="Salir"
+							action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out" /></a></li>
 			</ul>
 		</div>
 	</div>
 	</nav> </header>
 
 	<br />
-	<div class="row">
+	
 
 		<p:growl>
 			<p:autoUpdate />
 		</p:growl>
-		<div align="center">
-			<h2 style="color: black;">REGISTRO TRANSACCIONES</h2>
+		<br />
+
+		<div class="row" style="margin-left: 100px">
+
+			<div class="col-sm-4">
+			<a> <p:commandButton value="REGRESAR" 
+							action="#{beanCajeroTransaccion.actionListenerHome()}"
+							icon="pi pi-chevron-left" />
+				</a>
+				
+			</div>
+			<div class="col-sm-6">
+				<h2 style="color: black;">TRANSACCIONES REALIZADOS</h2>
+			</div>
 		</div>
+
+
 		<div style="margin: 40px">
 			<h:form id="form">
 
@@ -118,8 +131,9 @@
 
 						</p:selectOneMenu>
 						<h:outputText value="Monto" />
-						<p:spinner value="#{beanCajeroTransaccion.montoTransaccion}" min="1"></p:spinner>
-						
+						<p:spinner value="#{beanCajeroTransaccion.montoTransaccion}"
+							min="1"></p:spinner>
+
 					</p:panelGrid>
 					<p:commandButton value="Insertar" icon="fa fa-save"
 						update="@form,:form2" title="insertar"
@@ -172,17 +186,19 @@
 				modal="true">
 				<h:form id="formEdicion">
 					<p:growl>
-						<p:autoUpdate/>
+						<p:autoUpdate />
 					</p:growl>
 					<p:panelGrid columns="2">
-				
-					 <h:outputText value="Fecha Transacción" />
-					<h:outputText value="#{beanCajeroTransaccion.transaccionSeleccionado.fechaTransaccion}" />
-					<h:outputText value="Nro Cuenta" />
-					<h:outputText value="#{beanCajeroTransaccion.transaccionSeleccionado.cuentaCliente.nroCuentaCl}" />
-					<h:outputText value="Monto Transacción: " />
-					<h:inputText
-					value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
+
+						<h:outputText value="Fecha Transacción" />
+						<h:outputText
+							value="#{beanCajeroTransaccion.transaccionSeleccionado.fechaTransaccion}" />
+						<h:outputText value="Nro Cuenta" />
+						<h:outputText
+							value="#{beanCajeroTransaccion.transaccionSeleccionado.cuentaCliente.nroCuentaCl}" />
+						<h:outputText value="Monto Transacción: " />
+						<h:inputText
+							value="#{beanCajeroTransaccion.transaccionSeleccionado.montoTransaccion}" />
 					</p:panelGrid>
 					<p:commandButton value="Actualizar" icon="fa fa-save"
 						actionListener="#{beanCajeroTransaccion.actionListenerActualizarTransaccion()}"
@@ -197,13 +213,13 @@
 					styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 			</p:confirmDialog>
 		</div>
-		
+
 		<b></b>
-		
-		
 
 
-	</div>
+
+
+	
 	<div class="top-bar">
 		<div class="container">
 			<div class="row">

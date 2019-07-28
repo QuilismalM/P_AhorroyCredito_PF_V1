@@ -43,16 +43,19 @@
                 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					#{beanLogin.apellido_usuario} - #{beanLogin.cedula}" /></h5>
 				</a>
-				<center><a style="color: white;">BIENVENIDO: #{beanLogin.username}</a></center>
+				
 			</div>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a>
-						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-					icon="fa fa-sign-out" /></a></li>
+				<li><a><p:commandButton value="CERRAR SESIÓN"
+							action="#{beanLogin.salirSistema()}" icon="pi pi-sign-out">
+							
+						</p:commandButton></a></li>
 			</ul>
 		</div>
 	</div>
@@ -70,11 +73,11 @@
 					<p:panelMenu style="width:300px">
 						<p:submenu label="CLIENTES">
 							<p:menuitem value="Gestión Clientes(Cuentas)" outcome="indexCliente"
-								ajax="false" icon="pi pi-times" />
+								ajax="false" icon="pi pi-bars" />
 						</p:submenu>
 						<p:submenu label="SOLICITUDES DE PRESTAMO">
 							<p:menuitem value="Revisar" outcome="AprobacionP"
-								ajax="false" icon="pi pi-times" />
+								ajax="false" icon="pi pi-bars" />
 						</p:submenu>
 						<p:separator />
 					</p:panelMenu>

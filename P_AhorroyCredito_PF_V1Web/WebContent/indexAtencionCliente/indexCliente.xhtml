@@ -48,17 +48,20 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					#{beanLogin.apellido_usuario} - #{beanLogin.cedula}" /></h5>
 				</a>
-				<center>
-					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
-				</center>
+				
+					
 			</div>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href="../login.xhtml"><span class="glyphicon glyphicon-log-in" />
-						SALIR</a></li>
+					<li><a><p:commandButton value="CERRAR SESIÓN"
+							action="#{beanLogin.salirSistema()}" icon="pi pi-sign-out">
+							
+						</p:commandButton></a></li>
 			</ul>
 		</div>
 	</div>
@@ -89,7 +92,7 @@
 					</f:facet>
 					<p:panelGrid columns="6">
 						<h:outputText value="cedula:" />
-						<p:inputText value="#{beanCliente.usuario.cedulaUsuario}" />
+						<p:inputText value="#{beanCliente.usuario.cedulaUsuario}" maxlength="10"/>
 						<h:outputText value="Nombre:" />
 						<p:inputText value="#{beanCliente.usuario.nombreUsuario}" />
 						<h:outputText value="Apellido:" />
@@ -178,7 +181,7 @@
 								update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
 							</p:commandButton>
 
-							<p:commandButton title="CREAR CUENTA"
+							<p:commandButton title="CREAR CUENTA" icon="fa fa-plus-circle" value="CREAR CUENTA"
 								actionListener="#{beanCliente.actionListenerSeleccionarUsuario(usuario)}"
 								update=":formcrear" oncomplete="PF('dlgcrear').show();">
 							</p:commandButton>

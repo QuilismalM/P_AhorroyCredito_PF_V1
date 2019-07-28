@@ -10,8 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.TipoTransaccion;
 import proyecto.model.entities.Transaccion;
@@ -97,7 +95,10 @@ public class ManagerClientes {
     	 cuenta = findCuentaClienteByNroCuenta(cuenta_destino);
     	 cuenta.setSaldoCuenta(new BigDecimal(saldo_actual_cnt_destino+cantidad) );
     	 em.merge(cuenta);	
+
     	 
+
+
     	 
     	 
     	 

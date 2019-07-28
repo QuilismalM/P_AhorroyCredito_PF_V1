@@ -40,11 +40,8 @@ public class BeanSolicitudPrestamo implements Serializable {
 		nroCuentaCl=cl.getNroCuentaCl();
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
-<<<<<<< HEAD
 		listaSolicitud = mangerSolicitud.findAllSolicitudP();
-=======
 		panelColapsado=true;
->>>>>>> refs/remotes/origin/master
 		solicitudP = new SolicitudP();
 
 	}
@@ -91,8 +88,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 		}
 
 	}
-	
-<<<<<<< HEAD
+
 	///////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 	
@@ -116,10 +112,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	///////////////////////////////////////////////////////////////
 	
 	
-=======
 
-
->>>>>>> refs/remotes/origin/master
 	public List<CuentaCliente> getListaCuentaCliente() {
 		return listaCuentaCliente;
 	}

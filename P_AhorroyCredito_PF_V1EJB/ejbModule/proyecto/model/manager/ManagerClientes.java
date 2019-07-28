@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import proyecto.controller.model.JSFUtil;
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.TipoTransaccion;
 import proyecto.model.entities.Transaccion;
@@ -99,7 +98,7 @@ public class ManagerClientes {
     	 cuenta.setSaldoCuenta(new BigDecimal(saldo_actual_cnt_destino+cantidad) );
     	 em.merge(cuenta);	
     	 }else {
-    		 JSFUtil.crearMensajeWarning("Saldo insuficiente..!!");
+    		
     	 }
     	 
     	 

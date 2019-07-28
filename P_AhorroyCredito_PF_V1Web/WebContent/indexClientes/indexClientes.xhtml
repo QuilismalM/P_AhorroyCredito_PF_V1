@@ -50,7 +50,7 @@
 					<h5>
 						<h:outputText
 							value="BIENVENIDO: #{beanLogin.nombre_usuario}
-					#{beanLogin.apellido_usuario}-#{beanLogin.cedula}" />
+					#{beanLogin.apellido_usuario} - #{beanLogin.cedula}" />
 					</h5>
 				</a>
 
@@ -90,7 +90,6 @@
 						<p:submenu label="TRANSFERENCIAS" icon="pi pi-bars">
 							<p:menuitem value="Realizar Transferencia"
 								action="#{beanClientes.actinoListenerTransferencia()}" />
-							<p:menuitem value="Historial" icon="pi pi-list" />
 						</p:submenu>
 						<p:submenu label="PRÉSTAMOS" icon="pi pi-bars">
 							<p:menuitem value="Solicitar Préstamo" action="solicitudPrestamo" />

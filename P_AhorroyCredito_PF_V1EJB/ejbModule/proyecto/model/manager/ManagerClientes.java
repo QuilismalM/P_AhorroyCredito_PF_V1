@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import proyecto.controller.model.JSFUtil;
+
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.TipoTransaccion;
 import proyecto.model.entities.Transaccion;
@@ -75,7 +75,6 @@ public class ManagerClientes {
     	 int saldo_actual_cnt_origen= ConsultarSaldo(cuenta_origen);
     	 System.out.println("cantidad es: "+cantidad+ "  saldo cuenta es: "+ saldo_actual_cnt_origen);
     	 
-    	 if(cantidad<=saldo_actual_cnt_origen) {
     	 int saldo_actual_cnt_destino = ConsultarSaldo(cuenta_destino);
     	 CuentaCliente cuenta =  findCuentaClienteByNroCuenta(cuenta_origen);
     	 TipoTransaccion tipotransaccion = findTipoTransaccion(3);
@@ -98,9 +97,7 @@ public class ManagerClientes {
     	 cuenta = findCuentaClienteByNroCuenta(cuenta_destino);
     	 cuenta.setSaldoCuenta(new BigDecimal(saldo_actual_cnt_destino+cantidad) );
     	 em.merge(cuenta);	
-    	 }else {
-    		 JSFUtil.crearMensajeWarning("Saldo insuficiente..!!");
-    	 }
+    	 
     	 
     	 
     	 

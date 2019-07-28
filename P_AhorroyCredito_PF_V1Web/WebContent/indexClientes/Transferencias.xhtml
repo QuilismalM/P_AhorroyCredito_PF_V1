@@ -50,10 +50,12 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+				
+				<h5>
+					<h:outputText value=" BIENVENIDO: #{beanLogin.nombre_usuario} 
+					#{beanLogin.apellido_usuario} - #{beanLogin.cedula}" /> 
+				</h5>
 				</a>
-				<center>
-					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
-				</center>
 			</div>
 		</div>
 
@@ -71,11 +73,11 @@
 	<p:panel style="width:100%">
 		<p:panel >
 		<div align="center">
-			<h1 style="background: gray; width:50%" >Ingrese datos</h1>
+			<h1 style="background: gray; width:50%" >TRANSFERENCIAS</h1>
 			
 			<p:fieldset  style="width:50%">
-			<h:form>
-			<h:panelGrid columns="1">
+			<h:form id="fromulario">
+			<h:panelGrid  columns="1" >
 				<h:outputText value="Número de Cuenta"/>
 				<h:outputText  value="#{beanClientes.cuenta_origen}"  required="true" requiredMessage="Cuenta Origen Obligatorio"/>
 				<h:outputText value="Cuenta Destino" />
@@ -85,17 +87,20 @@
 				<h:outputText value="Cantidad" />
 				<p:inputText  value="#{beanClientes.cantidad}"  required="true" requiredMessage="Cantidad Obligatorio"/>
 				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" 
-				   />
+				   update="@form,:form2"/>
 			</h:panelGrid>
 			</h:form>		
 			</p:fieldset>
 		</div>
-	</p:panel>  <br/>
+	</p:panel>
 </p:panel>
 
-<form id="form2" >
-
-		<p:dataTable value="#{beanClientes.list2}" var="tr" paginator="true" rows="6" reflow="true">
+<div align="center" style="margin: 50px">
+<h1 style="background: gray; width:99.5% ">Historial de Transferencias</h1>
+<!-- </div> -->
+<!-- <div style="margin: 50px"> -->
+<h:form id="form2" >
+		<p:dataTable  value="#{beanClientes.list2}" var="tr" paginator="true" rows="5" reflow="true">
 			<p:column headerText="FECHA"  >
 				<h:outputText value="#{tr.fechaTransaccion}" />
 			</p:column>
@@ -114,7 +119,8 @@
 			</p:column>
 
 		</p:dataTable>
-		</form>
+		</h:form>
+		</div>
 
 
 

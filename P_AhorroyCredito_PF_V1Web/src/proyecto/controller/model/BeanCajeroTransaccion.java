@@ -101,13 +101,12 @@ public void actionBuscarTransaccion() {
 	try {
 		listaTransaccion= managerCajeroTransaccion.findTransaccionesByNrocuenta(nroCuenta);
 		//listaTransaccion=managerCajeroTransaccion.findAllTransaccion();
-		if(listaTransaccion==null) {
-			JSFUtil.crearMensajeInfo("No existe cuenta");
-		}
+		
         
 	}catch (Exception e) {
 		JSFUtil.crearMensajeError(e.getMessage());
-		e.printStackTrace();
+		//JSFUtil.crearMensajeError(e.getMessage());
+		//e.printStackTrace();
 	}
 }
 

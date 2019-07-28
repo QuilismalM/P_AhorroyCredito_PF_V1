@@ -56,8 +56,7 @@
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href="../login.xhtml"><span class="glyphicon glyphicon-log-in" />
-						SALIR</a></li>
+			  <li><a><p:commandButton value="Salir" action="#{beanLogin.salirSistema()}" icon="fa fa-home"/></a><span class="glyphicon glyphicon-log-in" /></li>
 			</ul>
 		</div>
 	</div>
@@ -88,7 +87,7 @@
 							<p:menuitem value="Historial" icon="pi pi-list" />
 						</p:submenu>
 						<p:submenu label="PŔESTAMOS" icon="pi pi-bars">
-							<p:menuitem value="Solicitar Préstamo" />
+							<p:menuitem value="Solicitar Préstamo" action="solicitudPrestamo" />
 							<p:menuitem value="Detalles de Préstamos" />
 						</p:submenu>
 					</p:panelMenu>

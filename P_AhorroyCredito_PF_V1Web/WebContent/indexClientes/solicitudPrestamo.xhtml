@@ -71,10 +71,21 @@
 	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
-		<div align="center">
-			<h2 style="color: black;">SOLICITUD DE PRÉSTAMO</h2>
+		<br></br>
+	<div class="row" style="margin-left: 232px">
+		<div class="col-sm-4">
+			<p:linkButton outcome="indexClientes" value="REGRESAR"
+				icon="pi pi-chevron-left" style="margin-right:20px;">
+				<f:param name="productId" value="20" />
+			</p:linkButton>
 		</div>
-	<div style="margin-left: 40px">
+		<div class="col-sm-6">
+			<h2 style="color: black;">SOLICITUD DE PRÉSTAMOS</h2>
+		</div>
+	</div>
+	<br/>
+
+	<div style="margin-left: 232px">
 	<h:form id="form">
 	  
 		<p:panel header="Solucitud de Préstamo" style="width:500px" collapsed="#{beanUsuario.panelColapsado}">

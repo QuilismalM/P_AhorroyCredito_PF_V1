@@ -90,10 +90,13 @@ public class BeanClientes implements Serializable {
 		
 	public void actionRealizarTransferecia() {
 		try {
-			managercli.realizarTransferencia(cuenta_origen, cuenta_destino, cantidad);
+			boolean resp=managercli.realizarTransferencia(cuenta_origen, cuenta_destino, cantidad);
+			if(resp==true) {
 			list2= managercli.findAllTransacciones(cuenta_origen);
 			transaccion = new Transaccion();
 			JSFUtil.crearMensajeInfo("Transacción Realizada con éxito");
+			}else
+				JSFUtil.crearMensajeWarning("Saldo insuficiente..!!");
 		} catch (Exception e) {
 			JSFUtil.crearMensajeError(e.getMessage());
 			e.printStackTrace();

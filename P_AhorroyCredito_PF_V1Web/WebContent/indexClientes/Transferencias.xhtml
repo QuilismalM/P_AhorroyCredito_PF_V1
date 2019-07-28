@@ -61,13 +61,25 @@
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li> <p:commandButton value="Inicio" action="#{beanClientes.actionListenerHome()}" icon="fa fa-home"/>  </li>
-				<li> <p:commandButton value="Salir"
-							action="#{beanLogin.salirSistema()}" icon="fa fa-sign-out" /></li>
+				<li><a><p:commandButton value="CERRAR SESIÓN"
+							action="#{beanLogin.salirSistema()}" icon="pi pi-sign-out">
+						</p:commandButton></a></li>
 			</ul>
 		</div>
 	</div>
 	</nav> </header>
+	<br></br>
+	<div class="row" style="margin-left: 100px">
+		<div class="col-sm-4">
+			<p:linkButton outcome="indexClientes" value="REGRESAR"
+				icon="pi pi-chevron-left" style="margin-right:20px;">
+				<f:param name="productId" value="20" />
+			</p:linkButton>
+		</div>
+		<div class="col-sm-6">
+			<h2 style="color: black;">MOVIMIENTOS REALIZADOS</h2>
+		</div>
+	</div>
 
 	
 	<p:panel style="width:100%">
@@ -86,7 +98,7 @@
 				</p:inputText>
 				<h:outputText value="Cantidad" />
 				<p:inputText  value="#{beanClientes.cantidad}"  required="true" requiredMessage="Cantidad Obligatorio"/>
-				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" 
+				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="ACEPTAR" 
 				   update="@form,:form2"/>
 			</h:panelGrid>
 			</h:form>		

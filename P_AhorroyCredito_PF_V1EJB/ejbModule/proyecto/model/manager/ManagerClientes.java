@@ -62,17 +62,12 @@ public class ManagerClientes {
     	 }
      }
      
-     public void realizarTransferencia(int cuenta_origen, int cuenta_destino, int  cantidad) {
-//    	 Date fecha_Sist = new Date();
-//    	 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-//    	 String fecha_sistema = formato.format(fecha_Sist);
-//    	 transaccion.setFechaTransaccion(fe);
-
+     public boolean realizarTransferencia(int cuenta_origen, int cuenta_destino, int  cantidad) {
+    	 boolean t=false;
     	 Transaccion transaccion = new Transaccion();
-    	 
     	 int saldo_actual_cnt_origen= ConsultarSaldo(cuenta_origen);
     	 System.out.println("cantidad es: "+cantidad+ "  saldo cuenta es: "+ saldo_actual_cnt_origen);
-    	 
+    	 if(cantidad<=saldo_actual_cnt_origen) {
     	 int saldo_actual_cnt_destino = ConsultarSaldo(cuenta_destino);
     	 CuentaCliente cuenta =  findCuentaClienteByNroCuenta(cuenta_origen);
     	 TipoTransaccion tipotransaccion = findTipoTransaccion(3);
@@ -94,8 +89,11 @@ public class ManagerClientes {
     	 //actualizamos el saldo de la cuenta destino
     	 cuenta = findCuentaClienteByNroCuenta(cuenta_destino);
     	 cuenta.setSaldoCuenta(new BigDecimal(saldo_actual_cnt_destino+cantidad) );
-    	 em.merge(cuenta);	
-
+    	 em.merge(cuenta);
+    	 return t=true;
+    	 }else
+    		 return t;
+    		 
     	 
 
 

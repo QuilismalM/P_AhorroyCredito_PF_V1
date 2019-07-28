@@ -68,14 +68,13 @@
 	</nav> </header>
 
 	
-	<p:panel 
-		style=" width:100% ">
-		<p:panel>
+	<p:panel style="width:100%">
+		<p:panel >
 		<div align="center">
 			<h1 style="background: gray; width:50%" >Ingrese datos</h1>
 			
 			<p:fieldset  style="width:50%">
-				<h:form id="form1">
+			<h:form>
 			<h:panelGrid columns="1">
 				<h:outputText value="Número de Cuenta"/>
 				<h:outputText  value="#{beanClientes.cuenta_origen}"  required="true" requiredMessage="Cuenta Origen Obligatorio"/>
@@ -88,7 +87,7 @@
 				<p:commandButton action="#{beanClientes.actionRealizarTransferecia()}" value="Aceptar" 
 				   />
 			</h:panelGrid>
-		</h:form>
+			</h:form>		
 			</p:fieldset>
 		</div>
 	</p:panel>  <br/>

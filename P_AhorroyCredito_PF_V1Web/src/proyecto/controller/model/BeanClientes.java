@@ -31,6 +31,7 @@ public class BeanClientes implements Serializable {
 	private int cuenta_origen;
 	private int cuenta_destino;
 	private int cantidad; 
+	private boolean panelColapsado;
 	
 	
 	@PostConstruct
@@ -39,8 +40,12 @@ public class BeanClientes implements Serializable {
 		cuenta_origen= managerLog.getCuenta();
 		listaCli= managercli.findAllDep_Ret(cuenta_origen);
 		list2=managercli.findAllTransacciones(cuenta_origen);
+		panelColapsado=true;
 	}
 	
+	public void actionListenerColapsarPanel() {
+		panelColapsado=!panelColapsado;
+	}
 	
 	//	public List<Transaccion> Datos() {
 //		listaCli=managercli.findAllTransaccion();
@@ -93,7 +98,7 @@ public class BeanClientes implements Serializable {
 			JSFUtil.crearMensajeError(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 	
 	public String actionListenerMovimientos() {
@@ -195,5 +200,15 @@ public class BeanClientes implements Serializable {
 	public void setList2(List<Transaccion> list2) {
 		this.list2 = list2;
 	}
+
+	public boolean isPanelColapsado() {
+		return panelColapsado;
+	}
+
+	public void setPanelColapsado(boolean panelColapsado) {
+		this.panelColapsado = panelColapsado;
+	}
+	
+	
 
 }

@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import proyecto.model.entities.Transaccion;
 import proyecto.model.manager.ManagerClientes;
+import proyecto.model.manager.ManagerLogin;
 import proyecto.controller.model.JSFUtil;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,8 @@ public class BeanClientes implements Serializable {
 	private static final long serialVersionUID = 1L;
 		@EJB
 	private ManagerClientes managercli;
+		@EJB
+	private ManagerLogin managerLog;
 	private List<Transaccion> listaCli;
 	private List<Transaccion> list2;
 	private Transaccion transaccion;
@@ -32,7 +35,9 @@ public class BeanClientes implements Serializable {
 	
 	@PostConstruct
 	public void inicializar() {
-		listaCli= managercli.findAllTransaccion();
+		fechainicial= new Date();
+		cuenta_origen= managerLog.getCuenta();
+		listaCli= managercli.findAllDep_Ret(cuenta_origen);
 	}
 	
 	
@@ -106,7 +111,12 @@ public class BeanClientes implements Serializable {
 	public void actionBuscarporFecha() {
 		SimpleDateFormat date = new SimpleDateFormat("dd/MM/YYYY");
 		String fecha = date.format(fechainicial);
-		listaCli=managercli.SearchMovimientos(fecha, tipomovimiento);
+		listaCli=managercli.SearchMovimientos(fecha, tipomovimiento, cuenta_origen);
+		
+		for (Transaccion tr : listaCli) {
+			System.out.println(tr.getFechaTransaccion()+"----"+tr.getTipoTransaccion().getNombreTipoTransaccion()
+					+"----"+tr.getMontoTransaccion()+"----"+tr.getSaldoTransaccion()+"----"+tr.getCuentaCliente().getNroCuentaCl());
+		}
 
 	}
 	

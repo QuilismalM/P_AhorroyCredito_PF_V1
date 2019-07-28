@@ -37,21 +37,27 @@ public class ManagerClientes {
     	Query q = em.createQuery(consulta, CuentaCliente.class);    	
     	return q.getResultList();
     }
+    
+//     public List<Transaccion> findAllTransacciones(){
+//    	 
+//     }
      
-     public List<Transaccion> findAllTransaccion(){
-    	 String consulta = "select t from Transaccion t";
+     
+     public List<Transaccion> findAllDep_Ret(int  cuenta){
+    	 String consulta = "select t from Transaccion t where nro_cuenta_cl="+ cuenta+ "and id_tipo_transaccion<"+ 3;
     	 Query q = em.createQuery(consulta,Transaccion.class);
     	 return q.getResultList();
      }
      
-     public List<Transaccion> SearchMovimientos(String fecchainicial, String tipomovimiento){
+     public List<Transaccion> SearchMovimientos(String fecchainicial, String tipomovimiento, int cuenta){
     	 if(!tipomovimiento.equals("General")) {
     	 String consulta = "select t from Transaccion  t where fecha_transaccion>='"+ fecchainicial
     	 +"' and id_tipo_transaccion=" + tipomovimiento;
     	 Query q = em.createQuery(consulta, Transaccion.class);
     	 return q.getResultList();
-    	 }else {
-    		 return findAllTransaccion();
+    	 }
+    	 else {
+    		 return findAllDep_Ret(cuenta);
     	 }
      }
      

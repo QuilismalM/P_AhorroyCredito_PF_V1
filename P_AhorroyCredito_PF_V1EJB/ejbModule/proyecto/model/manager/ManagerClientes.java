@@ -93,7 +93,10 @@ public class ManagerClientes {
     	 //actualizamos el saldo de la cuenta destino
     	 cuenta = findCuentaClienteByNroCuenta(cuenta_destino);
     	 cuenta.setSaldoCuenta(new BigDecimal(saldo_actual_cnt_destino+cantidad) );
-    	 em.merge(cuenta);	 
+    	 em.merge(cuenta);	
+    	 
+    	 
+    	 
     	 
      }
      

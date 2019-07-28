@@ -33,20 +33,26 @@ public class BeanSolicitudPrestamo implements Serializable {
 	private int nroCuentaCl;
 	private int nroMeses;
 	Date fecha_solicitud = new Date();
-	
+	private boolean panelColapsado;
 	@PostConstruct
 	public void inicializar() {
 		CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
 		nroCuentaCl=cl.getNroCuentaCl();
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+		listaSolicitud = mangerSolicitud.findAllSolicitudP();
+		panelColapsado=true;
 		solicitudP = new SolicitudP();
 
+	}
+	public void actionListenerColapsarPanel() {
+		panelColapsado=!panelColapsado;
 	}
 
 
 	public void actionListenerInsertarSolicitud() {
 		try {
+			estado_solicitud="Pendiente";
 			mangerSolicitud.insertarSolucitudP(valor_solicitud, estado_solicitud, fecha_solicitud,nroCuentaCl,nroMeses);
 			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			solicitudP = new SolicitudP();
@@ -63,6 +69,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 		JSFUtil.crearMensajeInfo("Eliminado");
 
 	}
+	
 
 	public void actionListenerSeleccionarSolicitud(SolicitudP solicitudP) {
 		solicitudPseleccionada = solicitudP;
@@ -81,8 +88,30 @@ public class BeanSolicitudPrestamo implements Serializable {
 		}
 
 	}
-	
 
+	///////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+	
+	public List<SolicitudP> getListaSolicitudP() {
+		return listaSolicitud;
+	}
+	
+	public void actionListenerActualizarSolicitudPrestamo1() {
+		try {
+			mangerSolicitud.actualizarSolicitudPresatamo1(solicitudPseleccionada);
+			listaSolicitud=mangerSolicitud.findAllSolicitudP();
+		JSFUtil.crearMensajeInfo("Solicitud Revisada");
+		} catch (Exception e) {
+			JSFUtil.crearMensajeError(e.getMessage());
+		e.printStackTrace();
+		}
+	}
+	
+	
+	///////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////
+	
+	
 
 	public List<CuentaCliente> getListaCuentaCliente() {
 		return listaCuentaCliente;
@@ -119,6 +148,16 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	public void setBeanLogin(BeanLogin beanLogin) {
 		this.beanLogin = beanLogin;
+	}
+
+
+	public boolean isPanelColapsado() {
+		return panelColapsado;
+	}
+
+
+	public void setPanelColapsado(boolean panelColapsado) {
+		this.panelColapsado = panelColapsado;
 	}
 
 

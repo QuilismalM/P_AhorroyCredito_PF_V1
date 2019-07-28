@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.Transaccion;
 import proyecto.model.entities.Usuario;
+import sun.misc.CEStreamExhausted;
 import proyecto.model.entities.TipoTransaccion;
 
 /**
@@ -72,47 +73,52 @@ public class ManagerCajeroTransaccion {
 		return em.find(TipoTransaccion.class, idTipoTransaccion);
 	}
 
-	public Double saldoTransaccion1(double montoTransaccion) {
-      TipoTransaccion tipoTransaccion=new TipoTransaccion();
-      double saldo = 100;
-     
-     
-		if(tipoTransaccion.getNombreTipoTransaccion()=="Deposito") {
-			
-			
-	        saldo= montoTransaccion + saldo;
-	        System.out.print("DEPOSTO");
-	     
-	        if(tipoTransaccion.getNombreTipoTransaccion()=="Retiro") {
-	        	saldo=saldo-montoTransaccion;
-	        	 System.out.print("RETITO");
-	        	
-	        }
+	public double ConsultarSaldo(int nro_cuenta) {
+		double saldoactual = 0;
+		String consulta = "select cl from  CuentaCliente cl where nro_cuenta_cl=" + nro_cuenta;
+		Query q = em.createQuery(consulta, CuentaCliente.class);
+		List<CuentaCliente> list = q.getResultList();
+		for (CuentaCliente c : list) {
+			saldoactual = c.getSaldoCuenta().doubleValue(); // convertimos getsaldocuenta de Bigdecimal a int c0n
+															// intValue()
+			// System.out.println("impresion de consulta de saldo="+ saldoactual);
 		}
-			
-	
 
-		return saldo;	
-		
-		
+		return saldoactual;
 
 	}
 
 	public void insertarTransaccion(int nroCuenta, int idTipoTransaccion, double montoTransaccion,
 			Date fechaTransaccion, double SaldoTransaccion) {
+		double saldo_actual = ConsultarSaldo(nroCuenta);
 
 		Transaccion transaccion = new Transaccion();
 		CuentaCliente cuentaCliente = buscarCuentaCliente(nroCuenta);
-
 		TipoTransaccion tipoTransaccion = buscarTipoTransaccion(idTipoTransaccion);
 
 		transaccion.setCuentaCliente(cuentaCliente);
 		transaccion.setTipoTransaccion(tipoTransaccion);
 		transaccion.setMontoTransaccion(new BigDecimal(montoTransaccion));
 		transaccion.setFechaTransaccion(fechaTransaccion);
-		transaccion.setSaldoTransaccion(new BigDecimal(saldoTransaccion1(montoTransaccion)));
+		if (idTipoTransaccion == 1) {
+			transaccion.setSaldoTransaccion(new BigDecimal(saldo_actual + montoTransaccion));
+		} else if (idTipoTransaccion == 2) {
+			transaccion.setSaldoTransaccion(new BigDecimal(saldo_actual - montoTransaccion));
+		}
 		em.persist(transaccion);
 
+		//////
+		if (idTipoTransaccion == 1) {
+			cuentaCliente = buscarCuentaCliente(nroCuenta);
+			cuentaCliente.setSaldoCuenta(new BigDecimal(saldo_actual + montoTransaccion));
+
+		}
+		if(idTipoTransaccion == 2) {
+		cuentaCliente = buscarCuentaCliente(nroCuenta);
+		cuentaCliente.setSaldoCuenta(new BigDecimal(saldo_actual - montoTransaccion));
+		
+		}
+		em.merge(cuentaCliente);
 	}
 
 	public void eliminarTransaccion(int idTransaccion) {
@@ -135,13 +141,12 @@ public class ManagerCajeroTransaccion {
 
 	public List<Transaccion> findTransaccionesByNrocuenta(int nroCuenta) throws Exception {
 		List<Transaccion> listado = null;
-		
+
 		try {
 			String consulta = "SELECT t FROM Transaccion t JOIN t.cuentaCliente c where c.nroCuentaCl= :nroCuenta";
 			Query q = em.createQuery(consulta);
 			q.setParameter("nroCuenta", nroCuenta);
 			listado = q.getResultList();
-
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,9 +155,5 @@ public class ManagerCajeroTransaccion {
 		return listado;
 
 	}
-	
-
-
-
 
 }

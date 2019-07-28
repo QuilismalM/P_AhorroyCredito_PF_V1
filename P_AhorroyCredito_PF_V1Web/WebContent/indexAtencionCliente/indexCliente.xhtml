@@ -72,18 +72,20 @@
 		</p:growl>
 		<div align="center">
 			<h2 style="color: black;">CLIENTES </h2>
+			<li><a href="../indexAtencionCliente/IndexAtencionCliente.xhtml"><span
+						class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
 		</div>
 		<div style="margin: 40px">
 			<h:form id="form">
 
 				<p:panel collapsed="#{beanCliente.panelColapsado}">
 					<f:facet name="header">
-						<p:commandButton style="background-color:green;"
+						<p:commandButton style="background-color:blue;"
 							value="Nuevo Cliente" icon="fa fa-plus" update="@form"
 							actionListener="#{beanCliente.actionListenerColapsarPanel()}"></p:commandButton>
 							
 							<p:commandButton style="background-color:blue;"
-					value="CUENTAS" icon="fa fa-plus" onclick="location='indexCuentas.xhtml'"></p:commandButton>
+					value="CUENTAS" icon="fa fa-mail-forward" onclick="location='indexCuentas.xhtml'"></p:commandButton>
 					</f:facet>
 					<p:panelGrid columns="6">
 						<h:outputText value="cedula:" />

@@ -65,11 +65,13 @@
 
 	<br />
 	<div align="center">
-		<h1>ORGANIZACIÓN AMISTAD</h1>
-		<h3>CUENTAS</h3>
+<!-- 		<h1>ORGANIZACIÓN AMISTAD</h1> -->
+	<h2 style="color: black;">CUENTAS</h2>
+		<li><a href="../indexAtencionCliente/IndexAtencionCliente.xhtml"><span
+						class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
 	</div>
 	<p:commandButton style="background-color:blue;"
-					value="ATRAS" icon="fa-long-arrow-left" onclick="location='indexCliente.xhtml'"></p:commandButton>
+					value="ATRAS" icon="fa fa-reply" onclick="location='indexCliente.xhtml'"></p:commandButton>
 	<h:form id="form2">
 		<p:panel header="Datos" />
 		<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}"
@@ -105,13 +107,13 @@
 
 
 			<p:column headerText="OPCIONES" priority="2">
-				<p:commandButton style="background-color:green;" value="Eliminar"
+				<p:commandButton style="background-color:blue;" value="Eliminar"
 					icon="fa fa-close" title="Eliminar" update="@form"
 					actionListener="#{beanGestionCliente.actionListenerEliminarCuentaCliente(p.nroCuentaCl)}">
 					<p:confirm header="Confirmación" message="Desea elimnar?"
 						icon="fa fa-exclamation-triangle"></p:confirm>
 				</p:commandButton>
-				<p:commandButton style="background-color:green;" value="Editar"
+				<p:commandButton style="background-color:blue;" value="Editar"
 					icon="fa fa-edit" title="Editar"
 					actionListener="#{beanGestionCliente.actionListenerSeleccionarCuentaCliente(p)}"
 					update=":formEdicion" oncomplete="PF('dlgEdicion').show();"></p:commandButton>

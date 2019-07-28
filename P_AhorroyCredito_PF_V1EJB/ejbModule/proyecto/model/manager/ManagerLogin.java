@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.Rol;
 import proyecto.model.entities.Usuario;

@@ -36,8 +36,8 @@ public class BeanSolicitudPrestamo implements Serializable {
 	private boolean panelColapsado;
 	@PostConstruct
 	public void inicializar() {
-		CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
-		nroCuentaCl=cl.getNroCuentaCl();
+	CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
+		//nroCuentaCl=cl.getNroCuentaCl();
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 		listaSolicitud = mangerSolicitud.findAllSolicitudP();

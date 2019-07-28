@@ -30,7 +30,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	private int id_solicitud;
 	private BigDecimal valor_solicitud;
 	private String estado_solicitud;
-	private int nroCuentaCl=100010;
+	private int nroCuentaCl;
 	private int nroMeses;
 	Date fecha_solicitud = new Date();
 
@@ -38,6 +38,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	public void inicializar() {
 		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+		listaSolicitud = mangerSolicitud.findAllSolicitudP();
 		solicitudP = new SolicitudP();
 
 	}
@@ -79,6 +80,27 @@ public class BeanSolicitudPrestamo implements Serializable {
 
 	}
 	
+	///////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+	
+	public List<SolicitudP> getListaSolicitudP() {
+		return listaSolicitud;
+	}
+	
+	public void actionListenerActualizarSolicitudPrestamo1() {
+		try {
+			mangerSolicitud.actualizarSolicitudPresatamo1(solicitudPseleccionada);
+			listaSolicitud=mangerSolicitud.findAllSolicitudP();
+		JSFUtil.crearMensajeInfo("Solicitud Revisada");
+		} catch (Exception e) {
+			JSFUtil.crearMensajeError(e.getMessage());
+		e.printStackTrace();
+		}
+	}
+	
+	
+	///////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////
 	
 	
 	public List<CuentaCliente> getListaCuentaCliente() {

@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import proyecto.model.entities.CuentaCliente;
 import proyecto.model.entities.SolicitudP;
+import proyecto.model.entities.Usuario;
 
 
 /**
@@ -85,6 +86,18 @@ public class ManagerSolicitudPrestamo {
 		s.setNroMesesSolicitud(solicitudP.getNroMesesSolicitud());
 		em.merge(s);
 	}
+	
+	public void actualizarSolicitudPresatamo1(SolicitudP solicitudP) throws Exception {
+		SolicitudP s = buscarSolicitudP(solicitudP.getIdSolicitud());
+		if (s == null)
+			throw new Exception("No existe la solicitud.");
+		s.setValorSolicitudp(solicitudP.getValorSolicitudp());
+		s.setEstadoSolicitud("ACEPTADO");
+		s.setFechaSolicitud(solicitudP.getFechaSolicitud());
+		s.setNroMesesSolicitud(solicitudP.getNroMesesSolicitud());
+		s.setCuentaCliente(solicitudP.getCuentaCliente());
+		em.merge(s);
+	}
 
 //	public void actualizarSolicitudP(SolicitudP solicitudP) throws Exception {
 //		SolicitudP t = findSolicitudPByIdSolicitud(solicitudP.getIdSolicitud());
@@ -92,5 +105,7 @@ public class ManagerSolicitudPrestamo {
 //			throw new Exception("No  existe solicitud");
 //		em.merge(t);
 //	}
+	
+
 
 }

@@ -122,9 +122,14 @@ public class ManagerCajeroTransaccion {
 	}
 
 	public void eliminarTransaccion(int idTransaccion) {
+		
 		Transaccion transaccion = buscarTransaccion(idTransaccion);
 		if (transaccion != null)
 			em.remove(transaccion);
+		double saldoElim=ConsultarSaldo(transaccion.getCuentaCliente().getNroCuentaCl());
+		
+		
+		
 	}
 
 	public void actuaizarTransferencia(Transaccion transaccion) throws Exception {
@@ -147,6 +152,12 @@ public class ManagerCajeroTransaccion {
 			Query q = em.createQuery(consulta);
 			q.setParameter("nroCuenta", nroCuenta);
 			listado = q.getResultList();
+			
+		if(listado==null) {
+			throw new Exception("No existe");
+			
+		}
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();

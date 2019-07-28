@@ -13,10 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="src" path="/P_AhorroyCredito_PF_V1EJB">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
+	<classpathentry exported="true" kind="src" path="/P_AhorroyCredito_PF_V1EJB"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

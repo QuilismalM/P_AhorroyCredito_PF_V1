@@ -71,25 +71,28 @@
 			<div class="col-sm-3 col-xs-12"></div>
 			<div class="col-sm-6 col-xs-12">
 				<p:panel header="LOGIN">
+			      <center>
 					<p:growl autoUpdate="true"></p:growl>
 					<h:form>
-						<p:panelGrid columns="2">
-							<h:outputText value="USERNAME:" />
+						<p:panelGrid columns="2" >
+							<h:outputText value="USUARIO:" />
 							<p:inputText value="#{beanLogin.username}" required="true"
 								requiredMessage="Ingresar username" maxlength="15"></p:inputText>
 							<h:outputText value="CLAVE:" />
-							<p:password value="#{beanLogin.contrasena}" required="true" requiredMessage="Ingrese contraseña" maxlength="15" size="15"></p:password>
+							<p:password value="#{beanLogin.contrasena}" required="true" requiredMessage="Ingrese contraseña" maxlength="15" size="20"></p:password>
 							<h:outputText value="TIPO USUARIO:" />
 							<p:selectOneMenu value="#{beanLogin.id_rol}">
-								<f:selectItem itemLabel="Seleccione" />
+								<f:selectItem itemLabel="Seleccione..." noSelectionOption="true"/>
 								<f:selectItems value="#{beanLogin.listaRoles}" var="rol"
 									itemLabel="#{rol.tipoRol}" itemValue="#{rol.idRol}" />
 							</p:selectOneMenu>
-							<p:commandButton action="#{beanLogin.accederSistema()}" value="Ingresar al Sistema" icon="ui-icon-disk"></p:commandButton>
-						   <p:messages id="mensajes" />
+							
 						</p:panelGrid>
+						<br></br>
+						<p:commandButton icon="pi pi-lock-open" action="#{beanLogin.accederSistema()}"  value="INGRESAR" />
+						   <p:messages id="mensajes" />
 					</h:form>
-
+                   </center>
 				</p:panel>
 			</div>
 		</div>

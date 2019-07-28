@@ -50,52 +50,58 @@
 
 				</a> <a class="nav navbar-brand">
 					<h2>&nbsp;GRUPO AMISTAD</h2>
+					<h5><h:outputText value="BIENVENIDO: #{beanLogin.nombre_usuario}
+					#{beanLogin.apellido_usuario}-#{beanLogin.cedula}" /></h5>
 				</a>
-				<center>
-					<a style="color: white;">BIENVENIDO: #{beanLogin.username}</a>
-				</center>
+			
 			</div>
 		</div>
-
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href="indexClientes.xhtml" >Regresar</a></li>
-				<li><p:commandButton value="Salir" action="#{beanLogin.salirSistema()}" icon="fa fa-home"/>  </li>
+				<li><a><p:commandButton value="CERRAR SESIÓN"
+							action="#{beanLogin.salirSistema()}" icon="pi pi-sign-out">
+							
+						</p:commandButton></a></li>
 			</ul>
-		</div>
+		</div>		
 	</div>
+		
 	</nav> </header>
 	
 	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
+		<div align="center">
+			<h2 style="color: black;">SOLICITUD DE PRÉSTAMO</h2>
+		</div>
+	<div style="margin-left: 40px">
 	<h:form id="form">
-		<p:panel header="Solucitud de Préstamo" style="width:600px">
+	  
+		<p:panel header="Solucitud de Préstamo" style="width:500px" collapsed="#{beanUsuario.panelColapsado}">
+		<f:facet name="header">
+						<p:commandButton style="background-color:blue;"
+							value="Nuevo Personal" icon="fa fa-plus" update="@form"
+							actionListener="#{beanUsuario.actionListenerColapsarPanel()}"></p:commandButton>
+		</f:facet>
 			<p:panelGrid columns="2">
-				<h:outputText value="Valor Solicitado:" />
+				<h:outputText value="Valor Solicitado:"/>
 				<p:inputText
 					value="#{beanSolicitudPrestamo.valor_solicitud}"
-					required="true" />
-				<h:outputText value="Estado:" />
-				<p:inputText
-					value="#{beanSolicitudPrestamo.estado_solicitud}"
-					required="true" />
+					  />
 				<h:outputText value="Fecha:" />
 				<h:outputText value="#{beanSolicitudPrestamo.fecha_solicitud}"
-					required="true">
+					>
 					<f:convertDateTime pattern="dd/MM/yyyy " />
 				</h:outputText>
 				<h:outputText value="Nro Meses:" />
 				<p:inputText
 					value="#{beanSolicitudPrestamo.nroMeses}"
-					required="true" />
+					/>
 				<h:outputText value="Nro Cuenta:" />
 				<p:selectOneMenu value="#{beanSolicitudPrestamo.nroCuentaCl}" >
-				
 					<f:selectItems value="#{beanSolicitudPrestamo.listaCuentaCliente}"
 						var="cl" itemLabel="#{cl.nroCuentaCl}"
 						itemValue="#{cl.nroCuentaCl}" />
-
 				</p:selectOneMenu>
 				<p:commandButton value="Insertar" icon="fa fa-save"
 					update="@form,:form2"
@@ -103,9 +109,10 @@
 			</p:panelGrid>
 		</p:panel>
 	</h:form>
+	</div>
 	<br />
 
-
+   <div align="center">
 	<h:form id="form2">
 		<p:panel header="Solicitud de Préstamo" style="width:900px">
 			<p:dataTable value="#{beanSolicitudPrestamo.listaSolicitud}"
@@ -173,6 +180,6 @@
 			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 	</p:confirmDialog>
 
-
+    </div>
 </body>
 </html>

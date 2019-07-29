@@ -37,12 +37,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	private boolean panelColapsado;
 	@PostConstruct
 	public void inicializar() {
-<<<<<<< HEAD
-	CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
-		//nroCuentaCl=cl.getNroCuentaCl();
-		listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
-		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
-=======
+
 		
 		CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
 		if (cl != null) {
@@ -50,7 +45,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 			listaCuentaCliente = mangerSolicitud.findAllcuentaCliente();
 			listaSolicitud2 = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 		}
->>>>>>> refs/remotes/origin/master
+
 		listaSolicitud = mangerSolicitud.findAllSolicitudP();
 		panelColapsado=true;
 		solicitudP = new SolicitudP();

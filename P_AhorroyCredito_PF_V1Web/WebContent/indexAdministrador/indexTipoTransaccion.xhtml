@@ -45,22 +45,27 @@
 					<h2>&nbsp;GRUPO AMISTAD</h2>
 				</a>
 				<center><a style="color: white;">BIENVENIDO: #{beanLogin.username}</a></center>
-				<a>  <p:commandButton value="Inicio" action="#{beanLogin.indexAdminstrador()}" icon="fa fa-home"/> </a> 
-			</div>
+				
+				</div>
 		</div>
 
-		<div class="collapse navbar-collapse navbar-right">
+	<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a>
-						<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-					icon="fa fa-sign-out" /></a></li>
+				<li><a href="../login.xhtml"><span
+						class="glyphicon glyphicon-log-in" /> Cerrar Sesión</a>
+				</li>
 			</ul>
 		</div>
-		
+
 		
 	</div>
 	</nav> </header>
 	<center><h2 style="color: black;">Administrador : Tipo Transacción</h2></center>
+	<div align="center">
+		
+			<li><a href="../indexAdministrador/indexAdministrador.xhtml"><span
+					class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
+		</div>
 	<br></br>
 	<p:growl>
 		<p:autoUpdate />

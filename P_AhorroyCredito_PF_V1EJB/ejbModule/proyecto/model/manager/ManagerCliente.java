@@ -40,6 +40,12 @@ public class ManagerCliente {
 	}
 	//Query q = em.createQuery("SELECT u from Usuario u where u.id_rol=:rol".setParameter("rol", 1), Usuario.class);
 
+	public List<Usuario> findAllUsuarios2() {
+		String consulta = "SELECT u FROM Usuario u where id_rol=2";
+		Query q = em.createQuery(consulta, Usuario.class);
+		return q.getResultList();
+	}
+	
 	public List<Rol> findAllRoles() {
 		String consulta = "SELECT r FROM Rol r";
 		Query q = em.createQuery(consulta, Rol.class);

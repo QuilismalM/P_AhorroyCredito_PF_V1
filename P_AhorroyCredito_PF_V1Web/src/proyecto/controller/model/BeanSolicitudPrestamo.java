@@ -38,7 +38,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	@PostConstruct
 	public void inicializar() {
 
-		
+
 		CuentaCliente cl = (CuentaCliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cuentaCliente");
 		if (cl != null) {
 			nroCuentaCl=cl.getNroCuentaCl();

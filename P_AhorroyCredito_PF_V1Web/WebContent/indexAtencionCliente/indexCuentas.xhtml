@@ -69,7 +69,7 @@
 <!-- 		<h1>ORGANIZACIÓN AMISTAD</h1> -->
 	<h2 style="color: black;">CUENTAS</h2>
 		<li><a href="../indexAtencionCliente/IndexAtencionCliente.xhtml"><span
-						class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
+						class="glyphicon glyphicon-log-in" /> Menú Principal </a></li>
 	</div>
 	<p:commandButton style="background-color:blue;"
 					value="ATRAS" icon="fa fa-reply" onclick="location='indexCliente.xhtml'"></p:commandButton>
@@ -88,13 +88,13 @@
 				<h:outputText
 					value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
 			</p:column>
-			<p:column headerText="DIRECCION">
+			<p:column headerText="DIRECCIÓN">
 				<h:outputText value="#{p.usuario.direccionUsuario}" />
 			</p:column>
-			<p:column headerText="TELEFONO">
+			<p:column headerText="TELÉFONO">
 				<h:outputText value="#{p.usuario.telefonoUsuario}" />
 			</p:column>
-			<p:column headerText="USUARIO">
+			<p:column headerText="USERNAME">
 				<h:outputText value="#{p.usuario.username}" />
 			</p:column>
 			<p:column headerText="INTERÉS">
@@ -135,10 +135,10 @@
 				<h:outputText
 					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario} #{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
 				
-				<h:outputText value="CEDULA:" />
+				<h:outputText value="CÉDULA:" />
 			<h:outputText
 					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
-				<h:outputText value="INTERES:" />
+				<h:outputText value="INTERÉS:" />
 				<p:inputText
 					value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
 

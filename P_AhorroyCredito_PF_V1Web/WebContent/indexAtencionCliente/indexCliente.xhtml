@@ -23,7 +23,7 @@
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
-		<title>Datos Personal</title>
+		<title>ATENCIÓN AL CLIENTE</title>
 
 
 	</f:facet>
@@ -74,9 +74,10 @@
 			<p:autoUpdate />
 		</p:growl>
 		<div align="center">
+		
 			<h2 style="color: black;">CLIENTES </h2>
 			<li><a href="../indexAtencionCliente/IndexAtencionCliente.xhtml"><span
-						class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
+						class="glyphicon glyphicon-log-in" /> Menú Principal </a></li>
 		</div>
 		<div style="margin: 40px">
 			<h:form id="form">
@@ -91,21 +92,21 @@
 					value="CUENTAS" icon="fa fa-mail-forward" onclick="location='indexCuentas.xhtml'"></p:commandButton>
 					</f:facet>
 					<p:panelGrid columns="6">
-						<h:outputText value="cedula:" />
+						<h:outputText value="Cédula:" />
 						<p:inputText value="#{beanCliente.usuario.cedulaUsuario}" maxlength="10"/>
 						<h:outputText value="Nombre:" />
 						<p:inputText value="#{beanCliente.usuario.nombreUsuario}" />
 						<h:outputText value="Apellido:" />
 						<p:inputText value="#{beanCliente.usuario.apellidoUsuario}" />
-						<h:outputText value="direccion:" />
+						<h:outputText value="Dirección:" />
 						<p:inputText value="#{beanCliente.usuario.direccionUsuario}" />
-						<h:outputText value="correo:" />
+						<h:outputText value="E-mail:" />
 						<p:inputText value="#{beanCliente.usuario.correoUsario}" />
-						<h:outputText value="telefono:" />
+						<h:outputText value="Teléfono:" />
 						<p:inputText value="#{beanCliente.usuario.telefonoUsuario}" />
-						<h:outputText value="username:" />
+						<h:outputText value="Username:" />
 						<p:inputText value="#{beanCliente.usuario.username}" />
-						<h:outputText value="contraseña:" />
+						<h:outputText value="Contraseña:" />
 						<p:inputText value="#{beanCliente.usuario.contrasena}" />
 						<!-- 				<h:outputText value="Rol:" /> -->
 						<p:selectOneMenu style="visibility: hidden"
@@ -263,9 +264,9 @@
 
 
 						<h:outputText value="SALDO:" />
-						<p:inputText value="#{beanCliente.saldoCuenta}" placeholder="Ingrese Saldo inicial.."/>
+						<p:inputText value="#{beanCliente.saldoCuenta}" placeholder="Ingrese Saldo inicial.." required="true"/>
 						<h:outputText value="INTERÉS:" />
-						<p:inputText value="#{beanCliente.interesCuenta}" placeholder="Ingrese el interés.." />
+						<p:inputText  value="#{beanCliente.interesCuenta}" placeholder="Ingrese el interés.." required="true"/>
 <!-- 						<h:outputText value="ESTADO CUENTA:" /> -->
 						<p:selectOneMenu style="visibility: hidden" value="#{beanCliente.idEstadoCuenta}">
 <!-- 							<f:selectItem itemLabel="Seleccione" /> -->
@@ -284,6 +285,7 @@
 						update="@form,:form2"
 						actionListener="#{beanCliente.actionListenerInsertarCuenta()}"
 						oncomplete="PF('dlgcrear').hide();"></p:commandButton>
+						
 				</h:form>
 			</p:dialog>
 

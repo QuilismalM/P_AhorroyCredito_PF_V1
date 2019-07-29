@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <f:metadata>
 	<f:event listener="#{beanLogin.actionVerificarLogin()}"
 		type="preRenderView"></f:event>
@@ -56,8 +56,9 @@
 
 		<div class="collapse navbar-collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li><a href="../login.xhtml"><span class="glyphicon glyphicon-log-in" />
-						SALIR</a></li>
+				<li><a href="../login.xhtml"><span
+						class="glyphicon glyphicon-log-in" /> Cerrar Sesión</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -68,86 +69,86 @@
 		<h1>ORGANIZACIÓN AMISTAD</h1>
 	</div>
 	<div align="center">
-			<h2 style="color: black;">HISTORIAL DEL CLIENTE</h2>
+		<h2 style="color: black;">HISTORIAL DEL CLIENTES</h2>
+	</div>
+
+	<div align="center">
+		
+			<li><a href="../indexAdministrador/indexAdministrador.xhtml"><span
+					class="glyphicon glyphicon-log-in" /> Menu Principal </a></li>
 		</div>
+		
+	<div style="margin: 40px">
+		<h:form id="form2">
+
+			<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}"
+				reflow="true" var="p" paginator="true" rows="5">
+				<p:column headerText="Cedula" filterBy="#{p.usuario.cedulaUsuario}"
+					filterMatchMode="contains" style="width:150px">
+					<h:outputText value="#{p.usuario.cedulaUsuario}" />
+				</p:column>
+
+				<p:column headerText="NRO CUENTA" filterBy="#{p.nroCuentaCl}"
+					filterMatchMode="contains">
+					<h:outputText value="#{p.nroCuentaCl}" />
+				</p:column>
+
+				<p:column headerText="CLIENTE" filterBy="#{p.usuario.nombreUsuario}"
+					filterMatchMode="contains">
+					<h:outputText
+						value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
+				</p:column>
+				<p:column headerText="DIRECCION">
+					<h:outputText value="#{p.usuario.direccionUsuario}" />
+				</p:column>
 
 
-		<div style="margin: 40px">
-			<h:form>
-				<p:commandButton style="background-color:green;" value="Regresar"
-					icon="fa fa-long-arrow-left"
-					onclick="location='indexAdministrador.xhtml'">
-				</p:commandButton>
-			</h:form>
-		</div>
-		<div style="margin: 40px">
-			<h:form id="form2">
+				<p:column headerText="SALDO DISPONIBLE" style="width:200px">
+					<h:outputText value="#{p.saldoCuenta}" />
+				</p:column>
 
-				<p:dataTable value="#{beanGestionCliente.listaCuentaCliente}"
-					reflow="true" var="p" paginator="true" rows="5">
-					<p:column headerText="Cedula" filterBy="#{p.usuario.cedulaUsuario}" filterMatchMode="contains">
-						<h:outputText value="#{p.usuario.cedulaUsuario}" />
-					</p:column>
-
-					<p:column headerText="NRO CUENTA" filterBy="#{p.nroCuentaCl}" filterMatchMode="contains">
-						<h:outputText value="#{p.nroCuentaCl}" />
-					</p:column>
-
-					<p:column headerText="CLIENTE" filterBy="#{p.usuario.nombreUsuario}" filterMatchMode="contains">
-						<h:outputText
-							value="#{p.usuario.apellidoUsuario} #{p.usuario.nombreUsuario}" />
-					</p:column>
-					<p:column headerText="DIRECCION">
-						<h:outputText value="#{p.usuario.direccionUsuario}" />
-					</p:column>
-
-
-					<p:column headerText="SALDO DISPONIBLE">
-						<h:outputText value="#{p.saldoCuenta}" />
-					</p:column>
-
-				</p:dataTable>
-			</h:form>
-		</div>
-		<p:dialog header="Editar información" widgetVar="dlgEdicion"
-			modal="true">
-			<h:form id="formEdicion">
-				<p:growl>
-					<p:autoUpdate />
-				</p:growl>
-				<h:outputText value="NRO DE CUENTA:" />
+			</p:dataTable>
+		</h:form>
+	</div>
+	<p:dialog header="Editar información" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<h:outputText value="NRO DE CUENTA:" />
+			<h:outputText
+				value="#{beanGestionCliente.cuentaClienteSeleccionado.nroCuentaCl}" />
+			<p:panelGrid columns="2">
+				<h:outputText value="NOMBRE CLIENTE:" />
 				<h:outputText
-					value="#{beanGestionCliente.cuentaClienteSeleccionado.nroCuentaCl}" />
-				<p:panelGrid columns="2">
-					<h:outputText value="NOMBRE CLIENTE:" />
-					<h:outputText
-						value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario} #{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.nombreUsuario} #{beanGestionCliente.cuentaClienteSeleccionado.usuario.apellidoUsuario}" />
 
-					<h:outputText value="CEDULA:" />
-					<h:outputText
-						value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
-					<h:outputText value="INTERES:" />
-					<p:inputText
-						value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
+				<h:outputText value="CEDULA:" />
+				<h:outputText
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.usuario.cedulaUsuario}" />
+				<h:outputText value="INTERES:" />
+				<p:inputText
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.interesCuenta}" />
 
-					<h:outputText value="SALDO CUENTA:" />
-					<p:inputText
-						value="#{beanGestionCliente.cuentaClienteSeleccionado.saldoCuenta}" />
+				<h:outputText value="SALDO CUENTA:" />
+				<p:inputText
+					value="#{beanGestionCliente.cuentaClienteSeleccionado.saldoCuenta}" />
 
-				</p:panelGrid>
-				<p:commandButton value="Actualizar" icon="fa fa-save"
-					update="@form,:form2"
-					actionListener="#{beanGestionCliente.actionListenerActualizarCuentaCliente()}" />
-			</h:form>
-		</p:dialog>
-		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			<p:commandButton value="Si" type="button"
-				styleClass="ui-confirmdialog-yes" icon="fa fa-check"></p:commandButton>
-			<p:commandButton value="No" type="button"
-				styleClass="ui-confirmdialog-no" icon="fa fa-times"></p:commandButton>
-		</p:confirmDialog>
+			</p:panelGrid>
+			<p:commandButton value="Actualizar" icon="fa fa-save"
+				update="@form,:form2"
+				actionListener="#{beanGestionCliente.actionListenerActualizarCuentaCliente()}" />
+		</h:form>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="Si" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check"></p:commandButton>
+		<p:commandButton value="No" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times"></p:commandButton>
+	</p:confirmDialog>
 
-	
+
 	<div class="top-bar">
 		<div class="container">
 			<div class="row">

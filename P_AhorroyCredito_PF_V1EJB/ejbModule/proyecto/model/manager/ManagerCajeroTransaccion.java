@@ -88,14 +88,17 @@ public class ManagerCajeroTransaccion {
 
 	}
 
-	public void insertarTransaccion(int nroCuenta, int idTipoTransaccion, double montoTransaccion,
+	public boolean insertarTransaccion(int nroCuenta, int idTipoTransaccion, double montoTransaccion,
 			Date fechaTransaccion, double SaldoTransaccion) {
 		double saldo_actual = ConsultarSaldo(nroCuenta);
-
+        boolean t=false;
 		Transaccion transaccion = new Transaccion();
 		CuentaCliente cuentaCliente = buscarCuentaCliente(nroCuenta);
 		TipoTransaccion tipoTransaccion = buscarTipoTransaccion(idTipoTransaccion);
-
+       
+		
+		
+		if(montoTransaccion<=saldo_actual) {
 		transaccion.setCuentaCliente(cuentaCliente);
 		transaccion.setTipoTransaccion(tipoTransaccion);
 		transaccion.setMontoTransaccion(new BigDecimal(montoTransaccion));
@@ -119,6 +122,10 @@ public class ManagerCajeroTransaccion {
 		
 		}
 		em.merge(cuentaCliente);
+		return t=true;
+        }else
+        	return t;
+		
 	}
 
 	public void eliminarTransaccion(int idTransaccion) {

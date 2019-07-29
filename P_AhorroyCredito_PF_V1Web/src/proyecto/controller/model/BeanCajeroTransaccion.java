@@ -66,11 +66,15 @@ public class BeanCajeroTransaccion implements Serializable {
 
 	public void actionListenerInsertarTransaccion() {
 		try {
-
-			managerCajeroTransaccion.insertarTransaccion(nroCuenta, idTipoTransaccion, montoTransaccion, fechaTransaccion, SaldoTransaccion);
+			boolean resp=managerCajeroTransaccion.insertarTransaccion(nroCuenta, idTipoTransaccion, montoTransaccion, fechaTransaccion, SaldoTransaccion);
+           if(resp==true) {
+			
 			listaTransaccion = managerCajeroTransaccion.findAllTransaccion();
 			transaccion = new Transaccion();
 			JSFUtil.crearMensajeInfo("Transacción realizada");
+           }else
+        	   JSFUtil.crearMensajeWarning("Saldo insuficiente..!!");
+        	   
 		} catch (Exception e) {
 			JSFUtil.crearMensajeError(e.getMessage());
 			e.printStackTrace();

@@ -18,7 +18,7 @@
 </h:head>
 <body>
 
-<p:idleMonitor timeout="60000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').show()"/>
+<p:idleMonitor timeout="40000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').show()"/>
 			
 <p:dialog header="Reinicio de sesión" resizable="false"
 			widgetVar="idleDialog" closable="false" modal="true" width="400">
@@ -37,7 +37,7 @@
 		<p:messages>
 			<p:autoUpdate />
 		</p:messages>
-		<p:panel collapsed="#{beanGestionCliente.panelColapso}">
+		<p:panel collapsed="">
 			<f:facet name="header">
 				<p:commandButton style="background-color:blue;"
 					value="Nuevo Personal" icon="fa fa-plus" update="@form"
@@ -59,8 +59,10 @@
 				
 				<h:outputText value="USERNAME:" />
 				<p:inputText value="#{beanGestionCliente.usuario.username}"/>
-				<h:outputText value="CONTRASEÑA:" />
-				<p:inputText value="#{beanGestionCliente.usuario.contrasena}"/>
+				<h:outputText for="regex" value="CONTRASEÑA:"  />
+				<p:inputText id="regex" value="#{beanGestionCliente.usuario.contrasena}" validatorMessage="Value does not match pattern.">
+				<f:validateRegex pattern="^[a-zA-Z]+$" />
+				</p:inputText>
 				<h:outputText value="NRO CUENTA:" />
 				<p:inputText value="#{beanGestionCliente.cuentaCliente.nroCuentaCl}"/>
 				<h:outputText value="SALDO:" />

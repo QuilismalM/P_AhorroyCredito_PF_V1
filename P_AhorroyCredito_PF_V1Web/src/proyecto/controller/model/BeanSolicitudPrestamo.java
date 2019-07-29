@@ -60,7 +60,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 		try {
 			estado_solicitud="Pendiente";
 			mangerSolicitud.insertarSolucitudP(valor_solicitud, estado_solicitud, fecha_solicitud,nroCuentaCl,nroMeses);
-			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+			listaSolicitud2 = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			solicitudP = new SolicitudP();
 			JSFUtil.crearMensajeInfo("Datos insertados");
 		} catch (Exception e) {
@@ -70,10 +70,11 @@ public class BeanSolicitudPrestamo implements Serializable {
 	}
 
 	public void actionListenerEliminarSolicitud(int id_solicitudp) {
-		mangerSolicitud.eliminarSolicitudP(id_solicitudp);
-		listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
-		JSFUtil.crearMensajeInfo("Eliminado");
-
+		if (id_solicitudp!= 0) {
+			mangerSolicitud.eliminarSolicitudP(id_solicitudp);
+			listaSolicitud2 = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+			JSFUtil.crearMensajeInfo("Eliminado");	
+		}	
 	}
 	
 
@@ -84,7 +85,7 @@ public class BeanSolicitudPrestamo implements Serializable {
 	public void actionListenerActualizarSolicitudl() {
 		try {
 			mangerSolicitud.actualizarSolicitudP(solicitudPseleccionada);
-			listaSolicitud = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
+			listaSolicitud2 = mangerSolicitud.SolcitudesCliente(nroCuentaCl);
 			JSFUtil.crearMensajeInfo("Datos Actualizados");
 
 		} catch (Exception e) {

@@ -73,6 +73,7 @@ public class ManagerSolicitudPrestamo {
 	public void eliminarSolicitudP(int id_solicitudp) {
 		SolicitudP solicitudP = findSolicitudPByIdSolicitud(id_solicitudp);
 		if (solicitudP != null)
+			System.out.println("managerS");
 			em.remove(solicitudP);
 	}
 	public SolicitudP buscarSolicitudP(int idsolicitud) {

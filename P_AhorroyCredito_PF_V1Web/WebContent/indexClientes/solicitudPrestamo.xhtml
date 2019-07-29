@@ -25,7 +25,7 @@
 <f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-		<title> Transferencias</title>
+		<title> Solicitudes</title>
 	</f:facet>
 </h:head> 
 <body> 
@@ -91,7 +91,7 @@
 		<p:panel header="Solucitud de Préstamo" style="width:500px" collapsed="#{beanUsuario.panelColapsado}">
 		<f:facet name="header">
 						<p:commandButton style="background-color:blue;"
-							value="Nuevo Personal" icon="fa fa-plus" update="@form"
+							value="Nueva Solicitud" icon="fa fa-plus" update="@form"
 							actionListener="#{beanUsuario.actionListenerColapsarPanel()}"></p:commandButton>
 		</f:facet>
 			<p:panelGrid columns="2">
@@ -108,8 +108,9 @@
 				<p:inputText
 					value="#{beanSolicitudPrestamo.nroMeses}"
 					/>
-				<h:outputText value="Nro Cuenta:" />
-				<p:selectOneMenu value="#{beanSolicitudPrestamo.nroCuentaCl}" >
+				</p:panelGrid>
+				<h:outputText value="Nro Cuenta:" style="visibility:hidden" />
+				<p:selectOneMenu value="#{beanSolicitudPrestamo.nroCuentaCl}" style="visibility:hidden"  >
 					<f:selectItems value="#{beanSolicitudPrestamo.listaCuentaCliente}"
 						var="cl" itemLabel="#{cl.nroCuentaCl}"
 						itemValue="#{cl.nroCuentaCl}" />
@@ -117,7 +118,7 @@
 				<p:commandButton value="Insertar" icon="fa fa-save"
 					update="@form,:form2"
 					actionListener="#{beanSolicitudPrestamo.actionListenerInsertarSolicitud()}"></p:commandButton>
-			</p:panelGrid>
+			
 		</p:panel>
 	</h:form>
 	</div>
@@ -127,7 +128,7 @@
 	<h:form id="form2">
 		<p:panel header="Solicitud de Préstamo" style="width:900px">
 			<p:dataTable value="#{beanSolicitudPrestamo.listaSolicitud2}"
-				var="solicitud">
+				var="solicitud" reflow="true" paginator="true" rows="5">
 				<p:column headerText="ID">
 					<h:outputText value="#{solicitud.idSolicitud}" />
 				</p:column>
@@ -184,7 +185,7 @@
 		</h:form>
 	</p:dialog>
 
-	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="SI" type="button"
 			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
 		<p:commandButton value="NO" type="button"

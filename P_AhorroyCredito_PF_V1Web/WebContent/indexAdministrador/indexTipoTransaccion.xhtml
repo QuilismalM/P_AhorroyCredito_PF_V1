@@ -25,6 +25,23 @@
 
 </h:head>
 <body>
+<!-- 			<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{10 * 1000}" /> -->
+<!-- 			<p:dialog header="Error secion" widgetVar="sessionTimeOutDialog"  -->
+<!-- 			 modal="true" fixedCenter="true" closable="false" width="400" visible="false"> -->
+<!-- 			     <h:outputText value="salida de secion" /> -->
+<!-- 			     <input id="confirmBackToLogin" type="button" value="#{beanLogin.salirSistema()}" -->
+<!-- 			        onclick="window.location='#{facesContext.externalContext.requestContextPath}/faces/login.xhtml';" /> -->
+<!-- 			</p:dialog> -->
+	
+
+<p:idleMonitor timeout="10000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').show()"/>
+			
+<p:dialog header="Reinicio de sesión" resizable="false"
+			widgetVar="idleDialog" closable="false" modal="true" width="400">
+	<center><h:outputText value="Donde estabas ? " /><p></p>
+	<p:commandButton value="Sesión Terminada" action="#{beanLogin.salirSistema()}"></p:commandButton></center>
+</p:dialog>
+			
 <header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">

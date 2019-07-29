@@ -4,11 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+
 <f:metadata>
 	<f:event listener="#{beanLogin.actionVerificarLogin()}"
 		type="preRenderView"></f:event>
 </f:metadata>
-
 <h:head>
 	<link href="../IndexPrincipal/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="../IndexPrincipal/css/font-awesome.min.css"
@@ -24,11 +24,27 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no ,user-scalable=no" />
 		<title>CLIENTES</title>
-
-
 	</f:facet>
 </h:head>
 <body>
+
+<!-- 			<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{10 * 1000}" /> -->
+<!-- 			<p:dialog header="Error secion" widgetVar="sessionTimeOutDialog"  -->
+<!-- 			 modal="true" fixedCenter="true" closable="false" width="400" visible="false"> -->
+<!-- 			     <h:outputText value="salida de secion" /> -->
+<!-- 			     <input id="confirmBackToLogin" type="button" value="#{beanLogin.salirSistema()}" -->
+<!-- 			        onclick="window.location='#{facesContext.externalContext.requestContextPath}/faces/login.xhtml';" /> -->
+<!-- 			</p:dialog> -->
+	
+
+<p:idleMonitor timeout="10000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').show()"/>
+			
+<p:dialog header="Reinicio de sesión" resizable="false"
+			widgetVar="idleDialog" closable="false" modal="true" width="400">
+	<center><h:outputText value="Donde estabas ? " /><p></p>
+	<p:commandButton value="Sesión Terminada" action="#{beanLogin.salirSistema()}"></p:commandButton></center>
+</p:dialog>
+			
 	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">

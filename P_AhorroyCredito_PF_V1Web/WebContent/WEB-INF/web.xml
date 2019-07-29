@@ -27,6 +27,6 @@
         </form-login-config> 
     </login-config>
 	<session-config>
-	<session-timeout>10</session-timeout>
+	<session-timeout>1</session-timeout>
 	</session-config>
 </web-app>

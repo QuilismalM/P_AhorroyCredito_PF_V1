@@ -30,6 +30,13 @@
 	</f:facet>
 </h:head>
 <body>
+<p:idleMonitor timeout="60000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').show()"/>
+			
+<p:dialog header="Reinicio de sesión" resizable="false"
+			widgetVar="idleDialog" closable="false" modal="true" width="400">
+	<center><h:outputText value="Donde estabas ? " /><p></p>
+	<p:commandButton value="Sesión Terminada" action="#{beanLogin.salirSistema()}"></p:commandButton></center>
+</p:dialog>
 	<header id="header"> <nav class="navbar navbar-inverse"
 		role="banner">
 	<div class="container">
